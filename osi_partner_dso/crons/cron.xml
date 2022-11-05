@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+	<record id="res_partner_dso_cron" model="ir.cron">
+        <field name="name">Res Partner: Calcul des DSO Clients</field>
+        <field name="model_id" ref="model_res_partner_dso"/>
+        <field name="state">code</field>
+        <field name="code">model.compute_partner_dso()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+	<record id="res_partner_authorized_exceeding_cron" model="ir.cron">
+        <field name="name">Res Partner: Calcul dépassements autorisés</field>
+        <field name="model_id" ref="model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">model.compute_all_marges()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>

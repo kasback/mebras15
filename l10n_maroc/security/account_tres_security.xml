@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="ir.module.category" id="categorie_security_andema">
+            <field name="name">Andema</field>
+            <field name="description">Sécurité des modules Andema</field>
+            <field name="sequence">11</field>
+        </record>
+    </data>
+</odoo>

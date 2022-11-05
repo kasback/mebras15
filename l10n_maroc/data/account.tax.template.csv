@@ -1,0 +1,145 @@
+id,amount_type,code,amount,name,type_tax_use,sequence,description,chart_template_id/id,invoice_repartition_line_ids/factor_percent,invoice_repartition_line_ids/repartition_type,invoice_repartition_line_ids/account_id/id,refund_repartition_line_ids/factor_percent,refund_repartition_line_ids/repartition_type,refund_repartition_line_ids/account_id/id
+080,percent,080,20.0,20% (080) - Opérations de production et de distribution,sale,1,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550080,100.0,of tax,l10n_maroc.pcg_44550080
+081,percent,081,20.0,20% (081) - Prestations de services,sale,2,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550081,100.0,of tax,l10n_maroc.pcg_44550081
+082,percent,082,20.0,20% (082) - Professions libérales visées à l’article 89 - I - 12° - (b) du CGI,sale,3,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550082,100.0,of tax,l10n_maroc.pcg_44550082
+083,percent,083,20.0,20% (083) - Opérations de crédit - bail,sale,4,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550083,100.0,of tax,l10n_maroc.pcg_44550083
+087,percent,087,20.0,20% (087) - Opérations d’entreprises de travaux immobiliers,sale,5,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550087,100.0,of tax,l10n_maroc.pcg_44550087
+102,percent,102,20.0,20% (102) - Autres,sale,6,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550102,100.0,of tax,l10n_maroc.pcg_44550102
+084,percent,084,14.0,14% (084) - Beurre à l’exclusion du beurre de fabrication artisanale visé à l’article 91 (I - A. 2°),sale,7,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550084,100.0,of tax,l10n_maroc.pcg_44550084
+086,percent,086,10.0,10% (086) - Engins et filets de pêche destinés aux professionnels de la pêche maritime. ,sale,8,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550086,100.0,of tax,l10n_maroc.pcg_44550086
+088,percent,088,14.0,"14% (088) - Opérations de transport de voyageurs et de marchandises , à l’exclusion du transport ferroviaire",sale,9,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550088,100.0,of tax,l10n_maroc.pcg_44550088
+090,percent,090,14.0,14% (090) - Energie électrique,sale,10,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550090,100.0,of tax,l10n_maroc.pcg_44550090
+104,percent,104,14.0,14% (104) - Autres,sale,11,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550104,100.0,of tax,l10n_maroc.pcg_44550104
+091,percent,091,14.0,14% (091) - Les prestations de services rendues par tout agent démarcheur ou courtier d’assurances à raison des contrats apportés par lui à une entreprise d’assurances,sale,12,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550091,100.0,of tax,l10n_maroc.pcg_44550091
+077,percent,077,10.0,10% (077) - Chauffe - eau solaires,sale,13,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550077,100.0,of tax,l10n_maroc.pcg_44550077
+078,percent,078,10.0,10% (078) - Les aliments destinés à l’alimentation de bétail et des animaux de basse - cour ainsi que les tourteaux servant à leur fabrication à l'exclusion des autres aliments simples,sale,13,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550078,100.0,of tax,l10n_maroc.pcg_44550078
+079,percent,079,10.0,10% (079) - Les équipements à usage exclusivement agricole,sale,14,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550079,100.0,of tax,l10n_maroc.pcg_44550079
+085,percent,085,10.0,"10% (085) - Les bois en grumes, écorcés ou simplement équarris, le liège à l'état naturel, les bois de feu en fagots ou sciés à petite longueur et le charbon de bois",sale,15,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550085,100.0,of tax,l10n_maroc.pcg_44550085
+089,percent,089,10.0,10% (089) - Les prestations de restauration fournies directement par l'entreprise à son personnel salarié ,sale,16,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550089,100.0,of tax,l10n_maroc.pcg_44550089
+092,percent,092,10.0,10% (092) - Opérations de restauration et de logement dans des hôtels,sale,17,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550092,100.0,of tax,l10n_maroc.pcg_44550092
+093,percent,093,20.0,20% (093) - Opérations de vente et de livraison de biens meubles d’occasion ,sale,18,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550093,100.0,of tax,l10n_maroc.pcg_44550093
+094,percent,094,20.0,20% (094) - Opérations de livraison à soi - même de constructions,sale,19,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550094,100.0,of tax,l10n_maroc.pcg_44550094
+095,percent,095,20.0,20% (095) - Régime de marge visé aux articles 125 bis et 125 quater du CGI,sale,20,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550095,100.0,of tax,l10n_maroc.pcg_44550095
+096,percent,096,10.0,10% (096) - Le sel de cuisine (gemme ou marin),sale,21,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550096,100.0,of tax,l10n_maroc.pcg_44550096
+097,percent,097,10.0,10% (097) - Riz usiné et les pâtes alimentaires,sale,22,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550097,100.0,of tax,l10n_maroc.pcg_44550097
+098,percent,098,10.0,10% (098) - Huiles fluides alimentaires à l’exclusion de l’huile de palme,sale,23,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550098,100.0,of tax,l10n_maroc.pcg_44550098
+099,percent,099,10.0,10% (099) - les transactions relatives aux valeurs mobilières,sale,24,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550099,100.0,of tax,l10n_maroc.pcg_44550099
+100,percent,100,10.0,10% (100) - Les opérations de banque et de crédit et les commissions de change,sale,25,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550100,100.0,of tax,l10n_maroc.pcg_44550100
+101,percent,101,10.0,10% (101) - Les transactions portant sur les actions et les parts sociales,sale,26,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550101,100.0,of tax,l10n_maroc.pcg_44550101
+103,percent,103,10.0,10% (103) - Péage dans les autoroutes,sale,27,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550103,100.0,of tax,l10n_maroc.pcg_44550103
+105,percent,105,10.0,"10% (105) - Les opérations des avocats, interprètes, notaires, adoul, huissiers de justice et vétérinaires",sale,28,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550105,100.0,of tax,l10n_maroc.pcg_44550105
+108,percent,108,10.0,10% (108) - Gaz de pétrole et les autres hydrocarbures gazeux,sale,29,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550108,100.0,of tax,l10n_maroc.pcg_44550108
+109,percent,109,10.0,"10% (109) - Les Huiles de pétrole ou de schistes, brutes ou raffinées",sale,30,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550109,100.0,of tax,l10n_maroc.pcg_44550109
+118,percent,118,10.0,10% (118) - Autres,sale,31,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550118,100.0,of tax,l10n_maroc.pcg_44550118
+106,percent,106,7.0,7% (106) - L’eau livrée aux réseaux de distribution publique et les prestations d’assainissement,sale,32,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550106,100.0,of tax,l10n_maroc.pcg_44550106
+107,percent,107,7.0,7% (107) - Location de compteurs d’eau et d’électricité,sale,33,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550107,100.0,of tax,l10n_maroc.pcg_44550107
+110,percent,110,7.0,"7% (110) - Produits pharmaceutiques, matières premières et produits entrant dans leurs compositions ainsi que les emballages non récupérables de ces produits et matières.",sale,34,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550110,100.0,of tax,l10n_maroc.pcg_44550110
+111,percent,111,7.0,"7% (111) - Les fournitures scolaires, produits et matières entrant dans leur composition",sale,35,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550111,100.0,of tax,l10n_maroc.pcg_44550111
+112,percent,112,10.0,"10% (112) - Opérations de vente des billets d’entrée aux musées, cinéma et théâtre",sale,36,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550112,100.0,of tax,l10n_maroc.pcg_44550112
+113,percent,113,7.0,7% (113) - Sucre raffiné ou aggloméré,sale,36,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550113,100.0,of tax,l10n_maroc.pcg_44550113
+114,percent,114,7.0,7% (114) - Conserves de sardines,sale,37,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550114,100.0,of tax,l10n_maroc.pcg_44550114
+115,percent,115,7.0,7% (115) - Lait en poudre,sale,38,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550115,100.0,of tax,l10n_maroc.pcg_44550115
+116,percent,116,7.0,7% (116) - Savon de ménage,sale,39,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550116,100.0,of tax,l10n_maroc.pcg_44550116
+117,percent,117,7.0,7% (117) - Voiture économique et produits et matières entrant dans sa fabrication,sale,40,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550117,100.0,of tax,l10n_maroc.pcg_44550117
+119,percent,119,7.0,7% (119) - Autres,sale,41,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_44550119,100.0,of tax,l10n_maroc.pcg_44550119
+140,percent,140,20.0,20% (140) - Prestations de services,purchase,42,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552140,100.0,of tax,l10n_maroc.pcg_34552140
+141,percent,141,14.0,14% (141) - Transport,purchase,43,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552141,100.0,of tax,l10n_maroc.pcg_34552141
+142,percent,142,10.0,10% (142) - Opération de banque,purchase,44,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552142,100.0,of tax,l10n_maroc.pcg_34552142
+143,percent,143,10.0,"10% (143) - Hôtels de voyageurs, et ensemble immobilier à destination touristique",purchase,45,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552143,100.0,of tax,l10n_maroc.pcg_34552143
+144,percent,144,10.0,"10% (144) - Les opérations des avocats, interprètes, notaires, adoul, huissiers de justice et vétérinaires",purchase,46,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552144,100.0,of tax,l10n_maroc.pcg_34552144
+153,percent,153,10.0,10% (153) - Autres prestations de services,purchase,47,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552153,100.0,of tax,l10n_maroc.pcg_34552153
+145,percent,145,20.0,20% (145) - Achat à l’importation,purchase,48,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552145,100.0,of tax,l10n_maroc.pcg_34552145
+146,percent,146,20.0,20% (146) - Achat à l’intérieur,purchase,49,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552146,100.0,of tax,l10n_maroc.pcg_34552146
+147,percent,147,14.0,14% (147) - Achat à l’importation,purchase,50,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552147,100.0,of tax,l10n_maroc.pcg_34552147
+148,percent,148,14.0,14% (148) - Achat à l’intérieur,purchase,51,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552148,100.0,of tax,l10n_maroc.pcg_34552148
+149,percent,149,10.0,10% (149) - Achat à l’importation,purchase,52,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552149,100.0,of tax,l10n_maroc.pcg_34552149
+150,percent,150,10.0,10% (150) - Achat à l’intérieur,purchase,53,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552150,100.0,of tax,l10n_maroc.pcg_34552150
+151,percent,151,7.0,7% (151) - Achat à l’importation,purchase,54,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552151,100.0,of tax,l10n_maroc.pcg_34552151
+152,percent,152,7.0,7% (152) - Achat à l’intérieur,purchase,55,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552152,100.0,of tax,l10n_maroc.pcg_34552152
+155,percent,155,20.0,20% (155) Travaux à façon,purchase,56,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552155,100.0,of tax,l10n_maroc.pcg_34552155
+156,percent,156,20.0,20% (156) Sous –traitance ( travaux immobiliers ),purchase,57,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34552156,100.0,of tax,l10n_maroc.pcg_34552156
+160,percent,160,10.0,10% (160) - Autres immobilisations,purchase,58,10%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551160,100.0,of tax,l10n_maroc.pcg_34551160
+162,percent,162,20.0,20% (162) - Achat à l’importation,purchase,58,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551162,100.0,of tax,l10n_maroc.pcg_34551162
+163,percent,163,20.0,20% (163) - Achat à l’intérieur,purchase,59,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551163,100.0,of tax,l10n_maroc.pcg_34551163
+164,percent,164,20.0,20% (164) - Livraison à soi - même autre que les constructions,purchase,60,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551164,100.0,of tax,l10n_maroc.pcg_34551164
+165,percent,165,20.0,20% (165) - Installation et pose,purchase,61,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551165,100.0,of tax,l10n_maroc.pcg_34551165
+166,percent,166,20.0,20% (166) - Constructions,purchase,62,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551166,100.0,of tax,l10n_maroc.pcg_34551166
+167,percent,167,20.0,20% (167) - Livraison à soi - même de constructions,purchase,63,20%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551167,100.0,of tax,l10n_maroc.pcg_34551167
+168,percent,168,14.0,14% (168) - Autres immobilisations,purchase,64,14%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551168,100.0,of tax,l10n_maroc.pcg_34551168
+169,percent,169,7.0,7% (169) - Autres immobilisations,purchase,65,7%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,l10n_maroc.pcg_34551169,100.0,of tax,l10n_maroc.pcg_34551169
+020,percent,020,0.0, - Opérations situées hors champ d’application de la TVA - Opérations situées hors champ d’application de la TVA,sale,66,0%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,,100.0,of tax,
+030,percent,030,0.0, - Opérations exonérées sans droit à déduction (art 91du CGI) - Opérations exonérées sans droit à déduction (art 91du CGI),sale,67,0%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,,100.0,of tax,
+040,percent,040,0.0, - Opérations exonérées avec droit à déduction (art 92 du CGI) - Opérations exonérées avec droit à déduction (art 92 du CGI),sale,68,0%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,,100.0,of tax,
+050,percent,050,0.0, - Opérations faites en suspension de la TVA (art 94 du CGI) - Opérations faites en suspension de la TVA (art 94 du CGI),sale,69,0%,l10n_ma,100.0,Base,,100.0,Base,
+,,,,,,,,,100.0,of tax,,100.0,of tax,

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="paiement_cheque_model_client1" model="paiement.cheque.model.client">
+            <field name="name">Modèle chèque Client</field>
+            <field name="received_account" search="[('code','like','51111%')]"/>
+            <field name="at_bank_account" search="[('code','like','51112%')]"/>
+        </record>
+
+        <record id="paiement_effet_model_client1" model="paiement.effet.model.client">
+            <field name="name">Modèle effet Client</field>
+            <field name="received_account" search="[('code','like','3425%')]"/>
+            <field name="at_bank_account" search="[('code','like','51132%')]"/>
+            <field name="bank_account" search="[('code','like','51410001%')]"/>
+        </record>
+    </data>
+</odoo>

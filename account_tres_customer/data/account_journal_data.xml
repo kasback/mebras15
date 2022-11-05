@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="account.journal" id="account_journal_data_chp">
+        <field name="name" >Chèques en portefeuilles</field>
+        <field name="type" >general</field>
+        <field name="code" >CQPF</field>
+    </record>
+    <record model="account.journal" id="account_journal_data_effar">
+        <field name="name" >Effet à recevoir</field>
+        <field name="type" >general</field>
+        <field name="code" >EFFAR</field>
+    </record>
+    <record model="account.journal" id="account_journal_data_effap">
+        <field name="name" >Effet à payer</field>
+        <field name="type" >general</field>
+        <field name="code" >EFFAP</field>
+    </record>
+</odoo>

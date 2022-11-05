@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_paiement_pec_client_read,paiement_pec_client_read,model_paiement_pec_client,account_tres_customer.account_tres_read_piece,1,0,0,0
+access_paiement_pec_client_user,paiement_pec_client_user,model_paiement_pec_client,account_tres_customer.account_tres_user,1,1,1,0
+access_paiement_pec_model_client,paiement.pec.model.client user,model_paiement_pec_model_client,account_tres_customer.account_tres_user,1,1,1,0
+access_paiement_pec_assurance,paiement.pec.assurance.client user,model_pec_assurance,account_tres_customer.account_tres_user,1,1,1,0

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="0">
+
+
+    <record id="group_payement_method" model="res.groups">
+        <field name="category_id" ref="l10n_maroc.categorie_security_andema"/>
+        <field name="name">Méthodes de paiement</field>
+    </record>
+
+
+</data>
+</odoo>

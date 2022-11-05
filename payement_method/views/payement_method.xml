@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--<record model="ir.ui.view" id="view_account_payment_inherit_method">
+            <field name="name">view.account.payment.inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_date" position="after">
+                    <field name="payement_method_id" required="1" widget='selection'/>
+                    <field name="payement_code" invisible="1" />
+                    <field name="date_echeance" attrs="{'invisible':[('payement_code','not in',['2', '5'])]}"/>
+                </field>
+            </field>
+        </record>-->
+
+        <record id="view_account_payment_form_inherited" model="ir.ui.view">
+            <field name="name">account.payment.form.inherited</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="payement_method_id" required="1" widget='selection'/>
+                    <field name="payement_code" invisible="1" />
+                    <field name="date_echeance" attrs="{'invisible':[('payement_code','not in',['2', '5'])]}"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_account_payment_register_wizard_inherited" model="ir.ui.view">
+            <field name="name">account.register.payment.wizard.inherited</field>
+            <field name="model">account.payment.register</field>
+            <field name="inherit_id" ref="account.view_account_payment_register_form" />
+            <field name="arch" type="xml">
+                <field name="payment_date" position="after">
+                    <field name="payement_method_id" required="1" widget='selection'/>
+                    <field name="payement_code" invisible="1" />
+                    <field name="date_echeance" attrs="{'invisible':[('payement_code','not in',['2', '5'])]}"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_payement_method_form">
+            <field name="name">view.payement.method</field>
+            <field name="model">payement.method</field>
+            <field name="arch" type="xml">
+                <form string="Méthodes de paiement">
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_payement_method_tree">
+            <field name="name">view.payement.method</field>
+            <field name="model">payement.method</field>
+            <field name="arch" type="xml">
+                <tree string="Méthodes de paiement">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="payement_method_action" model="ir.actions.act_window">
+            <field name="name">Méthodes de paiement</field>
+            <field name="res_model">payement.method</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="payement_method_menu_id" parent="account.account_account_menu" action="payement_method_action"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,763 @@
+code,id,name,user_type_id/id,reconcile,chart_template_id/id
+11110000,pcg_11110000,Capital social,account.data_account_type_equity,FALSE,l10n_ma
+11120000,pcg_11120000,Fonds de dotation,account.data_account_type_equity,FALSE,l10n_ma
+11170000,pcg_11170000,Capital personnel,account.data_account_type_equity,FALSE,l10n_ma
+11171000,pcg_11171000,Capital individuel,account.data_account_type_equity,FALSE,l10n_ma
+11175000,pcg_11175000,Compte de l'exploitant,account.data_account_type_equity,FALSE,l10n_ma
+11190000,pcg_11190000,"Actionnaires, capital souscrit-non appelé",account.data_account_type_equity,FALSE,l10n_ma
+11210000,pcg_11210000,Primes d'émission,account.data_account_type_equity,FALSE,l10n_ma
+11220000,pcg_11220000,Primes de fusion,account.data_account_type_equity,FALSE,l10n_ma
+11230000,pcg_11230000,Primes d'apport,account.data_account_type_equity,FALSE,l10n_ma
+11300000,pcg_11300000,Ecarts de réévaluation,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+11400000,pcg_11400000,Réserve légale,account.data_account_type_equity,FALSE,l10n_ma
+11510000,pcg_11510000,Réserves statutaires ou contractuelles,account.data_account_type_equity,FALSE,l10n_ma
+11520000,pcg_11520000,Réserves facultatives,account.data_account_type_equity,FALSE,l10n_ma
+11550000,pcg_11550000,Réserves réglementées,account.data_account_type_equity,FALSE,l10n_ma
+11610000,pcg_11610000,Report à nouveau (solde créditeur),account.data_account_type_equity,FALSE,l10n_ma
+11690000,pcg_11690000,Report à nouveau (solde débiteur),account.data_account_type_equity,FALSE,l10n_ma
+11810000,pcg_11810000,Résultats nets en instance d'affectation (solde créditeur),account.data_account_type_equity,FALSE,l10n_ma
+11890000,pcg_11890000,Résultats nets en instance d'affectation (solde débiteur),account.data_account_type_equity,FALSE,l10n_ma
+11910000,pcg_11910000,Résultat net de l'exercice (solde créditeur),account.data_unaffected_earnings,FALSE,l10n_ma
+13110000,pcg_13110000,Subventions d'investissement reçues,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+13190000,pcg_13190000,Subventions d'investissement inscrites au CPC,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+13510000,pcg_13510000,Provisions pour amortissements dérogatoires,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+13520000,pcg_13520000,Provisions pour plus-values en instance d'imposition,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+13540000,pcg_13540000,Provisions pour investissements,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+13550000,pcg_13550000,Provisions pour reconstitution des gisements,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+13560000,pcg_13560000,Provisions pour acquisition et construction de logements,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+13580000,pcg_13580000,Autres provisions réglementées,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14100000,pcg_14100000,Emprunts obligataires,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14810000,pcg_14810000,Emprunts auprès des établissements de crédit,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14820000,pcg_14820000,Avances de l'Etat,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14830000,pcg_14830000,Dettes rattachées à des participations,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14840000,pcg_14840000,Billets de fonds,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14850000,pcg_14850000,Avances reçues et comptes courants bloqués,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14860000,pcg_14860000,Fournisseurs d'immobilisation,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14870000,pcg_14870000,Dépôts et cautionnements reçues,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+14880000,pcg_14880000,Dettes de financement diverses,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15110000,pcg_15110000,Provisions pour litiges,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15120000,pcg_15120000,Provisions pour garanties données aux clients,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15130000,pcg_15130000,Provisions pour propre assureur,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15140000,pcg_15140000,Provision pour pertes sur marchés à terme,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15150000,pcg_15150000,"Provisions pour amendes, double droits, pénalités",account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15160000,pcg_15160000,Provisions pour pertes de change,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15180000,pcg_15180000,Autres provisions pour risques,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15510000,pcg_15510000,Provisions pour impôts,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15520000,pcg_15520000,Provisions pour pensions de retraite et obligations similaires,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15550000,pcg_15550000,Provisions pour charges à répartir sur plusieurs exercices,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+15580000,pcg_15580000,Autres provisions pour charges,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+16010000,pcg_16010000,Comptes de liaison du siège,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+16050000,pcg_16050000,Comptes de liaison des établissements,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+17100000,pcg_17100000,Augmentation des créances immobilisées,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+17200000,pcg_17200000,Diminution des dettes de financement,account.data_account_type_non_current_liabilities,FALSE,l10n_ma
+21110000,pcg_21110000,Frais de constitution,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21120000,pcg_21120000,Frais préalables au démarrage,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21130000,pcg_21130000,Frais d'augmentation du capital,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21140000,pcg_21140000,"Frais sur opérations de fusions, scissions et transformations",account.data_account_type_non_current_assets,FALSE,l10n_ma
+21160000,pcg_21160000,Frais de prospection,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21170000,pcg_21170000,Frais de publicité,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21180000,pcg_21180000,Autres frais préliminaires,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21210000,pcg_21210000,Frais d'acquisitition des immobilisations,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21250000,pcg_21250000,Frais d'émission des emprunts,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21280000,pcg_21280000,Autres charges à répartir,account.data_account_type_non_current_assets,FALSE,l10n_ma
+21300000,pcg_21300000,Primes de remboursement des obligations,account.data_account_type_non_current_assets,FALSE,l10n_ma
+22100000,pcg_22100000,Immobilisation en recherche et développement,account.data_account_type_non_current_assets,FALSE,l10n_ma
+22200000,pcg_22200000,"Brevets, marques, droits et valeurs similaires",account.data_account_type_non_current_assets,FALSE,l10n_ma
+22300000,pcg_22300000,Fonds commercial,account.data_account_type_non_current_assets,FALSE,l10n_ma
+22850000,pcg_22850000,Immobilisations incorporelles en cours,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23110000,pcg_23110000,Terrains nus,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23120000,pcg_23120000,Terrains aménagés,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23130000,pcg_23130000,Terrains bâtis,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23140000,pcg_23140000,Terrains de gisement,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23160000,pcg_23160000,Agencements et aménagements de terrains,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23180000,pcg_23180000,Autres terrains,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23210000,pcg_23210000,Bâtiments,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23211000,pcg_23211000,"Bâtiments industriels (A,B,,,)",account.data_account_type_non_current_assets,FALSE,l10n_ma
+23214000,pcg_23214000,"Bâtiments administratifs et commerciaux (A,B,,,)",account.data_account_type_non_current_assets,FALSE,l10n_ma
+23218000,pcg_23218000,Autres bâtiments,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23230000,pcg_23230000,Constructions sur terrains d'autrui,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23250000,pcg_23250000,Ouvrages d'infrastructure,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23270000,pcg_23270000,Agencements et aménagements des constructions,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23280000,pcg_23280000,Autres constructions,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23310000,pcg_23310000,Installations techniques,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23320000,pcg_23320000,Matériel et outillage,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23321000,pcg_23321000,Matériel,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23324000,pcg_23324000,Outillage,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23330000,pcg_23330000,Emballages récupérables identifiables,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23380000,pcg_23380000,"Autres installations techniques, matériel et outillage",account.data_account_type_non_current_assets,FALSE,l10n_ma
+23400000,pcg_23400000,Matériel de transport,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23510000,pcg_23510000,Mobilier de bureau,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23520000,pcg_23520000,Matériel de bureau,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23550000,pcg_23550000,Matériel informatique,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23560000,pcg_23560000,"Agencements, installations et aménagements divers (biens n'appartenant pas à l'entreprise)",account.data_account_type_non_current_assets,FALSE,l10n_ma
+23580000,pcg_23580000,"Autres mobilier, matériel de bureau et aménagements divers",account.data_account_type_non_current_assets,FALSE,l10n_ma
+23800000,pcg_23800000,Autres immobilisations corporelles,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23920000,pcg_23920000,Immobilisations corporelles en cours des terrains et constructions,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23930000,pcg_23930000,"Immobilisations corporelles en cours des installations techniques, matériel et outillage",account.data_account_type_non_current_assets,FALSE,l10n_ma
+23940000,pcg_23940000,Immobilisations corporelles en cours de matériel de transport,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23950000,pcg_23950000,"Immobilisations corporelles en cours de mobilier, matériel de bureau et aménagements divers",account.data_account_type_non_current_assets,FALSE,l10n_ma
+23970000,pcg_23970000,Avances et acomptes versés sur commandes d'immobilisations corporelles,account.data_account_type_non_current_assets,FALSE,l10n_ma
+23980000,pcg_23980000,Autres immobilisations corporelles en cours,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24110000,pcg_24110000,Prêts au personnel,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24150000,pcg_24150000,Prêts aux associés,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24160000,pcg_24160000,Billets de fonds,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24180000,pcg_24180000,Autres prêts,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24810000,pcg_24810000,Titres immobilisés (droits de créance),account.data_account_type_non_current_assets,FALSE,l10n_ma
+24811000,pcg_24811000,Obligations,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24813000,pcg_24813000,Bons d'équipement,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24818000,pcg_24818000,Bons divers,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24830000,pcg_24830000,Créances rattachées à des participations,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24860000,pcg_24860000,Dépôts et cautionnements versés,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24861000,pcg_24861000,Dépôts,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24864000,pcg_24864000,Cautionnements,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24870000,pcg_24870000,Créances immobilisées,account.data_account_type_non_current_assets,FALSE,l10n_ma
+24880000,pcg_24880000,Créances financères diverses,account.data_account_type_non_current_assets,FALSE,l10n_ma
+25100000,pcg_25100000,Titres de participation,account.data_account_type_non_current_assets,FALSE,l10n_ma
+25810000,pcg_25810000,Actions,account.data_account_type_non_current_assets,FALSE,l10n_ma
+25880000,pcg_25880000,Titres divers,account.data_account_type_non_current_assets,FALSE,l10n_ma
+27100000,pcg_27100000,Diminution des créances immobilisées,account.data_account_type_non_current_assets,FALSE,l10n_ma
+27200000,pcg_27200000,Augmentation des dettes de financement,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28110000,pcg_28110000,Amortissements des frais préliminaires,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28111000,pcg_28111000,Amortissements des frais de constitution,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28112000,pcg_28112000,Amortissements des frais préliminaires au démarrage,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28113000,pcg_28113000,Amortissements des frais d'augmentation du capital,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28114000,pcg_28114000,"Amortissements des frais sur opérations de fusions, scissions, et transformations",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28116000,pcg_28116000,Amortissements des frais de prospection,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28117000,pcg_28117000,Amortissements des frais de publicité,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28118000,pcg_28118000,Amortissements des autres frais préliminaires,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28120000,pcg_28120000,Amortissements des charges à répartir,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28121000,pcg_28121000,Amortissements des frais d'acquisition des immobilisations,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28125000,pcg_28125000,Amortissements des frais d'émission des emprunts,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28128000,pcg_28128000,Amortissements des autres charges à répartir,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28130000,pcg_28130000,Amortissements des primes de remboursement des obligations,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28210000,pcg_28210000,Amortissements de l'immobilisation en recherche et développement,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28220000,pcg_28220000,"Amortissements des brevets, marques, droits et valeurs similaires",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28230000,pcg_28230000,Amortissements du fonds commercial,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28280000,pcg_28280000,Amortissements des autres immobilisations incorporelles,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28310000,pcg_28310000,Amortissements des terrains,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28311000,pcg_28311000,Amortissements des terrains nus,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28312000,pcg_28312000,Amortissements des terrains aménagés,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28313000,pcg_28313000,Amortissements des terrains bâtis,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28314000,pcg_28314000,Amortissements des terrains de gisement,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28320000,pcg_28320000,Amortissements des constructions,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28321000,pcg_28321000,Amortissements des bâtiments,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28323000,pcg_28323000,Amortissements des constructions sur terrains d'autrui,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28325000,pcg_28325000,Amortissements des ouvrages d'infrastructure,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28327000,pcg_28327000,"Amortissements des installations, agencements et aménagements des constructions",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28328000,pcg_28328000,Amortissements des autres constructions,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28330000,pcg_28330000,"Amortissements des installations techniques, matériel et outillage",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28331000,pcg_28331000,Amortissements des installations techniques,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28332000,pcg_28332000,Amortissements du matériel et outillage,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28333000,pcg_28333000,Amortissements des emballages récupérables ident ifiables,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28338000,pcg_28338000,"Amortissements des autres installations techniques, matériel et outillage",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28340000,pcg_28340000,Amortissements du matériel de transport,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28350000,pcg_28350000,"Amortissements du mobilier, matériel de bureau et aménagements divers",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28351000,pcg_28351000,Amortissements du mobilier de bureau,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28352000,pcg_28352000,Amortissements du matériel de bureau,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28355000,pcg_28355000,Amortissements du matériel informatique,account.data_account_type_non_current_assets,FALSE,l10n_ma
+28356000,pcg_28356000,"Amortissements des agencements, installations et aménagements divers",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28358000,pcg_28358000,"Amortissements des autres mobilier, matériel de bureau et aménagements divers",account.data_account_type_non_current_assets,FALSE,l10n_ma
+28380000,pcg_28380000,Amortissements des autres immobilisations corporelles,account.data_account_type_non_current_assets,FALSE,l10n_ma
+29200000,pcg_29200000,Provisions pour dépréciation des immobilisations incorporelles,account.data_account_type_non_current_assets,FALSE,l10n_ma
+29300000,pcg_29300000,Provisions pour dépréciation des immobilisations corporelles,account.data_account_type_non_current_assets,FALSE,l10n_ma
+29410000,pcg_29410000,Provisions pour dépréciation des prêts immobilisés,account.data_account_type_non_current_assets,FALSE,l10n_ma
+29480000,pcg_29480000,Provisions pour dépréciation des autres créances financières,account.data_account_type_non_current_assets,FALSE,l10n_ma
+29510000,pcg_29510000,Provisions pour dépréciation des titres de participation,account.data_account_type_non_current_assets,FALSE,l10n_ma
+29580000,pcg_29580000,Provisions pour dépréciation des autres titres immobilisés,account.data_account_type_non_current_assets,FALSE,l10n_ma
+31110000,pcg_31110000,Marchandises (groupe A),account.data_account_type_current_assets,FALSE,l10n_ma
+31120000,pcg_31120000,Marchandises (groupe B),account.data_account_type_current_assets,FALSE,l10n_ma
+31160000,pcg_31160000,Marchandises en cours de route,account.data_account_type_current_assets,FALSE,l10n_ma
+31180000,pcg_31180000,Autres marchandises,account.data_account_type_current_assets,FALSE,l10n_ma
+31210000,pcg_31210000,Matières premières,account.data_account_type_current_assets,FALSE,l10n_ma
+31211000,pcg_31211000,Matières premières (groupe A),account.data_account_type_current_assets,FALSE,l10n_ma
+31212000,pcg_31212000,Matières premières (groupe B),account.data_account_type_current_assets,FALSE,l10n_ma
+31220000,pcg_31220000,Matières et fournitures consommables,account.data_account_type_current_assets,FALSE,l10n_ma
+31221000,pcg_31221000,Matières consommables (groupe A),account.data_account_type_current_assets,FALSE,l10n_ma
+31222000,pcg_31222000,Matières consommables (groupe B),account.data_account_type_current_assets,FALSE,l10n_ma
+31223000,pcg_31223000,Combustibles,account.data_account_type_current_assets,FALSE,l10n_ma
+31224000,pcg_31224000,Produits d'entretien,account.data_account_type_current_assets,FALSE,l10n_ma
+31225000,pcg_31225000,Fournitures d'atelier et d'usine,account.data_account_type_current_assets,FALSE,l10n_ma
+31226000,pcg_31226000,Fournitures de magasin,account.data_account_type_current_assets,FALSE,l10n_ma
+31227000,pcg_31227000,Fournitures de bureau,account.data_account_type_current_assets,FALSE,l10n_ma
+31230000,pcg_31230000,Emballages,account.data_account_type_current_assets,FALSE,l10n_ma
+31231000,pcg_31231000,Emballages perdus,account.data_account_type_current_assets,FALSE,l10n_ma
+31232000,pcg_31232000,Emballages récupérables non identifiables,account.data_account_type_current_assets,FALSE,l10n_ma
+31233000,pcg_31233000,Emballages à usage mixte,account.data_account_type_current_assets,FALSE,l10n_ma
+31260000,pcg_31260000,Matières et fournitures consommables en cours de route,account.data_account_type_current_assets,FALSE,l10n_ma
+31280000,pcg_31280000,Autres matières et fournitures consommables,account.data_account_type_current_assets,FALSE,l10n_ma
+31310000,pcg_31310000,Biens en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31311000,pcg_31311000,Biens produits en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31312000,pcg_31312000,Biens intermédiaires en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31317000,pcg_31317000,Biens résiduels en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31340000,pcg_31340000,Services en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31341000,pcg_31341000,Travaux en cours,account.data_account_type_current_assets,TRUE,l10n_ma
+31342000,pcg_31342000,Etudes en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31343000,pcg_31343000,Prestations en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31380000,pcg_31380000,Autres produits en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+31410000,pcg_31410000,Produits intermédiaires,account.data_account_type_current_assets,FALSE,l10n_ma
+31411000,pcg_31411000,Produits intermédiaires (groupe A),account.data_account_type_current_assets,FALSE,l10n_ma
+31412000,pcg_31412000,Produits intermédiaires (groupe B),account.data_account_type_current_assets,FALSE,l10n_ma
+31450000,pcg_31450000,Produits résiduels (ou matières de récupération),account.data_account_type_current_assets,FALSE,l10n_ma
+31451000,pcg_31451000,Déchets,account.data_account_type_current_assets,FALSE,l10n_ma
+31452000,pcg_31452000,Rebuts,account.data_account_type_current_assets,FALSE,l10n_ma
+31453000,pcg_31453000,Matières de récupération,account.data_account_type_current_assets,FALSE,l10n_ma
+31480000,pcg_31480000,Autres produits intermédiaires et produits résiduels,account.data_account_type_current_assets,FALSE,l10n_ma
+31510000,pcg_31510000,Produits finis (groupe A),account.data_account_type_current_assets,TRUE,l10n_ma
+31520000,pcg_31520000,Produits finis (groupe B),account.data_account_type_current_assets,TRUE,l10n_ma
+31560000,pcg_31560000,Produits finis en cours de route,account.data_account_type_current_assets,FALSE,l10n_ma
+31580000,pcg_31580000,Autres produits finis,account.data_account_type_current_assets,FALSE,l10n_ma
+34110000,pcg_34110000,Fournisseurs - avances et acomptes versés sur commandes d'exploitation,account.data_account_type_current_assets,TRUE,l10n_ma
+34130000,pcg_34130000,Fournisseurs - créances pour emballages et matériel à rendre,account.data_account_type_current_assets,FALSE,l10n_ma
+34170000,pcg_34170000,"Rabais, remises et ristournes à obtenir - avoirs non encore reçus",account.data_account_type_current_assets,FALSE,l10n_ma
+34180000,pcg_34180000,Autres fournisseurs débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+34210000,pcg_34210000,Clients,account.data_account_type_receivable,TRUE,l10n_ma
+34211000,pcg_34211000,Clients - Catégorie A,account.data_account_type_receivable,TRUE,l10n_ma
+34230000,pcg_34230000,Clients - retenues de garantie,account.data_account_type_current_assets,FALSE,l10n_ma
+34240000,pcg_34240000,Clients douteux ou litigieux,account.data_account_type_current_assets,FALSE,l10n_ma
+34250000,pcg_34250000,Clients - effets à recevoir,account.data_account_type_current_assets,TRUE,l10n_ma
+34270000,pcg_34270000,Clients - factures à établir et créances sur travaux non encore facturés,account.data_account_type_current_assets,FALSE,l10n_ma
+34271000,pcg_34271000,Clients - factures à établir,account.data_account_type_current_assets,TRUE,l10n_ma
+34272000,pcg_34272000,Créances sur travaux non encore facturables,account.data_account_type_current_assets,FALSE,l10n_ma
+34280000,pcg_34280000,Autres clients et comptes rattachés,account.data_account_type_current_assets,FALSE,l10n_ma
+34310000,pcg_34310000,Avances et acomptes au personnel,account.data_account_type_current_assets,FALSE,l10n_ma
+34380000,pcg_34380000,Personnel - autres débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+34510000,pcg_34510000,Subventions à recevoir,account.data_account_type_current_assets,FALSE,l10n_ma
+34511000,pcg_34511000,Subventions d'investissement à recevoir,account.data_account_type_current_assets,FALSE,l10n_ma
+34512000,pcg_34512000,Subventions d'exploitation à recevoir,account.data_account_type_current_assets,FALSE,l10n_ma
+34513000,pcg_34513000,Subventions d'équilibre à recevoir,account.data_account_type_current_assets,FALSE,l10n_ma
+34530000,pcg_34530000,Acomptes sur impôts sur les résultats,account.data_account_type_current_assets,FALSE,l10n_ma
+34550000,pcg_34550000,Etat - TVA récupérable,account.data_account_type_current_assets,FALSE,l10n_ma
+34551000,pcg_34551000,Etat - TVA récupérable sur immobilisations,account.data_account_type_current_assets,FALSE,l10n_ma
+34551160,pcg_34551160, -Autres immobilisations,account.data_account_type_current_assets,FALSE,l10n_ma
+34551162,pcg_34551162, -Achat à l'importation,account.data_account_type_current_assets,FALSE,l10n_ma
+34551163,pcg_34551163, -Achat à l'intérieur,account.data_account_type_current_assets,FALSE,l10n_ma
+34551164,pcg_34551164, -LiTRUEson à soi-même autre que constructions,account.data_account_type_current_assets,FALSE,l10n_ma
+34551165,pcg_34551165, -Installation et pose,account.data_account_type_current_assets,FALSE,l10n_ma
+34551166,pcg_34551166, -Constructions,account.data_account_type_current_assets,FALSE,l10n_ma
+34551167,pcg_34551167, -LiTRUEson à soi-même de constructions,account.data_account_type_current_assets,FALSE,l10n_ma
+34551168,pcg_34551168, -Autres immobilisations,account.data_account_type_current_assets,FALSE,l10n_ma
+34551169,pcg_34551169, -Autres immobilisations,account.data_account_type_current_assets,FALSE,l10n_ma
+34552000,pcg_34552000,Etat - TVA récupérable sur charges,account.data_account_type_current_assets,FALSE,l10n_ma
+34552140,pcg_34552140, -Prestations de services,account.data_account_type_current_assets,FALSE,l10n_ma
+34552141,pcg_34552141, -Transport,account.data_account_type_current_assets,FALSE,l10n_ma
+34552142,pcg_34552142, -Opération de banque,account.data_account_type_current_assets,FALSE,l10n_ma
+34552143,pcg_34552143," -Hôtels  de  voyageurs,  et  ensemble   immobilier  à  destination touristique",account.data_account_type_current_assets,FALSE,l10n_ma
+34552144,pcg_34552144," -Les opérations des avocats,interprètes,notaires,adoul,huissiers de justice et vétérinaires",account.data_account_type_current_assets,FALSE,l10n_ma
+34552145,pcg_34552145, -Achat à l'importation,account.data_account_type_current_assets,FALSE,l10n_ma
+34552146,pcg_34552146, -Achat à l'intérieur,account.data_account_type_current_assets,FALSE,l10n_ma
+34552147,pcg_34552147, -Achat à l'importation,account.data_account_type_current_assets,FALSE,l10n_ma
+34552148,pcg_34552148, -Achat à l'intérieur,account.data_account_type_current_assets,FALSE,l10n_ma
+34552149,pcg_34552149, -Achat à l'importation,account.data_account_type_current_assets,FALSE,l10n_ma
+34552150,pcg_34552150, -Achat à l'intérieur,account.data_account_type_current_assets,FALSE,l10n_ma
+34552151,pcg_34552151, -Achat à l'importation,account.data_account_type_current_assets,FALSE,l10n_ma
+34552152,pcg_34552152, -Achat à l'intérieur,account.data_account_type_current_assets,FALSE,l10n_ma
+34552153,pcg_34552153, -Autres prestations de services,account.data_account_type_current_assets,FALSE,l10n_ma
+34552155,pcg_34552155,Travaux à façon,account.data_account_type_current_assets,FALSE,l10n_ma
+34552156,pcg_34552156,Sous - traitance (travaux immobiliers ),account.data_account_type_current_assets,FALSE,l10n_ma
+34560000,pcg_34560000,Etat - crédit de TVA (suivant déclaration),account.data_account_type_current_assets,FALSE,l10n_ma
+34580000,pcg_34580000,Etat - autres comptes débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+34610000,pcg_34610000,Associés - comptes d'apport en société,account.data_account_type_current_assets,FALSE,l10n_ma
+34620000,pcg_34620000,Actionnaires - capital souscrit et appelé non versé,account.data_account_type_current_assets,FALSE,l10n_ma
+34630000,pcg_34630000,Comptes courants des associés débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+34640000,pcg_34640000,Associés - opérations faites en commun,account.data_account_type_current_assets,FALSE,l10n_ma
+34670000,pcg_34670000,Créances rattachées aux comptes d'associés,account.data_account_type_current_assets,FALSE,l10n_ma
+34680000,pcg_34680000,Autres comptes d'associés débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+34810000,pcg_34810000,Créances sur cessions d'immobilisations,account.data_account_type_current_assets,FALSE,l10n_ma
+34820000,pcg_34820000,Créances sur cessions d'éléments d'actif circulant,account.data_account_type_current_assets,FALSE,l10n_ma
+34870000,pcg_34870000,Créances rattachées aux autres débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+34880000,pcg_34880000,Divers débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+34910000,pcg_34910000,Charges constatées d'avance,account.data_account_type_current_assets,FALSE,l10n_ma
+34930000,pcg_34930000,Intérêts courus et non échus à percevoir,account.data_account_type_current_assets,FALSE,l10n_ma
+34950000,pcg_34950000,Comptes de répartition périodique des charges,account.data_account_type_current_assets,FALSE,l10n_ma
+34970000,pcg_34970000,Comptes transitoires ou d'attente - débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+35010000,pcg_35010000,"Actions, partie libérée",account.data_account_type_current_assets,FALSE,l10n_ma
+35020000,pcg_35020000,"Actions, partie non libérée",account.data_account_type_current_assets,FALSE,l10n_ma
+35040000,pcg_35040000,Obligations,account.data_account_type_current_assets,FALSE,l10n_ma
+35060000,pcg_35060000,Bons de caisse et bons de trésor,account.data_account_type_current_assets,FALSE,l10n_ma
+35061000,pcg_35061000,Bons de caisse,account.data_account_type_current_assets,FALSE,l10n_ma
+35062000,pcg_35062000,Bons de trésor,account.data_account_type_current_assets,FALSE,l10n_ma
+35080000,pcg_35080000,Autres titres et valeurs de placement similaires,account.data_account_type_current_assets,FALSE,l10n_ma
+37010000,pcg_37010000,Diminution des créances circulantes,account.data_account_type_current_assets,FALSE,l10n_ma
+37020000,pcg_37020000,Augmentation des dettes circulantes,account.data_account_type_current_assets,FALSE,l10n_ma
+39110000,pcg_39110000,Provisions pour dépréciation des marchandises,account.data_account_type_current_assets,FALSE,l10n_ma
+39120000,pcg_39120000,Provisions pour dépréciation des matières et fournitures,account.data_account_type_current_assets,FALSE,l10n_ma
+39130000,pcg_39130000,Provisions pour dépréciation des produits en cours,account.data_account_type_current_assets,FALSE,l10n_ma
+39140000,pcg_39140000,Provisions pour dépréciation des produits intermédiaires,account.data_account_type_current_assets,FALSE,l10n_ma
+39150000,pcg_39150000,Provisions pour dépréciation des produits finis,account.data_account_type_current_assets,FALSE,l10n_ma
+39410000,pcg_39410000,"Provisions pour dépréciation - fournisseurs débiteurs, avances et acomptes",account.data_account_type_current_assets,FALSE,l10n_ma
+39420000,pcg_39420000,Provisions pour dépréciation des clients et comptes rattachés,account.data_account_type_current_assets,FALSE,l10n_ma
+39430000,pcg_39430000,Provisions pour dépréciation du personnel - débiteur,account.data_account_type_current_assets,FALSE,l10n_ma
+39460000,pcg_39460000,Provisions pour dépréciation des comptes d'associés débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+39480000,pcg_39480000,Provisions pour dépréciation des autres débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
+39500000,pcg_39500000,Provisions pour dépréciation des titres et valeurs de placement,account.data_account_type_current_assets,FALSE,l10n_ma
+44110000,pcg_44110000,Fournisseurs,account.data_account_type_payable,TRUE,l10n_ma
+44111000,pcg_44111000,Fournisseurs - Catégorie A,account.data_account_type_payable,TRUE,l10n_ma
+44130000,pcg_44130000,Fournisseurs - retenues de garantie,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44150000,pcg_44150000,Fournisseurs - effets à payer,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44170000,pcg_44170000,Fournisseurs - factures non parvenues,account.data_account_type_current_liabilities,TRUE,l10n_ma
+44180000,pcg_44180000,Autres fournisseurs et comptes rattachés,account.data_account_type_current_liabilities,TRUE,l10n_ma
+44210000,pcg_44210000,Clients - avances et acomptes reçus sur commandes en cours,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44250000,pcg_44250000,Clients - dettes pour emballages et matériel consignés,account.data_account_type_current_liabilities,TRUE,l10n_ma
+44270000,pcg_44270000,"Rabais, remises et ristournes à accorder - avoirs à établir",account.data_account_type_current_liabilities,TRUE,l10n_ma
+44280000,pcg_44280000,Autres clients créditeurs,account.data_account_type_current_liabilities,TRUE,l10n_ma
+44320000,pcg_44320000,Rémunérations dues au personnel,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44330000,pcg_44330000,Dépôts du personnel créditeurs,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44340000,pcg_44340000,Oppositions sur salaires,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44370000,pcg_44370000,Charges du personnel à payer,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44380000,pcg_44380000,Personnel - autres créditeurs,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44410000,pcg_44410000,Caisse Nationale de la Sécurité Sociale,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44430000,pcg_44430000,Caisses de retraite,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44450000,pcg_44450000,Mutuelles,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44470000,pcg_44470000,Charges sociales à payer,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44480000,pcg_44480000,Autres organismes sociaux,account.data_account_type_current_liabilities,TRUE,l10n_ma
+44520000,pcg_44520000,"Etat Impôts, taxes et assimilés",account.data_account_type_current_liabilities,TRUE,l10n_ma
+44521000,pcg_44521000,"Etat, taxe urbaine et taxe d'édilité",account.data_account_type_current_liabilities,TRUE,l10n_ma
+44522000,pcg_44522000,"Etat, patente",account.data_account_type_current_liabilities,TRUE,l10n_ma
+44525000,pcg_44525000,"Etat, IGR",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44530000,pcg_44530000,"Etat, impôts sur les résultats",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550000,pcg_44550000,"Etat, TVA facturée",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550077,pcg_44550077, -Les chauffe-eau solaires,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550078,pcg_44550078, -Les aliments destinés à l'alimentation de bétail et des animaux de basse-cour ainsi que les tourteaux,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550079,pcg_44550079,-Les équipements à usage exclusivement agricole,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550080,pcg_44550080, -Opérations de production et de distribution,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550081,pcg_44550081, -Prestations de services,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550082,pcg_44550082, -Professions libérales visées à l'article 89-I-12°-(b) du CGI,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550083,pcg_44550083, -Opérations de crédit-bail,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550084,pcg_44550084, - Beurre à l'exclusion du beurre de fabrication artisanale visé à l'article 91 (I-A. 2°),account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550085,pcg_44550085, -Les équipements à usage exclusivement agricole,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550086,pcg_44550086, -Les engins et filets de pêche destinés aux professionnels de la pêche maritime,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550087,pcg_44550087, -Opérations d'entreprises de travaux immobiliers,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550088,pcg_44550088, -Opérations de transport de voyageurs et de marchandises à l’exclusion du transport ferroviaire,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550089,pcg_44550089, -Les opérations d’hébergement et de restauration,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550090,pcg_44550090, -Energie électrique,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550091,pcg_44550091, -Les prestations de services rendues par tout agent démarcheur ou courtier d'assurances à  ,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550092,pcg_44550092, -Les opérations de location d'immeubles à usage d’hôtels,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550093,pcg_44550093, -Opérations de vente et de liTRUEson de biens meubles d’occasion,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550094,pcg_44550094, -Opérations de liTRUEson à soi-même de constructions,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550095,pcg_44550095, -Régime de marge visé aux articles 125 bis et 125 quater du CGI,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550096,pcg_44550096, -Le sel de cuisine (gemme ou marin),account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550097,pcg_44550097," -Le riz usiné, les farines et semoules de riz et les farines de féculents,les pâtes alimentaires",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550098,pcg_44550098, -Les huiles fluides alimentaires,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550099,pcg_44550099, -Les transactions relatives aux valeurs mobilières,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550100,pcg_44550100, -Les opérations de banque et de crédit et les commissions de change,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550101,pcg_44550101, -Les transactions portant sur les actions et les parts sociales,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550102,pcg_44550102, -Autres,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550103,pcg_44550103, -Les opérations de vente et de liTRUEson des œuvres et objets d’art,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550104,pcg_44550104, -Autres,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550105,pcg_44550105," -Les opérations des avocats,interprètes, notaires,adoul, huissiers de justice et vétérinaires",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550106,pcg_44550106, -L'eau livrée aux réseaux de distribution publique et les prestations d'assainissement,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550107,pcg_44550107, -Location de compteurs d'eau et d'électricité,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550108,pcg_44550108, -Gaz de pétrole et les autres hydrocarbures gazeux,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550109,pcg_44550109," -Huiles de pétrole de schistes, brutes ou raffinées",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550110,pcg_44550110," -Produits pharmaceutiques, matières premières et produits entrant dans leurs compositions ainsi que les",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550111,pcg_44550111," -les fournitures scolaires, produits et matières entrant dans leur composition",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550112,pcg_44550112," -Opérations de vente des billets d’entrée aux musées, cinéma et théâtre",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550113,pcg_44550113, -Sucre raffiné ou aggloméré,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550114,pcg_44550114, -Conserves de sardines,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550115,pcg_44550115, -Lait en poudre,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550116,pcg_44550116, -Savon de ménage,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550117,pcg_44550117, -Voiture économique et produits et matières entrant dans sa fabrication,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550118,pcg_44550118, - Autres,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44550119,pcg_44550119, -Autres,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44560000,pcg_44560000,"Etat, TVA due (suivant déclarations)",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44570000,pcg_44570000,"Etat, impôts et taxes à payer",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44580000,pcg_44580000,Etat - autres comptes créditeurs,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44610000,pcg_44610000,Associés - capital à rembourser,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44620000,pcg_44620000,Associés - versements reçus sur augmentation de capital,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44630000,pcg_44630000,Comptes courants des associés créditeurs,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44640000,pcg_44640000,Associés - opérations faites en commun,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44650000,pcg_44650000,Associés - dividendes à payer,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44680000,pcg_44680000,Autres comptes d'associés - créditeurs,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44810000,pcg_44810000,Dettes sur acquisitions d'immobilisations,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44830000,pcg_44830000,Dettes sur acquisitions de titres et valeurs de placement,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44840000,pcg_44840000,Obligations échues à rembourser,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44850000,pcg_44850000,"Obligations, coupons à payer",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44870000,pcg_44870000,Dettes rattachées aux autres créanciers,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44880000,pcg_44880000,Divers créanciers,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44910000,pcg_44910000,Produits constatés d'avance,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44930000,pcg_44930000,Intérêts courus et non échus à payer,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44950000,pcg_44950000,Comptes de répartition périodique des produits,account.data_account_type_current_liabilities,FALSE,l10n_ma
+44970000,pcg_44970000,Comptes transitoires ou d'attente - créditeurs,account.data_account_type_current_liabilities,FALSE,l10n_ma
+45010000,pcg_45010000,Provisions pour litiges,account.data_account_type_current_liabilities,TRUE,l10n_ma
+45020000,pcg_45020000,Provisions pour garanties données aux clients,account.data_account_type_current_liabilities,TRUE,l10n_ma
+45050000,pcg_45050000,"Provisions pour amendes, doubles droits et pénalités",account.data_account_type_current_liabilities,TRUE,l10n_ma
+45060000,pcg_45060000,Provisions pour pertes de change,account.data_account_type_current_liabilities,TRUE,l10n_ma
+45070000,pcg_45070000,Provisions pour impôts,account.data_account_type_current_liabilities,FALSE,l10n_ma
+45080000,pcg_45080000,Autres provisions pour risques et charges,account.data_account_type_current_liabilities,FALSE,l10n_ma
+47010000,pcg_47010000,Augmentation des créances circulantes,account.data_account_type_current_liabilities,TRUE,l10n_ma
+47020000,pcg_47020000,Diminution des dettes circulantes,account.data_account_type_current_liabilities,FALSE,l10n_ma
+51110000,pcg_51110000,Chèques à encaisser ou à l'encaissement,account.tres_actif,FALSE,l10n_ma
+51111000,pcg_51111000,Chèques en portefeuille,account.tres_actif,FALSE,l10n_ma
+51112000,pcg_51112000,Chèques à l'encaissement,account.tres_actif,FALSE,l10n_ma
+51130000,pcg_51130000,Effets à encaisser ou à l'encaissement,account.tres_actif,FALSE,l10n_ma
+51131000,pcg_51131000,Effets échus à encaisser,account.tres_actif,FALSE,l10n_ma
+51132000,pcg_51132000,Effets à l'encaissement,account.tres_actif,FALSE,l10n_ma
+51150000,pcg_51150000,Virement de fonds,account.tres_actif,FALSE,l10n_ma
+51180000,pcg_51180000,Autres valeurs à encaisser,account.tres_actif,FALSE,l10n_ma
+51181000,pcg_51181000,Prise en charge à encaisser,account.tres_actif,FALSE,l10n_ma
+51182000,pcg_51182000,Prise en charge à l'encaissement,account.tres_actif,FALSE,l10n_ma
+51410000,pcg_51410000,Banques (solde débiteur),account.data_account_type_liquidity,FALSE,l10n_ma
+51430000,pcg_51430000,Trésorerie Générale,account.data_account_type_liquidity,FALSE,l10n_ma
+51460000,pcg_51460000,Chèques postaux,account.data_account_type_liquidity,FALSE,l10n_ma
+51480000,pcg_51480000,Autres établissements financiers et assimilés (soldes débiteurs),account.data_account_type_liquidity,FALSE,l10n_ma
+51610000,pcg_51610000,Caisses,account.data_account_type_liquidity,FALSE,l10n_ma
+51611000,pcg_51611000,Caisse Centrale,account.data_account_type_liquidity,FALSE,l10n_ma
+51613000,pcg_51613000,Caisse (succursale ou agence A),account.data_account_type_liquidity,FALSE,l10n_ma
+51614000,pcg_51614000,Caisse (succursale ou agence B),account.data_account_type_liquidity,FALSE,l10n_ma
+51650000,pcg_51650000,Régies d'avances et accréditifs,account.data_account_type_liquidity,FALSE,l10n_ma
+55200000,pcg_55200000,Crédits d'escompte,account.tres_passif,FALSE,l10n_ma
+55300000,pcg_55300000,Crédits de trésorerie,account.tres_passif,FALSE,l10n_ma
+55410000,pcg_55410000,Banques (solde créditeur),account.tres_passif,FALSE,l10n_ma
+55480000,pcg_55480000,Autres établissements financiers et assimilés (soldes créditeurs),account.tres_passif,FALSE,l10n_ma
+59000000,pcg_59000000,PROVISIONS POUR DEPRECIATION DES COMPTES DE TRESORERIE,account.tres_actif,FALSE,l10n_ma
+61110000,pcg_61110000,"Achats de marchandises ""groupe A""",account.data_account_type_expenses,FALSE,l10n_ma
+61120000,pcg_61120000,"Achats de marchandises ""groupe B""",account.data_account_type_expenses,FALSE,l10n_ma
+61140000,pcg_61140000,Variation de stocks de marchandises,account.data_account_type_expenses,FALSE,l10n_ma
+61180000,pcg_61180000,Achats revendus de marchandises des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+61190000,pcg_61190000,"Rabais, remises et ristournes obtenus sur achats de marchandises",account.data_account_type_expenses,FALSE,l10n_ma
+61210000,pcg_61210000,Achats de matières premières,account.data_account_type_expenses,FALSE,l10n_ma
+61211000,pcg_61211000,Achats de matières premières A,account.data_account_type_expenses,FALSE,l10n_ma
+61212000,pcg_61212000,Achats de matières premières B,account.data_account_type_expenses,FALSE,l10n_ma
+61220000,pcg_61220000,Achats de matières et fournitures consommables,account.data_account_type_expenses,FALSE,l10n_ma
+61221000,pcg_61221000,Achats de matières et fournitures A,account.data_account_type_expenses,FALSE,l10n_ma
+61222000,pcg_61222000,Achats de matières et fournitures B,account.data_account_type_expenses,FALSE,l10n_ma
+61223000,pcg_61223000,Achats de combustibles,account.data_account_type_expenses,FALSE,l10n_ma
+61224000,pcg_61224000,Achats de produits d'entretien,account.data_account_type_expenses,FALSE,l10n_ma
+61225000,pcg_61225000,Achats de fournitures d'atelier et d'usine,account.data_account_type_expenses,FALSE,l10n_ma
+61226000,pcg_61226000,Achats de fournitures de magasin,account.data_account_type_expenses,FALSE,l10n_ma
+61227000,pcg_61227000,Achats de fournitures de bureau,account.data_account_type_expenses,FALSE,l10n_ma
+61230000,pcg_61230000,Achats d'emballages,account.data_account_type_expenses,FALSE,l10n_ma
+61231000,pcg_61231000,Achats d'emballages perdus,account.data_account_type_expenses,FALSE,l10n_ma
+61232000,pcg_61232000,Achats d'emballages récupérables non identifiables,account.data_account_type_expenses,FALSE,l10n_ma
+61233000,pcg_61233000,Achats d'emballages à usage mixte,account.data_account_type_expenses,FALSE,l10n_ma
+61240000,pcg_61240000,Variation des stocks de matières et fournitures,account.data_account_type_expenses,FALSE,l10n_ma
+61241000,pcg_61241000,Variation des stocks de matières premières,account.data_account_type_expenses,FALSE,l10n_ma
+61242000,pcg_61242000,Variation des stocks de matières et fournitures consommables,account.data_account_type_expenses,FALSE,l10n_ma
+61243000,pcg_61243000,Variation des stocks des emballages,account.data_account_type_expenses,FALSE,l10n_ma
+61250000,pcg_61250000,Achats non stockés de matières et fournitures,account.data_account_type_expenses,FALSE,l10n_ma
+61251000,pcg_61251000,"Achats de fournitures non stockables (eau, électricité,,)",account.data_account_type_expenses,FALSE,l10n_ma
+61252000,pcg_61252000,Achats de fournitures d'entretien,account.data_account_type_expenses,FALSE,l10n_ma
+61253000,pcg_61253000,Achats de petit outillage et petit équipement,account.data_account_type_expenses,FALSE,l10n_ma
+61254000,pcg_61254000,Achats de fournitures de bureau,account.data_account_type_expenses,FALSE,l10n_ma
+61260000,pcg_61260000,"Achats de travaux, études et prestations de service",account.data_account_type_expenses,FALSE,l10n_ma
+61261000,pcg_61261000,Achats des travaux,account.data_account_type_expenses,FALSE,l10n_ma
+61262000,pcg_61262000,Achats des études,account.data_account_type_expenses,FALSE,l10n_ma
+61263000,pcg_61263000,Achats des prestations de service,account.data_account_type_expenses,FALSE,l10n_ma
+61280000,pcg_61280000,Achats de matières et de fournitures des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+61290000,pcg_61290000,"Rabais, remises et ristournes obtenus sur achats consommés de matières et fournitures",account.data_account_type_expenses,FALSE,l10n_ma
+61291000,pcg_61291000,"Rabais, remises et ristournes obtenus sur achats de matières premières",account.data_account_type_expenses,FALSE,l10n_ma
+61292000,pcg_61292000,"Rabais, remises et ristournes obtenus sur achats de matières et fournitures consommables",account.data_account_type_expenses,FALSE,l10n_ma
+61293000,pcg_61293000,"Rabais, remises et ristournes obtenus sur achats des emballages",account.data_account_type_expenses,FALSE,l10n_ma
+61295000,pcg_61295000,"Rabais, remises et ristournes obtenus sur achats non stockés",account.data_account_type_expenses,FALSE,l10n_ma
+61296000,pcg_61296000,"Rabais, remises et ristournes obtenus sur achats de travaux, études et prestations de service",account.data_account_type_expenses,FALSE,l10n_ma
+61298000,pcg_61298000,"Rabais, remises et ristournes obtenus sur achats de matières et fournitures des exercices antérieurs",account.data_account_type_expenses,FALSE,l10n_ma
+61310000,pcg_61310000,Locations et charges locatives,account.data_account_type_expenses,FALSE,l10n_ma
+61311000,pcg_61311000,Locations de terrains,account.data_account_type_expenses,FALSE,l10n_ma
+61312000,pcg_61312000,Locations de constructions,account.data_account_type_expenses,FALSE,l10n_ma
+61313000,pcg_61313000,Locations de matériel et d'outillage,account.data_account_type_expenses,FALSE,l10n_ma
+61314000,pcg_61314000,Locations de mobilier et de matériel de bureau,account.data_account_type_expenses,FALSE,l10n_ma
+61315000,pcg_61315000,Locations de matériel informatique,account.data_account_type_expenses,FALSE,l10n_ma
+61316000,pcg_61316000,Locations de matériel de transport,account.data_account_type_expenses,FALSE,l10n_ma
+61317000,pcg_61317000,Malis sur emballages rendus,account.data_account_type_expenses,FALSE,l10n_ma
+61318000,pcg_61318000,Locations et charges locatives diverses,account.data_account_type_expenses,FALSE,l10n_ma
+61320000,pcg_61320000,Redevances de crédit-bail,account.data_account_type_expenses,FALSE,l10n_ma
+61321000,pcg_61321000,Redevances de crédit-bail - mobilier et matériel,account.data_account_type_expenses,FALSE,l10n_ma
+61330000,pcg_61330000,Entretien et réparations,account.data_account_type_expenses,FALSE,l10n_ma
+61331000,pcg_61331000,Entretien et réparations des biens immobiliers,account.data_account_type_expenses,FALSE,l10n_ma
+61332000,pcg_61332000,Entretien et réparations des biens mobiliers,account.data_account_type_expenses,FALSE,l10n_ma
+61335000,pcg_61335000,Maintenance,account.data_account_type_expenses,FALSE,l10n_ma
+61340000,pcg_61340000,Primes d'assurances,account.data_account_type_expenses,FALSE,l10n_ma
+61341000,pcg_61341000,"Assurances multirisque (vol, incendie,R,C,)",account.data_account_type_expenses,FALSE,l10n_ma
+61343000,pcg_61343000,Assurances - risques d'exploitation,account.data_account_type_expenses,FALSE,l10n_ma
+61345000,pcg_61345000,Assurances - Matériel de transport,account.data_account_type_expenses,FALSE,l10n_ma
+61348000,pcg_61348000,Autres assurances,account.data_account_type_expenses,FALSE,l10n_ma
+61350000,pcg_61350000,Rémunérations du personnel extérieur à l'entreprise,account.data_account_type_expenses,FALSE,l10n_ma
+61351000,pcg_61351000,Rémunérations du personnel occasionnel,account.data_account_type_expenses,FALSE,l10n_ma
+61352000,pcg_61352000,Rémunérations du personnel intérimaire,account.data_account_type_expenses,FALSE,l10n_ma
+61353000,pcg_61353000,Rémunérations du personnel détaché ou prêté à l'entreprise,account.data_account_type_expenses,FALSE,l10n_ma
+61360000,pcg_61360000,Rémunérations d'intermédiaires et honoraires,account.data_account_type_expenses,FALSE,l10n_ma
+61361000,pcg_61361000,Commissions et courtages,account.data_account_type_expenses,FALSE,l10n_ma
+61365000,pcg_61365000,Honoraires,account.data_account_type_expenses,FALSE,l10n_ma
+61367000,pcg_61367000,Frais d'actes et de contentieux,account.data_account_type_expenses,FALSE,l10n_ma
+61370000,pcg_61370000,"Redevances pour brevets, marques, droits et valeurs similaires",account.data_account_type_expenses,FALSE,l10n_ma
+61371000,pcg_61371000,Redevances pour brevets,account.data_account_type_expenses,FALSE,l10n_ma
+61378000,pcg_61378000,Autres redevances,account.data_account_type_expenses,FALSE,l10n_ma
+61410000,pcg_61410000,"Etudes, recherches et documentation",account.data_account_type_expenses,FALSE,l10n_ma
+61411000,pcg_61411000,Etudes générales,account.data_account_type_expenses,FALSE,l10n_ma
+61413000,pcg_61413000,Recherches,account.data_account_type_expenses,FALSE,l10n_ma
+61415000,pcg_61415000,Documentation générale,account.data_account_type_expenses,FALSE,l10n_ma
+61416000,pcg_61416000,Documentation technique,account.data_account_type_expenses,FALSE,l10n_ma
+61420000,pcg_61420000,Transports,account.data_account_type_expenses,FALSE,l10n_ma
+61421000,pcg_61421000,Transports du personnel,account.data_account_type_expenses,FALSE,l10n_ma
+61425000,pcg_61425000,Transports sur achats,account.data_account_type_expenses,FALSE,l10n_ma
+61426000,pcg_61426000,Transports sur ventes,account.data_account_type_expenses,FALSE,l10n_ma
+61428000,pcg_61428000,Autres transports,account.data_account_type_expenses,FALSE,l10n_ma
+61430000,pcg_61430000,"Déplacements, missions et réceptions",account.data_account_type_expenses,FALSE,l10n_ma
+61431000,pcg_61431000,Voyages et déplacements,account.data_account_type_expenses,FALSE,l10n_ma
+61433000,pcg_61433000,Frais de déménagement,account.data_account_type_expenses,FALSE,l10n_ma
+61435000,pcg_61435000,Missions,account.data_account_type_expenses,FALSE,l10n_ma
+61436000,pcg_61436000,Réceptions,account.data_account_type_expenses,FALSE,l10n_ma
+61440000,pcg_61440000,"Publicité, publications et relations publiques",account.data_account_type_expenses,FALSE,l10n_ma
+61441000,pcg_61441000,Annoces et insertions,account.data_account_type_expenses,FALSE,l10n_ma
+61442000,pcg_61442000,"Echantillons, catalogues et imprimés publicitaires",account.data_account_type_expenses,FALSE,l10n_ma
+61443000,pcg_61443000,Foires et expositions,account.data_account_type_expenses,FALSE,l10n_ma
+61444000,pcg_61444000,Primes de publicité,account.data_account_type_expenses,FALSE,l10n_ma
+61446000,pcg_61446000,Publications,account.data_account_type_expenses,FALSE,l10n_ma
+61447000,pcg_61447000,Cadeaux à la clientèle,account.data_account_type_expenses,FALSE,l10n_ma
+61448000,pcg_61448000,Autres charges de publicité et relations publiques,account.data_account_type_expenses,FALSE,l10n_ma
+61450000,pcg_61450000,Frais postaus et frais de télécommunications,account.data_account_type_expenses,FALSE,l10n_ma
+61451000,pcg_61451000,Frais postaux,account.data_account_type_expenses,FALSE,l10n_ma
+61455000,pcg_61455000,Frais de téléphone,account.data_account_type_expenses,FALSE,l10n_ma
+61456000,pcg_61456000,Frais de télex et de télégrammes,account.data_account_type_expenses,FALSE,l10n_ma
+61460000,pcg_61460000,Cotisations et dons,account.data_account_type_expenses,FALSE,l10n_ma
+61461000,pcg_61461000,Cotisations,account.data_account_type_expenses,FALSE,l10n_ma
+61462000,pcg_61462000,Dons,account.data_account_type_expenses,FALSE,l10n_ma
+61470000,pcg_61470000,Services bancaires,account.data_account_type_expenses,FALSE,l10n_ma
+61471000,pcg_61471000,Frais d'achat et de vente des titres,account.data_account_type_expenses,FALSE,l10n_ma
+61472000,pcg_61472000,Frais sur effets de commerce,account.data_account_type_expenses,FALSE,l10n_ma
+61473000,pcg_61473000,Frais et commisions sur services bancaires,account.data_account_type_expenses,FALSE,l10n_ma
+61480000,pcg_61480000,Autres charges externes des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+61490000,pcg_61490000,"Rabais, remises et ristournes obtenus sur autres charges externes",account.data_account_type_expenses,FALSE,l10n_ma
+61610000,pcg_61610000,Impôts et taxes directs,account.data_account_type_expenses,FALSE,l10n_ma
+61611000,pcg_61611000,Taxe urbaine et taxe d'édilité,account.data_account_type_expenses,FALSE,l10n_ma
+61612000,pcg_61612000,Patente,account.data_account_type_expenses,FALSE,l10n_ma
+61615000,pcg_61615000,Taxes locales,account.data_account_type_expenses,FALSE,l10n_ma
+61650000,pcg_61650000,Impôts et taxes directs,account.data_account_type_expenses,FALSE,l10n_ma
+61670000,pcg_61670000,"Impôts, taxes et droits assimilés",account.data_account_type_expenses,FALSE,l10n_ma
+61671000,pcg_61671000,Droits d’enregistrement et de timbre,account.data_account_type_expenses,FALSE,l10n_ma
+61673000,pcg_61673000,Taxes sur les véhicules,account.data_account_type_expenses,FALSE,l10n_ma
+61678000,pcg_61678000,"Autres impôts, taxes et droits assimilés",account.data_account_type_expenses,FALSE,l10n_ma
+61680000,pcg_61680000,Impôts et taxes des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+61710000,pcg_61710000,Rémunérations du personnel,account.data_account_type_expenses,FALSE,l10n_ma
+61711000,pcg_61711000,Appointements et salaires,account.data_account_type_expenses,FALSE,l10n_ma
+61712000,pcg_61712000,Primes et gratifications,account.data_account_type_expenses,FALSE,l10n_ma
+61713000,pcg_61713000,Indemnités et avantages divers,account.data_account_type_expenses,FALSE,l10n_ma
+61714000,pcg_61714000,Commissions au personnel,account.data_account_type_expenses,FALSE,l10n_ma
+61715000,pcg_61715000,"Rémunérations des administrateurs, gérants et associés",account.data_account_type_expenses,FALSE,l10n_ma
+61740000,pcg_61740000,Charges sociales,account.data_account_type_expenses,FALSE,l10n_ma
+61741000,pcg_61741000,Cotisations de sécurité sociale,account.data_account_type_expenses,FALSE,l10n_ma
+61742000,pcg_61742000,Cotisations aux caisses de retraite,account.data_account_type_expenses,FALSE,l10n_ma
+61743000,pcg_61743000,Cotisations aux mutuelles,account.data_account_type_expenses,FALSE,l10n_ma
+61744000,pcg_61744000,Prestations familiales,account.data_account_type_expenses,FALSE,l10n_ma
+61745000,pcg_61745000,Assurances accidents de travail,account.data_account_type_expenses,FALSE,l10n_ma
+61760000,pcg_61760000,Charges sociales diverses,account.data_account_type_expenses,FALSE,l10n_ma
+61761000,pcg_61761000,Assurances groupe,account.data_account_type_expenses,FALSE,l10n_ma
+61762000,pcg_61762000,Prestations de retarites,account.data_account_type_expenses,FALSE,l10n_ma
+61763000,pcg_61763000,Allocations aux œuvres sociales,account.data_account_type_expenses,FALSE,l10n_ma
+61764000,pcg_61764000,Habillement et vêtements de travail,account.data_account_type_expenses,FALSE,l10n_ma
+61765000,pcg_61765000,Indemnités de préavis et de licenciement,account.data_account_type_expenses,FALSE,l10n_ma
+61766000,pcg_61766000,"Médecine de travail, pharmacie",account.data_account_type_expenses,FALSE,l10n_ma
+61768000,pcg_61768000,Autres charges sociales diverses,account.data_account_type_expenses,FALSE,l10n_ma
+61770000,pcg_61770000,Rémunération de l'exploitant,account.data_account_type_expenses,FALSE,l10n_ma
+61771000,pcg_61771000,Appointements et salaires,account.data_account_type_expenses,FALSE,l10n_ma
+61774000,pcg_61774000,Charges sociales sur appointements et salaires de l’exploitant,account.data_account_type_expenses,FALSE,l10n_ma
+61780000,pcg_61780000,Charges du personnel des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+61810000,pcg_61810000,Jetons de présence,account.data_account_type_expenses,FALSE,l10n_ma
+61820000,pcg_61820000,Pertes sur créances irrécouvrables,account.data_account_type_expenses,FALSE,l10n_ma
+61850000,pcg_61850000,Pertes sur opérations faites en commun,account.data_account_type_expenses,FALSE,l10n_ma
+61860000,pcg_61860000,Transfert de profits sur opérations faites en commun,account.data_account_type_expenses,FALSE,l10n_ma
+61880000,pcg_61880000,Autres charges d’exploitation des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+61910000,pcg_61910000,Dotations d’exploitation aux amortissements de l’immobilisation en non valeur,account.data_account_type_depreciation,FALSE,l10n_ma
+61911000,pcg_61911000,D.E.A. des frais préliminaires,account.data_account_type_depreciation,FALSE,l10n_ma
+61912000,pcg_61912000,D.E.A. des charges à répartir,account.data_account_type_depreciation,FALSE,l10n_ma
+61920000,pcg_61920000,Dotations d’exploitation aux amortissements des immobilisations incorporelles,account.data_account_type_depreciation,FALSE,l10n_ma
+61921000,pcg_61921000,D.E.A. de l’immobilisation en recherche et développement,account.data_account_type_depreciation,FALSE,l10n_ma
+61922000,pcg_61922000,"D.E.A. des brevets, marques, droits et valeurs similaires",account.data_account_type_depreciation,FALSE,l10n_ma
+61923000,pcg_61923000,D.E.A. du fonds commercial,account.data_account_type_depreciation,FALSE,l10n_ma
+61928000,pcg_61928000,D.E.A. des autres immobilisations incorporelles,account.data_account_type_depreciation,FALSE,l10n_ma
+61930000,pcg_61930000,Dotations d’exploitation aux amortissements des immobilisations corporelles,account.data_account_type_depreciation,FALSE,l10n_ma
+61931000,pcg_61931000,D.E.A. des terrains,account.data_account_type_depreciation,FALSE,l10n_ma
+61932000,pcg_61932000,D.E.A. des constructions,account.data_account_type_depreciation,FALSE,l10n_ma
+61933000,pcg_61933000,"D.E.A. des installations techniques, matériel et outillage",account.data_account_type_depreciation,FALSE,l10n_ma
+61934000,pcg_61934000,D.E.A. du matériel de transport,account.data_account_type_depreciation,FALSE,l10n_ma
+61935000,pcg_61935000,"D.E.A. des mobiliers, matériels de bureau et aménagements divers",account.data_account_type_depreciation,FALSE,l10n_ma
+61938000,pcg_61938000,D.E.A. des autres immobilisations corporelles,account.data_account_type_depreciation,FALSE,l10n_ma
+61940000,pcg_61940000,Dotations d’exploitation aux provisions pour dépréciation des immobilisations,account.data_account_type_depreciation,FALSE,l10n_ma
+61942000,pcg_61942000,D.E.P. pour dépréciation des immobilisations incorporelles,account.data_account_type_depreciation,FALSE,l10n_ma
+61943000,pcg_61943000,D.E.P. pour dépréciation des immobilisations corporelles,account.data_account_type_depreciation,FALSE,l10n_ma
+61950000,pcg_61950000,Dotations d’exploitation aux provisions pour risques et charges,account.data_account_type_depreciation,FALSE,l10n_ma
+61955000,pcg_61955000,D.E.P. pour risques et charges durables,account.data_account_type_depreciation,FALSE,l10n_ma
+61957000,pcg_61957000,D.E.P. pour risques et charges momentanés,account.data_account_type_depreciation,FALSE,l10n_ma
+61960000,pcg_61960000,Dotations d’exploitation aux provisions pour dépréciations de l’actif circulant,account.data_account_type_depreciation,FALSE,l10n_ma
+61961000,pcg_61961000,D.E.P. pour dépréciation des stocks,account.data_account_type_depreciation,FALSE,l10n_ma
+61964000,pcg_61964000,D.E.P. pour dépréciation des créances de l’actif circulant,account.data_account_type_depreciation,FALSE,l10n_ma
+61980000,pcg_61980000,Dotations d’exploitation des exercices antérieurs,account.data_account_type_depreciation,FALSE,l10n_ma
+61981000,pcg_61981000,D.E. aux amortissements des exercices antérieurs,account.data_account_type_depreciation,FALSE,l10n_ma
+61984000,pcg_61984000,D.E. aux provisions des exercices antérieurs,account.data_account_type_depreciation,FALSE,l10n_ma
+63110000,pcg_63110000,Intérêts des emprunts et dettes,account.data_account_type_expenses,FALSE,l10n_ma
+63111000,pcg_63111000,Intérêts des emprunts,account.data_account_type_expenses,FALSE,l10n_ma
+63113000,pcg_63113000,Intérêts des dettes rattachées à des participations,account.data_account_type_expenses,FALSE,l10n_ma
+63114000,pcg_63114000,Intérêts des comptes courants et dépôts créditeurs,account.data_account_type_expenses,FALSE,l10n_ma
+63115000,pcg_63115000,Intérêts bancaires et sur opérations de financement,account.data_account_type_expenses,FALSE,l10n_ma
+63118000,pcg_63118000,Autres intérêts des emprunts et dettes,account.data_account_type_expenses,FALSE,l10n_ma
+63180000,pcg_63180000,Charges d’intérêts des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+63310000,pcg_63310000,Pertes de change propres à l’exercice,account.data_account_type_expenses,FALSE,l10n_ma
+63380000,pcg_63380000,Pertes de change des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+63820000,pcg_63820000,Pertes sur créances liées à des participations,account.data_account_type_expenses,FALSE,l10n_ma
+63850000,pcg_63850000,Charges nettes sur cession de titres et valeurs de placement,account.data_account_type_expenses,FALSE,l10n_ma
+63860000,pcg_63860000,Escomptes accordés,account.data_account_type_expenses,FALSE,l10n_ma
+63880000,pcg_63880000,Autres charges financières des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+63910000,pcg_63910000,Dotations aux amortissements des primes de remboursement des obligations,account.data_account_type_expenses,FALSE,l10n_ma
+63920000,pcg_63920000,Dotations aux provisions pour dépréciations des immobilisations financières,account.data_account_type_expenses,FALSE,l10n_ma
+63930000,pcg_63930000,Dotations aux provisions pour risques et charges financières,account.data_account_type_expenses,FALSE,l10n_ma
+63940000,pcg_63940000,Dotation aux provisions pour dépréciation des titres et valeurs de placement,account.data_account_type_expenses,FALSE,l10n_ma
+63960000,pcg_63960000,Dotations aux provisions pour dépréciation des compte de trésoreie,account.data_account_type_expenses,FALSE,l10n_ma
+63980000,pcg_63980000,Dotations financières des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+65120000,pcg_65120000,VNA des immobilisations incorporelles cédées,account.data_account_type_expenses,FALSE,l10n_ma
+65130000,pcg_65130000,VNA des immobilisations corporelles cédées,account.data_account_type_expenses,FALSE,l10n_ma
+65140000,pcg_65140000,VNA provisions des immobilisations financières cédées (droits de propriété),account.data_account_type_expenses,FALSE,l10n_ma
+65180000,pcg_65180000,VNA des immobilisations cédées des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+65610000,pcg_65610000,Subventions accordées de l’exercice,account.data_account_type_expenses,FALSE,l10n_ma
+65680000,pcg_65680000,Subventions accordées des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+65810000,pcg_65810000,Pénalités sur marchés et dédits,account.data_account_type_expenses,FALSE,l10n_ma
+65811000,pcg_65811000,Pénalités sur marchés,account.data_account_type_expenses,FALSE,l10n_ma
+65812000,pcg_65812000,Dédits,account.data_account_type_expenses,FALSE,l10n_ma
+65820000,pcg_65820000,Rappels d’impôts (autres qu’impôts sur les résultats),account.data_account_type_expenses,FALSE,l10n_ma
+65830000,pcg_65830000,Pénalités et amendes fiscales ou pénales,account.data_account_type_expenses,FALSE,l10n_ma
+65831000,pcg_65831000,Pénalités et amendes fiscales,account.data_account_type_expenses,FALSE,l10n_ma
+65833000,pcg_65833000,Pénalités et amendes pénales,account.data_account_type_expenses,FALSE,l10n_ma
+65850000,pcg_65850000,Créances devenues irrécouvrables,account.data_account_type_expenses,FALSE,l10n_ma
+65860000,pcg_65860000,"Dons, libéralités et lots",account.data_account_type_expenses,FALSE,l10n_ma
+65861000,pcg_65861000,Dons,account.data_account_type_expenses,FALSE,l10n_ma
+65862000,pcg_65862000,Libéralités,account.data_account_type_expenses,FALSE,l10n_ma
+65863000,pcg_65863000,Lots,account.data_account_type_expenses,FALSE,l10n_ma
+65880000,pcg_65880000,Autres charges non courantes des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+65910000,pcg_65910000,Dotations aux amortissements exceptionnels des immobilisations,account.data_account_type_expenses,FALSE,l10n_ma
+65911000,pcg_65911000,D.A.E. de l’immobilisation en non-valeurs,account.data_account_type_expenses,FALSE,l10n_ma
+65912000,pcg_65912000,D.A.E. des immobilisations incorporelles,account.data_account_type_expenses,FALSE,l10n_ma
+65913000,pcg_65913000,D.A.E. des immobilisations corporelles,account.data_account_type_expenses,FALSE,l10n_ma
+65940000,pcg_65940000,Dotations non courantes aux provisions réglementées,account.data_account_type_expenses,FALSE,l10n_ma
+65941000,pcg_65941000,D.N.C. pour amortissements dérogatoires,account.data_account_type_expenses,FALSE,l10n_ma
+65942000,pcg_65942000,D.N.C. pour plus-values en instance d'imposition,account.data_account_type_expenses,FALSE,l10n_ma
+65944000,pcg_65944000,D.N.C. pour investissements,account.data_account_type_expenses,FALSE,l10n_ma
+65945000,pcg_65945000,D.N.C. pour reconstitution de gisements,account.data_account_type_expenses,FALSE,l10n_ma
+65946000,pcg_65946000,D.N.C. pour acquisition et construction de logements,account.data_account_type_expenses,FALSE,l10n_ma
+65950000,pcg_65950000,Dotations non courantes aux provisions pour risques et charges,account.data_account_type_expenses,FALSE,l10n_ma
+65955000,pcg_65955000,D.N.C. aux provisions pour risques et charges durables,account.data_account_type_expenses,FALSE,l10n_ma
+65957000,pcg_65957000,D.N.C. aux provisions pour risques et charges momentanés,account.data_account_type_expenses,FALSE,l10n_ma
+65960000,pcg_65960000,Dotations non courantes aux provisions pour dépréciation,account.data_account_type_expenses,FALSE,l10n_ma
+65962000,pcg_65962000,D.N.C. aux provisions pour dépréciation de l’actif immobilisé,account.data_account_type_expenses,FALSE,l10n_ma
+65963000,pcg_65963000,D.N.C. aux provisions pour dépréciation de l’actif circulant,account.data_account_type_expenses,FALSE,l10n_ma
+65980000,pcg_65980000,Dotations non courantes des exercices antérieurs,account.data_account_type_expenses,FALSE,l10n_ma
+67010000,pcg_67010000,Impôts sur les bénéfices,account.data_account_type_expenses,FALSE,l10n_ma
+67050000,pcg_67050000,Imposition minimale annuelle des sociétés,account.data_account_type_expenses,FALSE,l10n_ma
+67080000,pcg_67080000,Rappels et dégrèvements d’impôts sur les résultats,account.data_account_type_expenses,FALSE,l10n_ma
+71110000,pcg_71110000,Ventes de marchandises au Maroc,account.data_account_type_revenue,FALSE,l10n_ma
+71130000,pcg_71130000,Ventes de marchandises à l’étranger,account.data_account_type_revenue,FALSE,l10n_ma
+71180000,pcg_71180000,Ventes de marchandises des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+71190000,pcg_71190000,"Rabais, remises et ristournes accordés par l’entreprise",account.data_account_type_revenue,FALSE,l10n_ma
+71210000,pcg_71210000,Ventes de biens produits au Maroc,account.data_account_type_revenue,FALSE,l10n_ma
+71211000,pcg_71211000,Ventes de produits finis,account.data_account_type_revenue,FALSE,l10n_ma
+71212000,pcg_71212000,Ventes de produits intermédiaires,account.data_account_type_revenue,FALSE,l10n_ma
+71217000,pcg_71217000,Ventes de produits résiduels,account.data_account_type_revenue,FALSE,l10n_ma
+71220000,pcg_71220000,Ventes de biens produits à l’étranger,account.data_account_type_revenue,FALSE,l10n_ma
+71221000,pcg_71221000,Ventes de produits finis,account.data_account_type_revenue,FALSE,l10n_ma
+71222000,pcg_71222000,Ventes de produits intermédiaires,account.data_account_type_revenue,FALSE,l10n_ma
+71240000,pcg_71240000,Ventes de services produits au Maroc,account.data_account_type_revenue,FALSE,l10n_ma
+71241000,pcg_71241000,Travaux,account.data_account_type_revenue,FALSE,l10n_ma
+71242000,pcg_71242000,Etudes,account.data_account_type_revenue,FALSE,l10n_ma
+71243000,pcg_71243000,Prestations de services,account.data_account_type_revenue,FALSE,l10n_ma
+71250000,pcg_71250000,Ventes de services produits à l'étranger,account.data_account_type_revenue,FALSE,l10n_ma
+71251000,pcg_71251000,Travaux,account.data_account_type_revenue,FALSE,l10n_ma
+71252000,pcg_71252000,Etudes,account.data_account_type_revenue,FALSE,l10n_ma
+71253000,pcg_71253000,Prestations de services,account.data_account_type_revenue,FALSE,l10n_ma
+71260000,pcg_71260000,"Redevances pour brevets, marques, droits et valeurs similaires",account.data_account_type_revenue,FALSE,l10n_ma
+71270000,pcg_71270000,Ventes de produits accessoires,account.data_account_type_revenue,FALSE,l10n_ma
+71271000,pcg_71271000,Locations divers es reçues,account.data_account_type_revenue,FALSE,l10n_ma
+71272000,pcg_71272000,Commissions et courtages reçus,account.data_account_type_revenue,FALSE,l10n_ma
+71273000,pcg_71273000,Produits de services exploités dans l'intérêt du personnel,account.data_account_type_revenue,FALSE,l10n_ma
+71275000,pcg_71275000,Bonis sur reprises d'emballages consignés,account.data_account_type_revenue,FALSE,l10n_ma
+71276000,pcg_71276000,Ports et frais accessoires facturés,account.data_account_type_revenue,FALSE,l10n_ma
+71278000,pcg_71278000,Autres ventes et produits accessoires,account.data_account_type_revenue,FALSE,l10n_ma
+71280000,pcg_71280000,Ventes de biens et services produits des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+71290000,pcg_71290000,"Rabais, remises et ristournes accordés par l’entreprise",account.data_account_type_revenue,FALSE,l10n_ma
+71310000,pcg_71310000,Variation des stocks de produits en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71311000,pcg_71311000,Variation des stocks de biens produits en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71312000,pcg_71312000,Variation des stocks de produits intermédiaires en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71317000,pcg_71317000,Variation des stocks de produits résiduels en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71320000,pcg_71320000,Variation des stocks de biens produits,account.data_account_type_revenue,FALSE,l10n_ma
+71321000,pcg_71321000,Variation des stocks de produits finis,account.data_account_type_revenue,FALSE,l10n_ma
+71322000,pcg_71322000,Variation des stocks de produits intermédiaires,account.data_account_type_revenue,FALSE,l10n_ma
+71327000,pcg_71327000,Variation des stocks de produits résiduels,account.data_account_type_revenue,FALSE,l10n_ma
+71340000,pcg_71340000,Variation des stocks de services en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71341000,pcg_71341000,Variation des stocks de travaux en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71342000,pcg_71342000,Variation des stocks d'études en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71343000,pcg_71343000,Variation des stocks de prestations en cours,account.data_account_type_revenue,FALSE,l10n_ma
+71410000,pcg_71410000,Immobilisation en non valeurs produite,account.data_account_type_revenue,FALSE,l10n_ma
+71420000,pcg_71420000,Immobilisations incorporelles produites,account.data_account_type_revenue,FALSE,l10n_ma
+71430000,pcg_71430000,Immobilisations corporelles produites,account.data_account_type_revenue,FALSE,l10n_ma
+71480000,pcg_71480000,Immobilisations produites des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+71610000,pcg_71610000,Subventions d’exploitations reçues de l’exercice,account.data_account_type_revenue,FALSE,l10n_ma
+71680000,pcg_71680000,Subventions d’exploitation reçues des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+71810000,pcg_71810000,Jetons de présence reçus,account.data_account_type_revenue,FALSE,l10n_ma
+71820000,pcg_71820000,Revenus des immeubles non affectés à l’exploitation,account.data_account_type_revenue,FALSE,l10n_ma
+71850000,pcg_71850000,Profits sur opérations faites en commun,account.data_account_type_revenue,FALSE,l10n_ma
+71860000,pcg_71860000,Transfert de pertes sur opérations faites en commun,account.data_account_type_revenue,FALSE,l10n_ma
+71880000,pcg_71880000,Autres produits d’exploitation des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+71910000,pcg_71910000,Reprises sur amortissements de l’immobilisation en non valeurs,account.data_account_type_revenue,FALSE,l10n_ma
+71920000,pcg_71920000,Reprises sur amortissements des immobilisations incorporelles,account.data_account_type_revenue,FALSE,l10n_ma
+71930000,pcg_71930000,Reprises sur amortissements des immobilisations corporelles,account.data_account_type_revenue,FALSE,l10n_ma
+71940000,pcg_71940000,Reprises sur provisions pour dépréciation des immobilisations,account.data_account_type_revenue,FALSE,l10n_ma
+71950000,pcg_71950000,Reprises sur provisions pour risques et charges,account.data_account_type_revenue,FALSE,l10n_ma
+71960000,pcg_71960000,Reprises sur provisions pour dépréciation de l’actif circulant,account.data_account_type_revenue,FALSE,l10n_ma
+71970000,pcg_71970000,Transferts des charges d’exploitation,account.data_account_type_revenue,FALSE,l10n_ma
+71971000,pcg_71971000,"T,C,E - Achats de marchandises",account.data_account_type_revenue,FALSE,l10n_ma
+71972000,pcg_71972000,"T,C,E - Achats consommés de matières et fournitures",account.data_account_type_revenue,FALSE,l10n_ma
+71973000,pcg_71973000,"T,C,E - Autes charges externes",account.data_account_type_revenue,FALSE,l10n_ma
+71975000,pcg_71975000,"T,C,E - Impôts et taxes",account.data_account_type_revenue,FALSE,l10n_ma
+71976000,pcg_71976000,"T,C,E - Charges de personnel",account.data_account_type_revenue,FALSE,l10n_ma
+71978000,pcg_71978000,"T,C,E - Autres charges d'exploitation",account.data_account_type_revenue,FALSE,l10n_ma
+71980000,pcg_71980000,Reprises sur amortissements et provisions des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+71981000,pcg_71981000,Reprises sur amortissements des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+71984000,pcg_71984000,Reprises sur provisions des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+73210000,pcg_73210000,Revenus des titres de participation,account.data_account_type_revenue,FALSE,l10n_ma
+73250000,pcg_73250000,Revenus des titres immobilisés,account.data_account_type_revenue,FALSE,l10n_ma
+73280000,pcg_73280000,Produits des titres de participation et des autres titres immobilisés des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+73310000,pcg_73310000,Gains de change propres à l’exercice,account.data_account_type_revenue,FALSE,l10n_ma
+73380000,pcg_73380000,Gains de change des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+73810000,pcg_73810000,Intérêts et produits assimilés,account.data_account_type_revenue,FALSE,l10n_ma
+73811000,pcg_73811000,Intérêts des prêts,account.data_account_type_revenue,FALSE,l10n_ma
+73813000,pcg_73813000,Revenus des autres créances financières,account.data_account_type_revenue,FALSE,l10n_ma
+73830000,pcg_73830000,Revenus des créances rattachées à des participations,account.data_account_type_revenue,FALSE,l10n_ma
+73840000,pcg_73840000,Revenus des titres et valeurs de placement,account.data_account_type_revenue,FALSE,l10n_ma
+73850000,pcg_73850000,Produits nets sur cessions de titres et valeurs de placement,account.data_account_type_revenue,FALSE,l10n_ma
+73860000,pcg_73860000,Escomptes obtenus,account.data_account_type_revenue,FALSE,l10n_ma
+73880000,pcg_73880000,Intérêts et autres produits financiers des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
+73910000,pcg_73910000,Reprises sur amortissements des primes de remboursement des obligations,account.data_account_type_other_income,FALSE,l10n_ma
+73920000,pcg_73920000,Reprises sur provisions pour dépréciation des immobilisations financières,account.data_account_type_other_income,FALSE,l10n_ma
+73930000,pcg_73930000,Reprises sur provisions pour risques et charges financières,account.data_account_type_other_income,FALSE,l10n_ma
+73940000,pcg_73940000,Reprise sur provisions pour dépréciation des titres et valeurs de placement,account.data_account_type_other_income,FALSE,l10n_ma
+73960000,pcg_73960000,Reprises sur provisions pour dépréciation des comptes de trésorerie,account.data_account_type_other_income,FALSE,l10n_ma
+73970000,pcg_73970000,Transfert de charges financières,account.data_account_type_other_income,FALSE,l10n_ma
+73971000,pcg_73971000,Transfert - Charges d'intérêts,account.data_account_type_other_income,FALSE,l10n_ma
+73973000,pcg_73973000,Transfert - Pertes de change,account.data_account_type_other_income,FALSE,l10n_ma
+73978000,pcg_73978000,Transfert - Autres charges financières,account.data_account_type_other_income,FALSE,l10n_ma
+73980000,pcg_73980000,Reprises sur dotations financières des exercices antérieurs,account.data_account_type_other_income,FALSE,l10n_ma
+75120000,pcg_75120000,Produits des cessions des immobilisations incorporelles,account.data_account_type_other_income,FALSE,l10n_ma
+75130000,pcg_75130000,Produits des cessions des immobilisations corporelles,account.data_account_type_other_income,FALSE,l10n_ma
+75140000,pcg_75140000,Produits des cessions des immobilisations financières (droits de propriété),account.data_account_type_other_income,FALSE,l10n_ma
+75180000,pcg_75180000,Produits des cessions des immobilisations des exercices antérieurs,account.data_account_type_other_income,FALSE,l10n_ma
+75610000,pcg_75610000,Subventions d’équilibre reçues de l’exercice,account.data_account_type_other_income,FALSE,l10n_ma
+75680000,pcg_75680000,Subventions d’équilibre reçues des exercices antérieurs,account.data_account_type_other_income,FALSE,l10n_ma
+75770000,pcg_75770000,Reprises sur subventions d’investissement de l’exercice,account.data_account_type_other_income,FALSE,l10n_ma
+75780000,pcg_75780000,Reprises sur subventions d’investissement des exercices antérieurs,account.data_account_type_other_income,FALSE,l10n_ma
+75810000,pcg_75810000,Pénalités et dédits reçus,account.data_account_type_other_income,FALSE,l10n_ma
+75811000,pcg_75811000,Pénalités reçues sur marchés,account.data_account_type_other_income,FALSE,l10n_ma
+75812000,pcg_75812000,Dédits reçus,account.data_account_type_other_income,FALSE,l10n_ma
+75820000,pcg_75820000,Dégrèvement d’impôts (autres qu’impôts sur les résultats),account.data_account_type_other_income,FALSE,l10n_ma
+75850000,pcg_75850000,Rentrées sur créances soldées,account.data_account_type_other_income,FALSE,l10n_ma
+75860000,pcg_75860000,"Dons, libéralités et lots reçus",account.data_account_type_other_income,FALSE,l10n_ma
+75861000,pcg_75861000,Dons,account.data_account_type_other_income,FALSE,l10n_ma
+75862000,pcg_75862000,Libéralités,account.data_account_type_other_income,FALSE,l10n_ma
+75863000,pcg_75863000,Lots,account.data_account_type_other_income,FALSE,l10n_ma
+75880000,pcg_75880000,Autres produits non courants des exercices antérieurs,account.data_account_type_other_income,FALSE,l10n_ma
+75910000,pcg_75910000,Reprises non courantes sur amortissements exceptionnels des immobilisations,account.data_account_type_other_income,FALSE,l10n_ma
+75940000,pcg_75940000,Reprises non courantes sur provisions réglementées,account.data_account_type_other_income,FALSE,l10n_ma
+75950000,pcg_75950000,Reprises non courantes sur provisions pour risques et charges,account.data_account_type_other_income,FALSE,l10n_ma
+75955000,pcg_75955000,Reprises sur provisions pour risques et charges durables,account.data_account_type_other_income,FALSE,l10n_ma
+75957000,pcg_75957000,Reprises sur provisions pour risques et charges momentanés,account.data_account_type_other_income,FALSE,l10n_ma
+75960000,pcg_75960000,Reprises non courantes sur provisions pour dépréciation,account.data_account_type_other_income,FALSE,l10n_ma
+75962000,pcg_75962000,"R,N,C sur provisions pour dépréciation de l'actif immobilisé",account.data_account_type_other_income,FALSE,l10n_ma
+75963000,pcg_75963000,"R,N,C sur provisions pour dépréciation de l'actif circulant",account.data_account_type_other_income,FALSE,l10n_ma
+75970000,pcg_75970000,Transferts de charges non courantes,account.data_account_type_other_income,FALSE,l10n_ma
+75980000,pcg_75980000,Reprises non courantes des exercices antérieurs.,account.data_account_type_other_income,FALSE,l10n_ma

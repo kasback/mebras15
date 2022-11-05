@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Text d'entête">
+                        <field name="intro_text"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                       position="before">
+                    <field name="num_du_lot" optional="hide"/>
+                    <field name="num_art" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_stock_move_line_detailed_operation_tree_enem" model="ir.ui.view">
+            <field name="name">stock.move.line.operations.inherit.tree</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_name']" position="after">
+                    <field name="designation"/>
+                    <field name="num_du_lot" optional="hide"/>
+                    <field name="num_art" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_move_line_tree_inherit_partner_id" model="ir.ui.view">
+            <field name="name">view.move.line.tree.inherit.partner.id</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="partner_id"/>
+
+                </xpath>
+                <field name="qty_done" position="after">
+                    <field name="qty_done_signed"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_tres_customer_pec" model="ir.sequence">
+        <field name="name">Prise en charge Client</field>
+        <field name="code">paiement.pec.client</field>
+        <field name="prefix">PECH</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_tres_customer_cheque" model="ir.sequence">
+        <field name="name">Cheque Client</field>
+        <field name="code">paiement.cheque.client</field>
+        <field name="prefix">CHK</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_tres_customer_effet" model="ir.sequence">
+        <field name="name">Effet Client</field>
+        <field name="code">paiement.effet.client</field>
+        <field name="prefix">EFF</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_tres_customer_ov" model="ir.sequence">
+        <field name="name">Ov Client</field>
+        <field name="code">paiement.ov.client</field>
+        <field name="prefix">OV</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_tres_customer_cb" model="ir.sequence">
+        <field name="name">CB Client</field>
+        <field name="code">paiement.cb.client</field>
+        <field name="prefix">CB</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="seq_tres_customer_cash" model="ir.sequence">
+        <field name="name">Cash Client</field>
+        <field name="code">paiement.cash.client</field>
+        <field name="prefix">CASH</field>
+        <field name="padding">5</field>
+    </record>
+
+
+</odoo>

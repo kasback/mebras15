@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Chart template -->
+    <record id="l10n_ma" model="account.chart.template">
+        <field name="name">Plan Comptable Template</field>
+        <field name="bank_account_code_prefix">5141</field>
+        <field name="cash_account_code_prefix">5161</field>
+        <field name="transfer_account_code_prefix">5115</field>
+        <field name="code_digits">8</field>
+        <field name="currency_id" ref="base.MAD"/>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+
+</odoo>

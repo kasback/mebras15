@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Caisse search view -->
+        <record id="caisse_view_search" model="ir.ui.view">
+            <field name="name">Caisse</field>
+            <field name="model">paiement.caisse</field>
+            <field name="arch" type="xml">
+                <search string="Caisse">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Société" name='societe' context="{'group_by':'company_id'}"
+                                groups="base.group_multi_company"/>
+
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--  Caisse tree view -->
+        <record id="caisse_view_tree" model="ir.ui.view">
+            <field name="name">Caisse</field>
+            <field name="model">paiement.caisse</field>
+            <field name="arch" type="xml">
+                <tree string="Caisse">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="caisse_centrale"/>
+                    <field name="total_amount" sum="Total"/>
+                    <field name="nb_cheques" sum="Total_ch"/>
+                    <field name="nb_effets" sum="Total_effet"/>
+                    <field name="nb_ov" sum="Total_ov"/>
+                    <field name="nb_cb" sum="Total_cb"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Caisse form view -->
+        <record id="caisse_view_form" model="ir.ui.view">
+            <field name="name">Caisse</field>
+            <field name="model">paiement.caisse</field>
+            <field name="arch" type="xml">
+                <form string="Caisse">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="nb_cheques"/>
+                                <field name="nb_ov"/>
+                                <field name="nb_cb"/>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                                <field name="total_amount"/>
+                                <field name="nb_effets"/>
+                                <field name="caisse_centrale"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Chèques">
+                                <field name="cheque_lines" nolabel="1"/>
+                            </page>
+                            <page string="Effets">
+                                <field name="effet_lines" nolabel="1"/>
+                            </page>
+                            <page string="OV">
+                                <field name="ov_lines" nolabel="1"/>
+                            </page>
+                            <page string="CB">
+                                <field name="cb_lines" nolabel="1"/>
+                            </page>
+                            <page string="Espèces">
+                                <field name="cash_lines" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Users form inherit caisse view -->
+
+        <record id="inherit_users_caisse_view" model="ir.ui.view">
+            <field name="name">inherit.users.caisse.view</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <field name="action_id" position="after">
+                    <field name="caisse_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Paiement Record Search View -->
+
+        <record id="paiement_record_view_search" model="ir.ui.view">
+            <field name="name">paiement.record.view.search</field>
+            <field name="model">paiement.record</field>
+            <field name="arch" type="xml">
+                <search string="Paiement Client">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="client_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <newline/>
+                    <field name="state"/>
+                    <field name="journal_id" invisible="1"/>
+                    <field name="caisse_id"/>
+                    <newline/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Client" name="client" domain="[]" context="{'group_by':'client_id'}"/>
+                        <filter string="Société" name="company" domain="[]" context="{'group_by':'company_id'}"
+                                groups="base.group_multi_company"/>
+                        <filter string="Etat" name="state" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Caisse" name="caisse" domain="[]" context="{'group_by':'caisse_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Paiement Record Tree View -->
+
+        <record id="paiement_record_tree_view" model="ir.ui.view">
+            <field name="name">paiement.record.tree.view</field>
+            <field name="model">paiement.record</field>
+            <field name="arch" type="xml">
+                <tree string="Paiement Client">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="client_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="caisse_id"/>
+                    <field name="user_id"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Paiement Record Form View -->
+
+        <record id="paiement_record_view_form" model="ir.ui.view">
+            <field name="name">paiement.record.view.form</field>
+            <field name="model">paiement.record</field>
+            <field name="arch" type="xml">
+                <form string="Paiement Client">
+                    <header>
+                        <button name="action_done" states="draft" string="Valider" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" string="Annuler" states="draft" type="object"/>
+                        <button name="action_draft" string="Brouillon" states="done" type="object"
+                                groups="account_tres_customer.account_tres_cancel"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="client_id"/>
+                                <field name="caisse_id"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Lignes de paiement">
+                                <field name="paiement_lines" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="type"/>
+                                        <field name="amount" sum="Somme"/>
+                                        <field name="journal_id"/>
+                                        <field name="paiement_ref" attrs="{'required':[('type','!=','cash')]}"/>
+                                        <field name="due_date"
+                                               attrs="{'required':[('type','!=','cash')],'invisible':[('type','=','cash')]}"/>
+                                        <field name="client_bank_id" attrs="{'invisible':[('type','=','cash')]}"
+                                               domain="[('partner_id','=',parent.client_id)]"/>
+                                    </tree>
+                                </field>
+                                <group>
+                                    <field name="amount"/>
+                                    <field name="amount_invoices"/>
+                                    <field name="amount_avoirs"/>
+                                    <field name="amount_diff"/>
+                                </group>
+                            </page>
+                            <page string="Pièces Comptables">
+                                <separator string="Chèques"/>
+                                <field name="cheque_lines" nolabel="1"/>
+                                <separator string="Effets"/>
+                                <field name="effet_lines" nolabel="1"/>
+                                <separator string="OV"/>
+                                <field name="ov_lines" nolabel="1"/>
+                                <separator string="CB"/>
+                                <field name="cb_lines" nolabel="1"/>
+                                <separator string="Espèces"/>
+                                <field name="cash_lines" nolabel="1"/>
+                            </page>
+                            <page string="Factures">
+                                <!--domain="[('type','in',['out_invoice','out_refund']),('state','=','posted'),('partner_id','child_of',client_id)]"-->
+                                <field name="invoice_ids" nolabel="1"
+                                       domain="[('state','=','posted'),('partner_id','child_of',client_id)]"
+                                       context="{'form_view_ref':'account.invoice_form', 'tree_view_ref':'account.invoice_tree'}"/>
+                            </page>
+                            <page string="Notes">
+                                <field name="note" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Paiement caisse action -->
+        <record id="paiement_caisse_action" model="ir.actions.act_window">
+            <field name="name">Suivi des caisses</field>
+            <field name="res_model">paiement.caisse</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Paiement record action -->
+        <record model="ir.actions.act_window" id="paiement_record_action">
+            <field name="name">Paiements des Clients</field>
+            <field name="res_model">paiement.record</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--Menus -->
+        <menuitem id="paiement_client_menu_root" name="Paiements Client" parent="account.menu_finance" sequence="3"/>
+        <menuitem action="paiement_record_action" id="paiement_record_menu" parent="paiement_client_menu_root"
+                  sequence="1"/>
+        <menuitem action="paiement_caisse_action" id="paiement_caisse_menu" parent="paiement_client_menu_root"
+                  sequence="2"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+"id","name","include_initial_balance","type","internal_group"
+"account.tres_actif","Trésorerie actif","FALSE","other","asset"
+"account.tres_passif","Trésorerie passif","FALSE","other","liability"

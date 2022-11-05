@@ -1,0 +1,8 @@
+"id","code","name"
+"__export__.payement_method_1","1","Espèce"
+"__export__.payement_method_2","2","Chèque"
+"__export__.payement_method_3","3","Prélèvement"
+"__export__.payement_method_4","4","Virement"
+"__export__.payement_method_5","5","Effet"
+"__export__.payement_method_6","6","Compensation"
+"__export__.payement_method_7","7","Autres"

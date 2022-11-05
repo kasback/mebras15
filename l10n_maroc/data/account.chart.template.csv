@@ -1,0 +1,2 @@
+id,name,property_account_receivable_id:id,property_account_payable_id:id,property_account_expense_categ_id:id,property_account_income_categ_id:id,use_anglo_saxon
+l10n_ma,Maroc - Plan comptable,pcg_34211000,pcg_44111000,pcg_61110000,pcg_71110000,False

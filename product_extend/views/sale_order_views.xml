@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inherit_sale_order_form" model="ir.ui.view">
+            <field name="name">inherit.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Text d'entête">
+                        <field name="intro_text" />
+                    </page>
+                </xpath>
+                <xpath expr="//notebook/page[1]/field[1]/tree/field[2]" position="after">
+                    <field name="num_du_lot" optional="hide"/>
+                    <field name="num_art" optional="hide"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
