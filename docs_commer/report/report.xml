@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_lc_report" model="ir.actions.report">
+            <field name="name">Coûts Logistiques</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">docs_commer.report_lc</field>
+            <field name="report_file">docs_commer.report_lc</field>
+            <field name="binding_model_id" ref="stock_landed_costs.model_stock_landed_cost"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

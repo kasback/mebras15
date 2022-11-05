@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+		<!-- Partner form view inherte-->
+		<record id="inherit_res_partner_extend_form" model="ir.ui.view">
+			<field name="name">inherit.res.partner.extend.form</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+                <field name="vat" position="before">
+                        <field name="fax" widget="phone"/>
+                        <field name="cin"/>
+                        <field name="assurance1"/>
+                        <field name="assurance2"/>
+                </field>
+                <notebook position="inside">
+                    <page string="Autres infos" attrs="{'invisible': [('is_company','=', False)],'required': [('is_company','=', True)]}">
+                        <group col="4">
+                            <field name="id_fisc"/>
+                            <field name="rc" />
+                            <field name="cnss" />
+                            <field name="capital_social" />
+                            <field name="ice"/>
+                            <field name="itp"/>
+                            <field name="activites"/>
+                            <field name="nationalite"/>
+                        </group>
+                    </page>
+                </notebook>
+            </field>
+		</record>
+    </data>
+</odoo>

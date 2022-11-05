@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="caisse_to_central_view_pec" model="ir.ui.view">
+            <field name="name">caisse.to.central.view.pec</field>
+            <field name="model">caisse.to.central</field>
+            <field name="inherit_id" ref="account_tres_customer.caisse_to_central_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="PEC">
+                        <field name="pec_lines" nolabel="1" widget="one2many_list">
+                            <tree editable="bottom" create='false'>
+                                <field name="pec_id" force_save="1"/>
+                                <field name="amount" force_save="1"/>
+                                <field name="ok" force_save="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

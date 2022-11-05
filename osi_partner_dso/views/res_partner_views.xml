@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_extend_form_dso" model="ir.ui.view">
+            <field name="name">res.partner.extend.form.dso</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group[1]" position="after">
+                    <group string="DSO">
+                        <field name="total_overdue" string="Montant dû"/>
+                        <field name="partner_dso"/>
+                        <field name="dso_target"/>
+                        <field name="target_amount"/>
+                        <field name="recovery_amount"/>
+                    </group>
+                </xpath>
+                <xpath expr="//form/sheet/group[last()]" position="after">
+                    <group string="Dépassement Autorisé">
+                        <field name="nbr_jrs"/>
+                        <field name="marge"/>
+                        <field name="authorized_exceeding"/>
+                        <field name="variation"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="res_partner_tree_dso" model="ir.ui.view">
+            <field name="name">res.partner.tree.dso</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="total_overdue" string="Montant dû"/>
+                    <field name="partner_dso"/>
+                    <field name="dso_target"/>
+                    <field name="target_amount"/>
+                    <field name="recovery_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_partner_tree_authorized_exceeding" model="ir.ui.view">
+            <field name="name">res.partner.tree.authorized.exceeding</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="nbr_jrs"/>
+                    <field name="marge"/>
+                    <field name="total_overdue" string="Montant dû"/>
+                    <field name="authorized_exceeding"/>
+                    <field name="variation"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_partner_dso">
+            <field name="name">DSO Clients</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="res_partner_tree_dso"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_partner_authorized_exceeding">
+            <field name="name">Dépassement Autorisé</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="res_partner_tree_authorized_exceeding"/>
+        </record>
+
+        <menuitem
+                id="menu_partner_dso"
+                sequence="2"
+                action="action_view_partner_dso"
+                name="DSO Clients"
+                parent="contacts.res_partner_menu_contacts"
+        />
+
+        <menuitem
+                id="menu_partner_authorized_exceeding"
+                sequence="2"
+                action="action_view_partner_authorized_exceeding"
+                name="Dépassement Autorisé"
+                parent="contacts.res_partner_menu_contacts"
+        />
+    </data>
+</odoo>

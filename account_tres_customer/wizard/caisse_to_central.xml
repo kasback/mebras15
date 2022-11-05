@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="caisse_to_central_view" model="ir.ui.view">
+            <field name="name">caisse.to.central.view</field>
+            <field name="model">caisse.to.central</field>
+            <field name="arch" type="xml">
+                <form string="Caisse centrale">
+                    <group>
+                    <notebook>
+	                    <page string="Chèques">
+	                   		<field name="cheque_lines" nolabel="1" widget="one2many_list">
+		                   		<tree  editable="bottom" create = 'false'>
+			                   		<field name="cheque_id" force_save="1"/>
+			                   		<field name="amount" force_save="1"/>
+									<field name="due_date" force_save="1"/>
+									<field name="ok" />
+		                   		</tree>
+	                   		</field>
+							<group>
+								<field name="total_cheque"/>
+							</group>
+	                    </page>
+	                    <page string="Effets">
+	                    	<field name="effet_lines" nolabel="1" widget="one2many_list">
+	                    		<tree  editable="bottom" create = 'false'>
+			                   		<field name="effet_id" force_save="1"/>
+			                   		<field name="amount" force_save="1"/>
+									<field name="due_date" force_save="1"/>
+									<field name="ok" force_save="1"/>
+		                   		</tree>
+	                    	</field>
+							<group>
+								<field name="total_effet"/>
+							</group>
+	                    </page>
+	                    <page string="OV">
+	                    	<field name="ov_lines" nolabel="1" widget="one2many_list">
+	                    		<tree  editable="bottom" create = 'false'>
+			                   		<field name="ov_id" force_save="1"/>
+			                   		<field name="amount" force_save="1"/>
+									<field name="ok" force_save="1"/>
+		                   		</tree>
+	                    	</field>
+	                    </page>
+						<page string="CB">
+	                    	<field name="cb_lines" nolabel="1" widget="one2many_list">
+	                    		<tree  editable="bottom" create = 'false'>
+			                   		<field name="cb_id" force_save="1"/>
+			                   		<field name="amount" force_save="1"/>
+									<field name="ok" force_save="1"/>
+		                   		</tree>
+	                    	</field>
+	                    </page>
+	                    <page string="Espèces">
+	                    	<field name="cash_lines" nolabel="1" widget="one2many_list">
+	                    		<tree  editable="bottom" create = 'false'>
+			                   		<field name="cash_id" force_save="1"/>
+			                   		<field name="amount" force_save="1"/>
+									<field name="ok" force_save="1"/>
+		                   		</tree>
+	                    	</field>
+	                    </page>
+                    </notebook>
+                    </group>
+                    <footer>
+                        <button string="Transférer" name="to_central_action" type="object" default_focus="1" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_caisse_to_central"
+					name="Transfert caisse centrale"
+            		res_model="caisse.to.central"
+            		view_mode="form"
+					target="new"
+		/>
+
+</data>
+</odoo>

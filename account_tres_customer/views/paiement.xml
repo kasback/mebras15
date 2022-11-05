@@ -1,0 +1,858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Modèle chèque tree view -->
+        <record id="cheque_model_client_tree" model="ir.ui.view">
+            <field name="name">cheque.model.client.tree</field>
+            <field name="model">paiement.cheque.model.client</field>
+            <field name="arch" type="xml">
+                <tree string="Modèle chèque">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="received_account"/>
+                    <field name="at_bank_account"/>
+                    <field name="post"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Modèle chèque form view -->
+        <record id="cheque_model_view_form" model="ir.ui.view">
+            <field name="name">cheque.model.form.view</field>
+            <field name="model">paiement.cheque.model.client</field>
+            <field name="arch" type="xml">
+                <form string="Modèle chèque">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="received_account"/>
+                            <field name="at_bank_account"/>
+                            <field name="post"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Modèle effet client tree view -->
+        <record id="paiement_effet_model_client_view_tree" model="ir.ui.view">
+            <field name="name">paiement.effet.model.client.tree.view</field>
+            <field name="model">paiement.effet.model.client</field>
+            <field name="arch" type="xml">
+                <tree string="Modèle effet client">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="received_account"/>
+                    <field name="at_bank_account"/>
+                    <field name="bank_account"/>
+                    <field name="post"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Modèle effet client form view -->
+        <record id="paiement_effet_model_client_view_form" model="ir.ui.view">
+            <field name="name">paiement.effet.model.client.form.view</field>
+            <field name="model">paiement.effet.model.client</field>
+            <field name="arch" type="xml">
+                <form string="Modele effet client">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="received_account"/>
+                            <field name="at_bank_account"/>
+                            <field name="bank_account"/>
+                            <field name="bank_journal_id"/>
+                            <field name="post"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Cash client search -->
+        <record id="view_cash_client_filter" model="ir.ui.view">
+            <field name="name">Cash Clients</field>
+            <field name="model">paiement.cash.client</field>
+            <field name="arch" type="xml">
+                <search string="Espèce Client">
+                    <filter string="Confirme" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Brouillon" name="drafe" domain="[('state','=','draft')]"/>
+                    <separator/>
+                    <field name="name"/>
+                    <field name="client"/>
+                    <field name="amount"/>
+                    <field name="caisse_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <separator/>
+                    <field name="journal_id"/>
+                    <field name="date"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Client" name="client" domain="[]" context="{'group_by':'client'}"/>
+                        <filter string="Caisse" name="caisse" domain="[]" context="{'group_by':'caisse_id'}"/>
+                        <filter string="Banque" name="journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Statut" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Cash client tree view -->
+        <record model="ir.ui.view" id="cash_client_tree_view">
+            <field name="name">Cash Client</field>
+            <field name="model">paiement.cash.client</field>
+            <field name="arch" type="xml">
+                <tree string="Espèce Client">
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="client"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="date"/>
+                    <field name="paiement_record_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Cash client form view -->
+        <record model="ir.ui.view" id="cash_form_client_view">
+            <field name="name">cash.form.client.view</field>
+            <field name="model">paiement.cash.client</field>
+            <field name="arch" type="xml">
+                <form string="Espèce Client">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,caisse,caisse_centrale,done"/>
+                        <button name="action_caisse" string="Caisse" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_caisse_centrale" string="Caisse centrale" states="caisse" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_done" states="caisse_centrale" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_cancel" states="draft" type="object" string="Annuler"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="journal_id"/>
+                                <field name="client"/>
+                                <field name="caisse_id"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="paiement_record_id"/>
+                                <field name="date"/>
+                                <field name="amount"/>
+                                <field name="analytic_account_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <field name="note" nolabel="1"/>
+                                <group>
+                                    <field name="origin" attrs="{'invisible':[('origin','=',False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Écritures comptables" name="move_live_ids">
+                                <field name="move_line_ids" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- ov client calendar -->
+        <record model="ir.ui.view" id="ov_client_calendar_view">
+            <field name="name">OV Clients</field>
+            <field name="model">paiement.ov.client</field>
+            <field name="arch" type="xml">
+                <calendar string="OV Clients" date_start="date" date_stop="due_date" color="client">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- OV Clients Graph -->
+        <record model="ir.ui.view" id="ov_client_graph_view">
+            <field name="name">OV Clients</field>
+            <field name="model">paiement.ov.client</field>
+            <field name="arch" type="xml">
+                <graph string="OV Clients" type="bar">
+                    <field name="client"/>
+                    <field name="amount" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- OV Client Search -->
+        <record id="view_ov_client_filter" model="ir.ui.view">
+            <field name="name">OV Clients</field>
+            <field name="model">paiement.ov.client</field>
+            <field name="arch" type="xml">
+                <search string="OV Clients">
+                    <filter string="Confirme" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Brouillon" name="drafe" domain="[('state','=','draft')]"/>
+                    <separator/>
+                    <field name="name"/>
+                    <field name="client"/>
+                    <field name="amount"/>
+                    <field name="paiement_record_id"/>
+                    <field name="caisse_id"/>
+                    <newline/>
+                    <field name="journal_id"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Client" name="client" domain="[]" context="{'group_by':'client'}"/>
+                        <filter string="Banque" name="journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Caisse" name="caisse" domain="[]" context="{'group_by':'caisse_id'}"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Echéance" name="due_date" domain="[]" context="{'group_by':'due_date'}"/>
+                        <filter string="Statut" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- OV Client Tree View -->
+        <record model="ir.ui.view" id="ov_client_tree_view">
+            <field name="name">OV client</field>
+            <field name="model">paiement.ov.client</field>
+            <field name="arch" type="xml">
+                <tree string="OV">
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="client"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <field name="paiement_record_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- OV client form view -->
+        <record model="ir.ui.view" id="ov_form_client_view">
+            <field name="name">OV</field>
+            <field name="model">paiement.ov.client</field>
+            <field name="arch" type="xml">
+                <form string="OV">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,caisse,caisse_centrale,done,rejected"/>
+                        <button name="action_caisse" string="Caisse" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_caisse_centrale" string="Caisse centrale" type="object" states="caisse"
+                                class="oe_highlight"/>
+                        <button name="action_done" states="caisse_centrale" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_cancel" states="draft" string="Annuler" type="object"/>
+                        <button name="action_rejected" states="caisse_centrale" string="Rejet" type="object"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="journal_id"/>
+                                <field name="due_date"/>
+                                <field name="amount"/>
+                                <field name="analytic_account_id"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="paiement_record_id"/>
+                                <field name="date"/>
+                                <field name="client"/>
+                                <field name="caisse_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <field name="note" nolabel="1"/>
+                                <group>
+                                    <field name="origin" attrs="{'invisible':[('origin','=',False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Écritures comptables" name="move_live_ids">
+                                <field name="move_line_ids" nolabel="1"/>
+                            </page>
+                            <page string="Frais Bancaires" name="tres_fees_ids">
+                                <field name="tres_fees_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="account_id" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="amount" sum="Total" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="move_id"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                                <button type="object" name="action_post_fees" string="Poster" icon="gtk-ok"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Effet Client Calendar -->
+        <record model="ir.ui.view" id="effet_client_calendar_view">
+            <field name="name">Effet Clients</field>
+            <field name="model">paiement.effet.client</field>
+            <field name="arch" type="xml">
+                <calendar string="Effets Clients" date_start="date" date_stop="due_date"  color="client">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Effet Client Graph -->
+        <record model="ir.ui.view" id="effet_client_graph_view">
+            <field name="name">Effet Clients</field>
+            <field name="model">paiement.effet.client</field>
+            <field name="arch" type="xml">
+                <graph string="Effets Clients" type="bar">
+                    <field name="client"/>
+                    <field name="amount" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Effet Client Search -->
+        <record id="view_effet_client_filter" model="ir.ui.view">
+            <field name="name">Effets Clients</field>
+            <field name="model">paiement.effet.client</field>
+            <field name="arch" type="xml">
+                <search string="Effet Clients">
+                    <field name="name"/>
+                    <field name="client"/>
+                    <field name="amount"/>
+                    <field name="caisse_id"/>
+                    <field name="paiement_record_id"/>
+                    <field name="journal_id"/>
+                    <field name="due_date"/>
+
+                    <filter string="Confirmer" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Brouillon" name="drafe" domain="[('state','=','draft')]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Client" name="client" domain="[]" context="{'group_by':'client'}"/>
+                        <filter string="Caisse" name="caisse" domain="[]" context="{'group_by':'caisse_id'}"/>
+                        <filter string="Société" name="company" domain="[]" context="{'group_by':'company_id'}"
+                                groups="base.group_multi_company"/>
+                        <filter string="Banque" name="journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Echéance" name="due_date" domain="[]" context="{'group_by':'due_date'}"/>
+                        <filter string="Statut" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Effets Client Tree View -->
+
+        <record model="ir.ui.view" id="effet_client_tree_view">
+            <field name="name">Effets Clients</field>
+            <field name="model">paiement.effet.client</field>
+            <field name="arch" type="xml">
+                <tree string="Effets">
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="client"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <field name="paiement_record_id"/>
+                    <field name="bank_client"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Effets Client Form View -->
+
+        <record model="ir.ui.view" id="effet_form_client_view">
+            <field name="name">Effets</field>
+            <field name="model">paiement.effet.client</field>
+            <field name="arch" type="xml">
+                <form string="Effets">
+                    <header>
+                        <field name="state" widget="statusbar"/>
+                        <button name="action_caisse" string="Caisse" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_caisse_centrale" string="Caisse centrale" states="caisse" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_received" states="caisse_centrale" string="Recu" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_at_bank" states="received" string="Encaisse" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_payed" states="at_bank" string="Paye" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" string="Annuler" states="draft" type="object"/>
+                        <button name="action_rejected" states="at_bank" string="Rejeter" type="object"/>
+                        <button name="action_to_represent" states="rejected" type="object" string="A représenter"
+                                class="oe_highlight"/>
+                        <button name="effet_to_change" states="rejected" type="object" string="A changer"
+                                class="oe_highlight"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="journal_id" required="1" domain="[('type', '=', 'general')]"/>
+                                <field name="date"/>
+                                <field name="client"/>
+                                <field name="caisse_id"/>
+                                <field name="rejete"
+                                       attrs="{'invisible':[('state','not in',['rejected','to_represent','to_change'])]}"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="paiement_record_id"/>
+                                <field name="model_id"/>
+                                <field name="due_date"/>
+                                <field name="amount"/>
+                                <field name="analytic_account_id"/>
+                                <field name="bank_client" domain="[('partner_id','=',client)]"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <field name="note" nolabel="1"/>
+                                <group>
+                                    <field name="at_bank_date"/>
+                                    <field name="payed_date"/>
+                                </group>
+                                <group>
+                                    <field name="effet_origin_id"
+                                           attrs="{'invisible':[('effet_origin_id','=',False)]}"/>
+                                    <field name="origin" attrs="{'invisible':[('origin','=',False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Écritures comptables" name="move_live_ids">
+                                <field name="move_line_ids" nolabel="1"/>
+                            </page>
+                            <page string="Frais Bancaires" name="tres_fees_ids">
+                                <field name="tres_fees_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="account_id" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="amount" sum="Total" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="move_id"/>
+                                        <field name="state" widget="statusbar"
+                                               statusbar_visible="draft,caisse,caisse_centrale,received,at_bank,payed"/>
+                                    </tree>
+                                </field>
+                                <button type="object" name="action_post_fees" string="Poster" icon="gtk-ok"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+<!--
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+-->
+                </form>
+            </field>
+        </record>
+
+        <!-- Cheques Client Calendar -->
+        <record model="ir.ui.view" id="cheque_client_calendar_view">
+            <field name="name">Cheques Clients</field>
+            <field name="model">paiement.cheque.client</field>
+            <field name="arch" type="xml">
+                <calendar string="Cheques clients" date_start="date" date_stop="due_date"  color="client">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Cheques Client Graph -->
+        <record model="ir.ui.view" id="cheque_client_graph_view">
+            <field name="name">Cheques Clients</field>
+            <field name="model">paiement.cheque.client</field>
+            <field name="arch" type="xml">
+                <graph string="Cheques clients" type="bar">
+                    <field name="client"/>
+                    <field name="amount" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Cheques Client Search -->
+        <record id="view_cheque_client_filter" model="ir.ui.view">
+            <field name="name">Cheques Clients</field>
+            <field name="model">paiement.cheque.client</field>
+            <field name="arch" type="xml">
+                <search string="Cheque Clients">
+                    <field name="name"/>
+                    <field name="client"/>
+                    <field name="amount"/>
+                    <field name="paiement_record_id"/>
+                    <field name="caisse_id"/>
+                    <field name="journal_id"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+
+                    <filter string="Confirme" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Brouillon" name="drafe" domain="[('state','=','draft')]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Client" name="client" domain="[]" context="{'group_by':'client'}"/>
+                        <filter string="Banque" name="journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Caisse" name="caisse" domain="[]" context="{'group_by':'caisse_id'}"/>
+                        <filter string="Société" name="company" domain="[]" context="{'group_by':'company_id'}"
+                                groups="base.group_multi_company"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Echéance" name="due_date" domain="[]" context="{'group_by':'due_date'}"/>
+                        <filter string="Statut" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Cheques Client Tree View -->
+
+        <record model="ir.ui.view" id="cheque_client_tree_view">
+            <field name="name">Cheques Client</field>
+            <field name="model">paiement.cheque.client</field>
+            <field name="arch" type="xml">
+                <tree string="Cheques">
+                    <field name="name"/>
+                    <field name="paiement_record_id"/>
+                    <field name="journal_id"/>
+                    <field name="client"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <field name="payed_date" />
+                    <field name="bank_client"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Cheques Client Form View -->
+        <record model="ir.ui.view" id="cheque_form_client_view">
+            <field name="name">Cheques</field>
+            <field name="model">paiement.cheque.client</field>
+            <field name="arch" type="xml">
+                <form string="Cheques">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,caisse,caisse_centrale,received,at_bank,payed"/>
+                        <button name="action_caisse" string="Caisse" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_caisse_centrale" string="Caisse centrale" states="caisse" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_received" states="caisse_centrale" string="Bordereau" type="object"
+                                class="oe_highlight"/>
+<!--
+                        <button name="action_at_bank" states="received" string="Banque" type="object"
+                                class="oe_highlight"/>
+-->
+                        <button name="action_payed" states="at_bank" string="Payer" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" string="Annuler" states="draft" type="object"/>
+                        <button name="action_rejected" states="at_bank" string="Rejet" type="object"/>
+                        <button name="action_to_represent" states="rejected" type="object" string="A représenter"
+                                class="oe_highlight"/>
+                        <button name="cheque_to_change" states="rejected" type="object" string="A changer"
+                                class="oe_highlight"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="journal_id" required="1" domain="[('type', '=', 'general')]"/>
+                                <field name="date"/>
+                                <field name="client"/>
+                                <field name="caisse_id"/>
+                                <field name="rejete"
+                                       attrs="{'invisible':[('state','not in',['rejected','to_represent','to_change'])]}"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="paiement_record_id"/>
+                                <field name="model_id"/>
+                                <field name="due_date"/>
+                                <field name="amount"/>
+                                <field name="analytic_account_id"/>
+                                <field name="bank_client" domain="[('partner_id','=',client)]"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <field name="note" nolabel="1"/>
+                                <group>
+                                    <field string="Date d'opération système" name="at_bank_date" attrs="{'invisible':[('state','not in', ['at_bank', 'payed'])]}"/>
+                                    <field name="payed_date" attrs="{'invisible':[('state','not in', ['at_bank', 'payed'])]}"/>
+                                </group>
+                                <group>
+                                    <field name="cheque_origin_id"
+                                           attrs="{'invisible':[('cheque_origin_id','=',False)]}"/>
+                                    <field name="origin" attrs="{'invisible':[('origin','=',False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Écritures comptables" name="move_live_ids">
+                                <field name="move_line_ids" nolabel="1">
+                                    <tree>
+                                        <field name="date" />
+                                        <field name="move_id" />
+                                        <field name="account_id" />
+                                        <field name="journal_id" />
+                                        <field name="partner_id" />
+                                        <field name="name" />
+                                        <field name="full_reconcile_id" />
+                                        <field name="debit" />
+                                        <field name="credit" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- CB client calendar -->
+        <record model="ir.ui.view" id="cb_client_calendar_view">
+            <field name="name">CB Clients</field>
+            <field name="model">paiement.cb.client</field>
+            <field name="arch" type="xml">
+                <calendar string="CB Clients" date_start="date" date_stop="due_date"  color="client">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- CB Clients Graph -->
+        <record model="ir.ui.view" id="cb_client_graph_view">
+            <field name="name">CB Clients</field>
+            <field name="model">paiement.cb.client</field>
+            <field name="arch" type="xml">
+                <graph string="CB Clients" type="bar">
+                    <field name="client"/>
+                    <field name="amount" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- CB Client Search -->
+        <record id="view_cb_client_filter" model="ir.ui.view">
+            <field name="name">CB Clients</field>
+            <field name="model">paiement.cb.client</field>
+            <field name="arch" type="xml">
+                <search string="CB Clients">
+                    <filter string="Confirme" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Brouillon" name="drafe" domain="[('state','=','draft')]"/>
+                    <separator/>
+                    <field name="name"/>
+                    <field name="client"/>
+                    <field name="amount"/>
+                    <field name="paiement_record_id"/>
+                    <field name="caisse_id"/>
+                    <newline/>
+                    <field name="journal_id"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Client" name="client" domain="[]" context="{'group_by':'client'}"/>
+                        <filter string="Banque" name="journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Caisse" name="caisse" domain="[]" context="{'group_by':'caisse_id'}"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Echéance" name="due_date" domain="[]" context="{'group_by':'due_date'}"/>
+                        <filter string="Statut" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- CB Client Tree View -->
+        <record model="ir.ui.view" id="cb_client_tree_view">
+            <field name="name">CB client</field>
+            <field name="model">paiement.cb.client</field>
+            <field name="arch" type="xml">
+                <tree string="CB">
+                    <field name="name"/>
+                    <field name="journal_id"/>
+                    <field name="client"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <field name="paiement_record_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- CB client form view -->
+        <record model="ir.ui.view" id="cb_form_client_view">
+            <field name="name">CB</field>
+            <field name="model">paiement.cb.client</field>
+            <field name="arch" type="xml">
+                <form string="CB">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,caisse,caisse_centrale,done,rejected"/>
+                        <button name="action_caisse" string="Caisse" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_caisse_centrale" string="Caisse centrale" type="object" states="caisse"
+                                class="oe_highlight"/>
+                        <button name="action_done" states="caisse_centrale" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_cancel" states="draft" string="Annuler" type="object"/>
+                        <button name="action_rejected" states="caisse_centrale" string="Rejet" type="object"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="journal_id"/>
+                                <field name="due_date"/>
+                                <field name="amount"/>
+                                <field name="analytic_account_id"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="paiement_record_id"/>
+                                <field name="date"/>
+                                <field name="client"/>
+                                <field name="caisse_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <field name="note" nolabel="1"/>
+                                <group>
+                                    <field name="origin" attrs="{'invisible':[('origin','=',False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Écritures comptables" name="move_live_ids">
+                                <field name="move_line_ids" nolabel="1"/>
+                            </page>
+                            <page string="Frais Bancaires" name="tres_fees_ids">
+                                <field name="tres_fees_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="account_id" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="amount" sum="Total" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="move_id"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                                <button type="object" name="action_post_fees" string="Poster" icon="gtk-ok"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Effets Action -->
+        <record model="ir.actions.act_window" id="effets_client_action">
+            <field name="name">Effets Clients</field>
+            <field name="res_model">paiement.effet.client</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+        </record>
+
+        <!-- Cheques Action -->
+        <record model="ir.actions.act_window" id="cheques_client_action">
+            <field name="name">Chèques Clients</field>
+            <field name="res_model">paiement.cheque.client</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+        </record>
+
+        <!-- OV Action -->
+        <record model="ir.actions.act_window" id="ov_client_action">
+            <field name="name">OV Clients</field>
+            <field name="res_model">paiement.ov.client</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+        </record>
+
+        <!-- CB Action -->
+        <record model="ir.actions.act_window" id="cb_client_action">
+            <field name="name">CB Clients</field>
+            <field name="res_model">paiement.cb.client</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+        </record>
+
+        <!-- Cash Action -->
+        <record model="ir.actions.act_window" id="cash_client_action">
+            <field name="name">Espèces Client</field>
+            <field name="res_model">paiement.cash.client</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Modèles comptables Action -->
+        <record model="ir.actions.act_window" id="paiement_cheque_model_action">
+            <field name="name">Modèle comptable chèque</field>
+            <field name="res_model">paiement.cheque.model.client</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="paiement_effet_model_client_action">
+            <field name="name">Modèle comptable effet client</field>
+            <field name="res_model">paiement.effet.model.client</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menus -->
+        <menuitem id="paiement_client" name="Pièces Clients" parent="paiement_client_menu_root" sequence="3"/>
+
+        <menuitem id="effets_client_menu" action="effets_client_action" parent="paiement_client" sequence="1"/>
+        <menuitem id="cheques_clients_menu" action="cheques_client_action" parent="paiement_client" sequence="2"/>
+        <menuitem id="ov_clients_menu" action="ov_client_action" parent="paiement_client" sequence="3"/>
+        <menuitem id="cb_clients_menu" action="cb_client_action" parent="paiement_client" sequence="4"/>
+        <menuitem id="cash_menu" action="cash_client_action" parent="paiement_client" sequence="5"/>
+
+        <menuitem id="modeles_menu" name="Modèles comptables" parent="paiement_client_menu_root" sequence="4"/>
+        <menuitem id="paiement_cheque_model_id" parent="modeles_menu" action="paiement_cheque_model_action"/>
+        <menuitem id="paiement_effet_model_client_id" parent="modeles_menu"
+                  action="paiement_effet_model_client_action"/>
+
+        <!--
+        Account Statement Sequences
+        -->
+        <record id="bc_seq" model="ir.sequence">
+            <field name="name">Bordereau sequence</field>
+            <field name="code">paiement.bordereau</field>
+            <field name="prefix">BC</field>
+            <field eval="1" name="number_increment"/>
+            <field name="padding">5</field>
+        </record>
+
+        <record model="ir.ui.view" id="res_partner_search_view_inherit">
+            <field name="name">paiement.cheque.client.search.view.custom</field>
+            <field name="model">paiement.cheque.client</field>
+            <field name="inherit_id" ref="account_tres_customer.view_cheque_client_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <filter string="Rejetés" name="cq_rejetes" domain="[('state', '=', 'rejected')]"/>
+                    <filter string="Representés" name="cq_representes" domain="[('state', '=', 'to_represent')]"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

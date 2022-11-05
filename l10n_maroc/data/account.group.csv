@@ -1,0 +1,116 @@
+id,code_prefix_start,name
+account.data_account_group_111,111,Capital social ou personnel
+account.data_account_group_112,112,Primes d'émission, de fusion et d'apport
+account.data_account_group_113,113,Ecarts de réévaluation
+account.data_account_group_114,114,Réserve légale
+account.data_account_group_115,115,Autres réserves
+account.data_account_group_116,116,Report à nouveau
+account.data_account_group_118,118,Résultats nets en instance d'affectation
+account.data_account_group_119,119,Résultat net de l'exercice
+account.data_account_group_131,131,Subventions d'investissement
+account.data_account_group_135,135,Provisions réglementées
+account.data_account_group_141,141,Emprunts obligataires
+account.data_account_group_148,148,Autres dettes de financement
+account.data_account_group_151,151,Provisions pour risques
+account.data_account_group_155,155,Provisions pour charges
+account.data_account_group_160,160,Comptes de liaisons des atablissments et succursales
+account.data_account_group_171,171,Augmentation des créances immobilisées
+account.data_account_group_172,172,Diminution des dettes de financement
+account.data_account_group_211,211,Frais préliminaires
+account.data_account_group_212,212,Charges à répartir sur plusieurs exercices
+account.data_account_group_213,213,Primes de remboursement des obligations
+account.data_account_group_221,221,Immobilisation en recherche et développement
+account.data_account_group_222,222,Brevets, marques, droits et valeurs similaires
+account.data_account_group_223,223,Fonds commercial
+account.data_account_group_228,228,Autres immobilisations incorporelles
+account.data_account_group_231,231,Terrains
+account.data_account_group_232,232,Constructions
+account.data_account_group_233,233,"Installations techniques, matériel et outillage"
+account.data_account_group_234,234,Matériel de transport
+account.data_account_group_235,235,Mobilier, matériel de bureau et aménagements divers
+account.data_account_group_238,238,Autres immobilisations corporelles
+account.data_account_group_239,239,Immobilisations corporelles en cours
+account.data_account_group_241,241,Prêts immobilsés
+account.data_account_group_248,248,Autres créances financières
+account.data_account_group_251,251,Titres de participation
+account.data_account_group_258,258,Autres titres immobilisés
+account.data_account_group_271,271,Diminution des créances immobilisées
+account.data_account_group_272,272,Augmentation des dettes de financement
+account.data_account_group_281,281,Amortissements des non-valeurs
+account.data_account_group_282,282,Amortissements des immobilisations incorporelles
+account.data_account_group_283,283,Amortissements des immobilisations corporelles
+account.data_account_group_292,292,Provisions pour dépréciation des immobilisations incorporelles
+account.data_account_group_293,293,Provisions pour dépréciation des immobilisations corporelles
+account.data_account_group_294,294,Provisions pour dépréciation des immobilisations financières
+account.data_account_group_295,295,Provisions pour dépréciation des immobilisations financières
+account.data_account_group_311,311,Marchandises
+account.data_account_group_312,312,Matières et fournitures consommables
+account.data_account_group_313,313,Produits en cours
+account.data_account_group_314,314,Produits intermédiaires et produits résiduels
+account.data_account_group_315,315,Produits finis
+account.data_account_group_341,341,Fournisseurs débiteurs, avances et acomptes
+account.data_account_group_342,342,Clients et comptes rattachés
+account.data_account_group_343,343,Personnel - débiteur
+account.data_account_group_345,345,Etat - débiteur
+account.data_account_group_346,346,Comptes d'associés - débiteurs
+account.data_account_group_348,348,Autres débiteurs
+account.data_account_group_349,349,Comptes de régularisation - actif
+account.data_account_group_350,350,Titres et valeurs de placement
+account.data_account_group_370,370,Ecart de conversion - actif (Elements circulants)
+account.data_account_group_391,391,Provisions pour dépréciation des stocks
+account.data_account_group_394,394,Provisions pour dépréciation des créances de l'actif circulant
+account.data_account_group_395,395,Provisions pour dépréciation des titres et valeurs de placement
+account.data_account_group_441,441,Fournisseurs et comptes rattachés
+account.data_account_group_442,442,"Clients créditeurs, avances et acomptes"
+account.data_account_group_443,443,Personnel - créditeur
+account.data_account_group_444,444,Organismes sociaux
+account.data_account_group_445,445,Etat - créditeur
+account.data_account_group_446,446,Comptes d'associés - créditeurs
+account.data_account_group_448,448,Autres créanciers
+account.data_account_group_449,449,Comptes de régularisation - passif
+account.data_account_group_450,450,Autres provisions pour risques et charges
+account.data_account_group_470,470,Ecarts de conversions - passif (éléments circulants)
+account.data_account_group_511,511,Chèques et valeurs à encaisser
+account.data_account_group_514,514,"Banques, Trésorerie Générale et chèques postaux débiteurs"
+account.data_account_group_516,516,"Caisses, régies d'avances et accréditifs"
+account.data_account_group_552,552,Crédits d'escompte
+account.data_account_group_553,553,Crédits de trésorerie
+account.data_account_group_554,554,Banques (solde créditeur)
+account.data_account_group_590,590,Provisions pour depreciation des comptes de tresorerie
+account.data_account_group_611,611,Achats revendus de marchandises
+account.data_account_group_612,612,Achats consommés de matières et fournitures
+account.data_account_group_613,613,Autres charges externes
+account.data_account_group_614,614,Autres charges externes
+account.data_account_group_616,616,Impôts et taxes
+account.data_account_group_617,617,Charges de personnel
+account.data_account_group_618,618,Autres charges d'exploitation
+account.data_account_group_619,619,Dotations d’exploitation
+account.data_account_group_631,631,Charges d’intérêts
+account.data_account_group_633,633,Pertes de change
+account.data_account_group_638,638,Autres charges financières
+account.data_account_group_639,639,Dotations financières
+account.data_account_group_651,651,Valeurs nettes d’amortissements des immobilisations cédées ( V.N.A )
+account.data_account_group_656,656,Subventions accordées
+account.data_account_group_658,658,Autres charges non courantes
+account.data_account_group_659,659,Dotations non courantes
+account.data_account_group_670,670,Impots sur les résultats
+account.data_account_group_711,711,Ventes de marchandises
+account.data_account_group_712,712,Ventes de biens et services produits
+account.data_account_group_713,713,Variation des stocks de produits
+account.data_account_group_714,714,Immobilisations produites par l’entreprise pour elle même
+account.data_account_group_716,716,Subventions d’exploitation
+account.data_account_group_718,718,Autres produits d’exploitation
+account.data_account_group_719,719,Reprise d’exploitation, transferts de charges
+account.data_account_group_732,732,Produits des titres de participation et des autres titres immobilisés
+account.data_account_group_733,733,Gains de change
+account.data_account_group_738,738,Intérêts et autres produits financiers
+account.data_account_group_739,739,Reprises financières, transferts de charges
+account.data_account_group_751,751,Produits des cessions d’immobilisations
+account.data_account_group_756,756,Subventions d’équilibre
+account.data_account_group_757,757,Reprise sur subventions d’investissements
+account.data_account_group_758,758,Autres produits non courants
+account.data_account_group_759,759,REPRISE NON COURANTE TRANSFERT DE CHARGE
+account.data_account_group_810,810,RESULTAT D'EXPLOITATION
+account.data_account_group_811,811,MARGE BRUTE
+account.data_account_group_814,814,VALEUR AJOUTEE
+account.data_account_group_817,817,EXCEDENT BRUT D'EXPLOITAT

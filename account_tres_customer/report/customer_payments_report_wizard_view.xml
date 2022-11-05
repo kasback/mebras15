@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+        <record model="ir.ui.view" id="customer_payments_report_wizard_form">
+            <field name="name">customer.payments.report.wizard.form</field>
+            <field name="model">customer.payments.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Paiements Client">
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_fin"/>
+                    </group>
+                    <footer>
+                        <button string="Imrpimer" name="print_report" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Annuler" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_customer_payments_report"
+                    name="Paiements Client"
+                    res_model="customer.payments.report.wizard"
+                    view_mode="form" target="new"/>
+	</data>
+</odoo>

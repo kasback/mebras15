@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="cheque_client_tree_view_inherit">
+			<field name="name">cheque.client.tree.view.inherit</field>
+		    <field name="model">paiement.cheque.client</field>
+		    <field name="inherit_id" ref="cheque_form_client_view"/>
+		    <field name="arch" type="xml">
+         		<field name="bank_client" position="after">
+			        <field name="bordereau_id"  attrs="{'readonly':[('state','!=','caisse_centrale')]}" domain="[('type', '=', 'cheque')]" context="{'default_type': 'cheque'}"/>
+    		</field>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="effet_client_form_view_inherit">
+			<field name="name">effet.client.form.view.inherit</field>
+		    <field name="model">paiement.effet.client</field>
+		    <field name="inherit_id" ref="effet_form_client_view"/>
+		    <field name="arch" type="xml">
+         		<field name="bank_client" position="after">
+			        <field name="bordereau_id" readonly="1"/>
+    			</field>
+    		</field>
+		</record>
+	
+		<!-- Bordereau  Search View -->
+
+	 	<record id="paiement_bordereau_search_view" model="ir.ui.view">
+            <field name="name">paiement.bordereau.search.view</field>
+            <field name="model">paiement.bordereau</field>
+            <field name="arch" type="xml">
+                <search string="Bordereau">
+	                <field name="name"/>
+                    <field name="date"/>
+                    <field name="journal_id"/>
+                    <field name="courssier_id"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <group expand="0" string="Group By..." groups="base.group_extended">
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Société" name="company" domain="[]" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                        <filter string="Cousrier" name="coursier" domain="[]" context="{'group_by':'courssier_id'}"/>
+                        <filter string="Banque" name="journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+
+		<!-- Bordereau Tree View -->
+
+        <record id="paiement_bordereau_tree_view" model="ir.ui.view">
+            <field name="name">paiement.bordereau.tree.view</field>
+            <field name="model">paiement.bordereau</field>
+            <field name="arch" type="xml">
+                <tree string="Bordereau">
+                	<field name="name" />
+	                <field name="date" />
+	                <field name="courssier_id"/>
+					<field name="journal_id" />
+					<field name="state" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Bordereau Form View -->
+
+        <record id="paiement_bordereau_form_view" model="ir.ui.view">
+			<field name="name">paiement.bordereau.form.view</field>
+			<field name="model">paiement.bordereau</field>
+			<field name="arch" type="xml">
+				<form string="Bordereau">
+				    <header>
+		                <button  name="valider_bordereau" states="draft" string="Valider" type="object" class="oe_highlight"/>
+						<button  name="rec_bordereau" states="done" string="Déposer à la banque" type="object" class="oe_highlight"/>
+						<button  name="back_to_draft" states="received" string="Annuler" type="object" class="oe_highlight"
+								 groups="account_tres_customer.account_tres_cancel_bordereau"/>
+		                <field name="state" widget="statusbar" />
+					</header>
+					<sheet>
+						<group>
+								<field name="name" attrs="{'readonly':[('state','!=','draft')]}"/>
+								<field name="date" attrs="{'readonly':[('state','!=','draft')]}"/>
+								<field name="courssier_id" options="{'no_create': True, 'no_open':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+								<field name="journal_id" options="{'no_create': True, 'no_open':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+								<field name="date_encaissement"/>
+								<field name="company_id" groups="base.group_multi_company" options="{'no_create': True, 'no_open':True}" attrs="{'readonly':[('state','!=','draft')]}"/>
+								<field name="type" attrs="{'invisible':True}"/>
+						</group>
+						<notebook>
+	                        <page string="Chèques" attrs="{'invisible':[('type','!=','cheque')]}">                 
+	                            <field name="cheque_lines" nolabel="1" widget="many2many"
+									   domain="[('state','in',['caisse','caisse_centrale']),('bordereau_id','=',False)]"/>
+	                        </page>
+							<page string="Effets" attrs="{'invisible':[('type','!=','effet')]}">
+								 <field name="effet_lines" nolabel="1" widget="many2many" attrs="{'readonly':[('state','!=','draft')]}"
+										domain="[('state','in',['caisse','caisse_centrale']),('bordereau_id','=',False)]"/>
+	                        </page>
+							<page string="Frais Bancaires" name="tres_fees_ids">
+								<field name="tres_fees_ids" nolabel="1">
+									<tree editable="bottom">
+										<field name="account_id" attrs="{'readonly':[('state','=','done')]}"/>
+					                    <field name="amount" sum="Total" attrs="{'readonly':[('state','=','done')]}"/>
+					                    <field name="move_id"/>
+					                    <field name="state"/>
+	                 				</tree>
+								</field>
+	                            <button type="object" name="action_post_fees" string="Poster" icon="fa-caret-square-o-right" />
+	                        </page>
+						</notebook>
+						<group>
+								<field name="total_amount"/>
+								<field name="total_amount_ko"/>
+								<field name="total_amount_ok"/>
+								<field name="total_amount_rejet"/>
+								<field name="nb_cheques" attrs="{'invisible':[('type','!=','cheque')]}"/>
+								<field name="nb_effets" attrs="{'invisible':[('type','!=','effet')]}"/>
+						</group>
+	            	</sheet>
+            	</form>
+			</field>
+        </record>
+
+
+        <!-- Bordereaux effet action -->
+
+        <record model="ir.actions.act_window" id="paiement_bordereau_effet_action">
+			<field name="name">Bordereaux Effets</field>
+			<field name="res_model">paiement.bordereau</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('type','=','effet')]</field>
+            <field name="context">{'default_type': 'effet'}</field>
+		</record>
+
+		<!-- Bordereaux cheque action -->
+
+        <record model="ir.actions.act_window" id="paiement_bordereau_cheque_action">
+			<field name="name">Bordereaux Chèques</field>
+			<field name="res_model">paiement.bordereau</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('type','=','cheque')]</field>
+            <field name="context">{'default_type': 'cheque'}</field>
+		</record>
+
+		<!-- Bordereaux  menu -->
+		<menuitem id="bordereaux_menu_root" name="Bordereaux" parent="paiement_client_menu_root" sequence="5"/>
+		<menuitem action="paiement_bordereau_cheque_action" id="paiement_bordereau_cheque_menu" parent="bordereaux_menu_root"/>
+		<menuitem action="paiement_bordereau_effet_action" id="paiement_bordereau_effet_menu" parent="bordereaux_menu_root"/>
+		
+	</data>
+</odoo>

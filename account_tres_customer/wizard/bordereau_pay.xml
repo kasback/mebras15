@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="bordereau_pay_view" model="ir.ui.view">
+            <field name="name">bordereau.pay.eval</field>
+            <field name="model">bordereau.pay</field>
+            <field name="arch" type="xml">
+                <form string="Bordereau">
+                    <p class="oe_grey">
+                        Paiement chèques et effets.
+                    </p>
+                    <field name="type" invisible="1"/>
+                    <group>
+                    <notebook>
+	                    <page string="Chèques" attrs="{'invisible':[('type','!=','cheque')]}">
+	                   		<field colspan="4" name="cheque_lines" nolabel="1" widget="one2many_list">
+		                   		<tree  editable="bottom" create="false">
+			                   		<field name="cheque_id" force_save="1"/>
+			                   		<field name="amount" force_save="1"/>
+									<field name="type"/>
+                                    <field name="date"/>
+		                   		</tree>
+	                   		</field>
+	                    </page>
+	                    <page string="Effets" attrs="{'invisible':[('type','!=','effet')]}">
+	                    	<field colspan="4" name="effet_lines" nolabel="1" widget="one2many_list">
+	                    		<tree  editable="bottom" create="false">
+			                   		<field name="effet_id" force_save="1"/>
+			                   		<field name="amount" force_save="1"/>
+									<field name="type"/>
+                                    <field name="date"/>
+		                   		</tree>
+	                    	</field>
+	                    </page>
+                    </notebook>
+                    </group>
+                    <footer>
+                        <button string="Paiement" name="pay_action" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_bordereau_pay"
+                    name="Paiement chèques et effets"
+                    res_model="bordereau.pay"
+                    view_mode="form" target="new"/>
+
+</data>
+</odoo>

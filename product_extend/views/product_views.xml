@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_template_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <field name="barcode" position="after">
+                    <field name="marque_id"/>
+                    <field name="country_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_product_form_inherit" model="ir.ui.view">
+            <field name="name">product.product.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <field name="barcode" position="after">
+                    <field name="marque_id"/>
+                    <field name="country_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_product_tree_inherit" model="ir.ui.view">
+            <field name="name">product.product.tree.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="marque_id"/>
+                    <field name="country_id"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_template_tree_inherit" model="ir.ui.view">
+            <field name="name">product.template.tree.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="marque_id"/>
+                    <field name="country_id"/>
+                    <field name="delivered_qty"/>
+                    <field name="received_qty"/>
+                    <field name="value"/>
+                    <field name="purchase_value"/>
+                    <field name="lot_price_list"/>
+                    <field name="lot_cost"/>
+                    <field name="num_of_days"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="product_template_search_inherit" model="ir.ui.view">
+            <field name="name">product.template.search.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="marque_id"/>
+                    <field name="country_id"/>
+                </xpath>
+                <xpath expr="//group" position="inside">
+                    <filter string="Origine" name="groupby_secteur" domain="[]" context="{'group_by': 'country_id'}"/>
+                    <filter string="Marque" name="groupby_marque" domain="[]" context="{'group_by': 'marque_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_marque_form_view" model="ir.ui.view">
+            <field name="name">product.marque.form.view</field>
+            <field name="model">product.marque</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_marque_tree_view" model="ir.ui.view">
+            <field name="name">product.marque.tree.view</field>
+            <field name="model">product.marque</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_product_marque" model="ir.actions.act_window">
+            <field name="name">Marques</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.marque</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_action_product_marque" name="Marques" action="action_product_marque"
+                  parent="stock.menu_product_in_config_stock"/>
+
+    </data>
+</odoo>

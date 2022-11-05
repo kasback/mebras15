@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="purchase_order_inherit_form_lc_costs" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.form.lc.costs</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[1]/group/group[@class='oe_subtotal_footer oe_right']"
+                       position="inside">
+                    <field name="total_landed_cost" attrs="{'invisible': [('total_landed_cost', '=', 0)]}"/>
+                    <field name="total_tax_landed_cost" attrs="{'invisible': [('total_tax_landed_cost', '=', 0)]}"/>
+                    <field name="amount_in_mad"/>
+                    <div class="oe_subtotal_footer_separator oe_inline">
+                        <label for="total_po_landed_cost"/>
+                    </div>
+                    <field name="total_po_landed_cost" nolabel="1" class="oe_subtotal_footer_separator"
+                           widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="purchase_order_inherit_tree_lc_costs" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.form.lc.costs</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_total"
+                       position="after">
+                    <field name="amount_in_mad"/>
+                    <field name="total_po_landed_cost"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

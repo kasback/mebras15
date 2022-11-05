@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <report
+            id="bordereau_report_id"
+            model="paiement.bordereau"
+            report_type="qweb-pdf"
+            string="Bordereau"
+            name="account_tres_customer.template_bordereau"
+            file="account_tres_customer.template_bordereau"
+            attachment_use="False"
+            attachment="False"
+        />
+
+   </data>
+</odoo>

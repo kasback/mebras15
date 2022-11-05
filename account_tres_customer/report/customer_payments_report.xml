@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data noupdate="1">
+<template id="customer_payments_report">
+<t t-call="web.html_container">
+    <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <center>
+                    <h1>Etat des paiements</h1>
+                    <h3>Client: <span t-field="o.name"/></h3>
+                    <t t-if="docs._context['date_start'] and docs._context['date_fin']">
+                        <p>Date début: <span t-esc="docs._context['date_start']"/> Date fin: <span t-esc="docs._context['date_fin']"/></p>
+                    </t>
+                </center>
+                <t t-set="total" t-value="0"/>
+                <t t-if="o.cheque_client_ids">
+                    <h4>Chèques</h4>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Date</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Réference</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Date d'échéance</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Montant</td>
+                        </tr>
+                        <t t-set="total_cheques" t-value="0"/>
+                        <tr t-foreach="o.cheque_client_ids" t-as="cheque" width="100%">
+                           <t t-if="cheque.date &gt;= docs._context['date_start'] and cheque.date &lt;= docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.due_date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.amount"/></td>
+                           </t>
+                           <t t-if="not docs._context['date_start'] and not docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.due_date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cheque.amount"/></td>
+                           </t>
+                            <t t-set="total_cheques" t-value="total_cheques+cheque.amount"/>
+                        </tr>
+                        <t t-set="total" t-value="total+total_cheques"/>
+                        <tr width="100%">
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Total Chèques</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse"><t t-esc="total_cheques"/></td>
+                        </tr>
+				    </table>
+                </t>
+                <t t-if="o.effet_client_ids">
+                    <h4>Effets</h4>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Date</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Réference</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Date d'échéance</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Montant</td>
+                        </tr>
+                         <t t-set="total_effets" t-value="0"/>
+                        <tr t-foreach="o.effet_client_ids" t-as="effet" width="100%">
+                           <t t-if="effet.date &gt;= docs._context['date_start'] and effet.date &lt;= docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.due_date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.amount"/></td>
+                           </t>
+                           <t t-if="not docs._context['date_start'] and not docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.due_date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="effet.amount"/></td>
+                           </t>
+                            <t t-set="total_effets" t-value="total_effets+effet.amount"/>
+                        </tr>
+                        <t t-set="total" t-value="total+total_effets"/>
+                        <tr width="100%">
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Total Effets</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse"><t t-esc="total_effets"/></td>
+                        </tr>
+                    </table>
+                </t>
+                <t t-if="o.ov_client_ids">
+                    <h4>OV</h4>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Date</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Réference</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Date d'échéance</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Montant</td>
+                        </tr>
+                         <t t-set="total_ov" t-value="0"/>
+                        <tr t-foreach="o.ov_client_ids" t-as="ov" width="100%">
+                           <t t-if="ov.date &gt;= docs._context['date_start'] and ov.date &lt;= docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.due_date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.amount"/></td>
+                           </t>
+                           <t t-if="not docs._context['date_start'] and not docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.due_date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="ov.amount"/></td>
+                           </t>
+                            <t t-set="total_ov" t-value="total_ov+ov.amount"/>
+                        </tr>
+                        <t t-set="total" t-value="total+total_ov"/>
+                        <tr width="100%">
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Total OV</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse"><t t-esc="total_ov"/></td>
+                        </tr>
+                    </table>
+                </t>
+                <t t-if="o.cash_client_ids">
+                    <h4>Espèces</h4>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Date</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Réference</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Montant</td>
+                        </tr>
+                         <t t-set="total_cash" t-value="0"/>
+                        <tr t-foreach="o.cash_client_ids" t-as="cash" width="100%">
+                           <t t-if="cash.date &gt;= docs._context['date_start'] and cash.date &lt;= docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cash.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cash.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cash.amount"/></td>
+                           </t>
+                           <t t-if="not docs._context['date_start'] and not docs._context['date_fin']">
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cash.date"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cash.name"/></td>
+                                <td style="text-align: center;vertical-align:middle;border: 1px solid black;border-collapse: collapse"><span t-field="cash.amount"/></td>
+                           </t>
+                            <t t-set="total_cash" t-value="total_cash+cash.amount"/>
+                        </tr>
+                        <t t-set="total" t-value="total+total_cash"/>
+                        <tr width="100%">
+                            <td></td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Total Espèces</td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse"><t t-esc="total_cash"/></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <table width="100%">
+                        <tr width="100%">
+                            <td></td>
+                            <td></td>
+                            <td style="text-align: right; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse">Total: </td>
+                            <td style="text-align: center; float: center; vertical-align:middle;border: 1px solid black;border-collapse: collapse"><t t-esc="total"/></td>
+                        </tr>
+                    </table>
+                </t>
+            </div>
+        </t>
+    </t>
+</t>
+</template>
+</data>
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+		<!--  Wizard Cheque a changer  -->
+
+        <record model="ir.ui.view" id="cheque_to_change_wizard_view">
+			<field name="name">cheque_to_change.wizard.form</field>
+			<field name="model">cheque_to_change</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			<form string="Chèque">
+                <group >
+					<field name="type" />
+					<field name="cheque_id" attrs="{'invisible': [('type','!=','cheque')],'required': [('type','=','cheque')]}"/>
+					<field name="cash_id" attrs="{'invisible': [('type','!=','cash')],'required': [('type','=','cash')]}" />
+					<field name="effet_id" attrs="{'invisible': [('type','!=','effet')],'required': [('type','=','effet')]}" />
+					<field name="ov_id" attrs="{'invisible': [('type','!=','ov')],'required': [('type','=','ov')]}" />
+                 </group>
+             <footer>
+			      <button  name="action_to_change" string="Changer"  type="object" class="oe_highlight"/>
+                   <button icon="gtk-cancel" special="cancel" string="Annuler"/>
+			 </footer>
+			 </form>
+			</field>
+		</record>
+
+		<!--  Wizard effet a changer  -->
+
+       <record model="ir.ui.view" id="effet_to_change_wizard_view">
+			<field name="name">effet_to_change.wizard.form</field>
+			<field name="model">effet_to_change</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+			<form string="Effet">
+                <group >
+					<field name="type" />
+					<field name="effet_id" attrs="{'invisible': [('type','!=','effet')],'required': [('type','=','effet')]}"/>
+					<field name="cash_id" attrs="{'invisible': [('type','!=','cash')],'required': [('type','=','cash')]}" />
+					<field name="cheque_id" attrs="{'invisible': [('type','!=','cheque')],'required': [('type','=','cheque')]}" />
+					<field name="ov_id" attrs="{'invisible': [('type','!=','ov')],'required': [('type','=','ov')]}" />
+                 </group>
+				<footer>
+			      <button  name="action_to_change" string="Changer"  type="object" class="oe_highlight"/>
+				  <button icon="gtk-cancel" special="cancel" string="Annuler"/>
+			 	</footer>
+			</form>
+			</field>
+	   </record>
+
+</data>
+</odoo>

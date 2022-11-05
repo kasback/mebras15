@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_lc_document">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>
+                        <span>Coût Logistique</span>
+                        <span t-if="o.name != '/'" t-field="o.name"/>
+                    </h2>
+
+                    <div id="informations" class="row mt32 mb32">
+                        <div class="col-auto col-3 mw-100 mb-2" t-if="o.date" name="invoice_date">
+                            <strong>Date:</strong>
+                            <p class="m-0" t-field="o.date"/>
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2" t-if="o.picking_ids" name="due_date">
+                            <strong>Transferts:</strong>
+                            <span t-esc="', '.join(g.name for g in o.picking_ids)"/>
+                        </div>
+                        <div class="col-auto col-3 mw-100 mb-2" t-if="o.vendor_bill_id" name="customer_code">
+                            <strong>Facture Fournisseur:</strong>
+                            <p class="m-0" t-field="o.vendor_bill_id.name"/>
+                        </div>
+                    </div>
+
+                    <table class="table table-sm o_main_table" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <th name="th_description" class="text-left">
+                                    <span>Description</span>
+                                </th>
+                                <th name="th_mr" class="text-right">
+                                    <span>Méthode de répartition</span>
+                                </th>
+                                <th name="th_cout" class="text-right">
+                                    <span>Coût</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+                            <t t-set="lines" t-value="o.cost_lines"/>
+
+                            <t t-foreach="lines" t-as="line">
+                                <tr>
+                                    <td name="account_invoice_line_name">
+                                        <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.split_method"/>
+                                    </td>
+                                    <td t-attf-class="text-right {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                        <span class="text-nowrap" t-field="line.price_unit"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div class="clearfix">
+                        <div id="total" class="row">
+                            <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                                <table class="table table-sm" style="page-break-inside: avoid;">
+                                    <tr class="border-black o_subtotal" style="">
+                                        <td>
+                                            <strong>Total</strong>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="report_lc">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="docs_commer.report_lc_document"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

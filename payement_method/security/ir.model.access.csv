@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payement_method,access.payement.method,payement_method.model_payement_method,group_payement_method,1,1,1,1
+

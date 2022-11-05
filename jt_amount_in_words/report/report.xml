@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="layout_boxed_inherit" inherit_id="web.external_layout_boxed">
+            <xpath expr="//div[@name='company_address']" position="replace">
+                <div></div>
+            </xpath>
+        </template>
+        <!-- Sale Order Report -->
+        <template id="sale_report_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='clearfix']/div[1]" position="before">
+                <div style="font-size:16px; padding-bottom:15px;">
+                    <tr class="border-black">
+                        <td>
+                            <strong>Arrêté le présent devis à la somme TTC de:</strong>
+                        </td>
+                        <td>
+                            <span t-field="doc.num_word"/>
+                        </td>
+                    </tr>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[@class='page']" position="inside">
+                <style>
+                    div {
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                    }
+                </style>
+            </xpath>
+
+
+            <xpath expr="//div[@class='page']" position="before">
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-8">
+                    </div>
+                    <div class="col-4" style="border: 2px solid black;padding:10px;">
+                        <span>Client :</span>
+                        <t t-if="doc.infos_clt">
+                            <t t-esc="doc.infos_clt"/>
+                        </t>
+                        <t t-else="">
+                            <span t-esc="doc.partner_id.name"/>
+                            <div>
+                                <address t-field="doc.partner_id"
+                                         t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                            </div>
+                        </t>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//t[@t-set='address']" position="replace">
+
+            </xpath>
+            <xpath expr="//div[@id='informations']/div[last()]" position="replace">
+            </xpath>
+            <xpath expr="//t/div[@class='page']/table[1]/thead/tr/th[@name='th_taxes']" position="replace">
+
+            </xpath>
+            <xpath expr="//t/div[@class='page']/table[1]/tbody/t/tr/t/td[@name='td_taxes']" position="replace">
+
+            </xpath>
+
+            <xpath expr="//div[@id='total']" position="replace">
+                <div id="total" class="row" style="margin-top:20px;">
+                    <div t-attf-class="#{'col-12' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                        <table class="table table-sm table-bordered"
+                               style="page-break-inside: avoid; border: 2px solid black;">
+                            <tr class="border-black o_subtotal" style="">
+                                <td class="text-center">
+                                    <t t-if="doc.sous_total_label">
+                                        <strong>
+                                            <t t-esc="doc.sous_total_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>Sous-total HT</strong>
+                                    </t>
+                                </td>
+                                <td class="text-center">
+                                    <t t-if="doc.taxes_sur_label">
+                                        <strong>
+                                            <t t-esc="doc.taxes_sur_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>TVA 20%</strong>
+                                    </t>
+                                </td>
+                                <td class="text-center">
+                                    <t t-if="doc.total_ttc_label">
+                                        <strong>
+                                            <t t-esc="doc.total_ttc_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>Total TTC</strong>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <span t-field="doc.amount_untaxed"
+                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="doc.amount_tax"
+                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="doc.amount_total"
+                                          t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </xpath>
+
+
+        </template>
+
+        <!-- Purchase Order Report -->
+        <template id="purchse_report_inherit" inherit_id="purchase.report_purchaseorder_document">
+
+            <xpath expr="//div[@class='page']" position="inside">
+                <style>
+                    div {
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                    }
+                </style>
+            </xpath>
+            <xpath expr="//t[@t-set='address']" position="replace">
+
+            </xpath>
+            <xpath expr="//div[@id='informations']/div[last()]" position="replace">
+            </xpath>
+            <xpath expr="//t/div[@class='page']/table[1]/thead/tr/th[@name='th_taxes']" position="replace">
+
+            </xpath>
+            <xpath expr="//div[@class='page']" position="before">
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-8">
+                    </div>
+                    <div class="col-4" style="border: 2px solid black;padding:10px;">
+                        <span>Client :</span>
+                        <t t-if="o.infos_clt">
+                            <t t-esc="o.infos_clt"/>
+                        </t>
+                        <t t-else="">
+                            <span t-esc="o.partner_id.name"/>
+                            <div>
+                                <address t-field="o.partner_id"
+                                         t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                            </div>
+                        </t>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//t/div[@class='page']/table[1]/tbody/t/tr/t/td[@name='td_taxes']" position="replace">
+
+            </xpath>
+
+            <xpath expr="//div[@id='total']" position="replace">
+                <div id="total" class="row" style="margin-top:20px;">
+                    <div t-attf-class="#{'col-12' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                        <table class="table table-sm table-bordered"
+                               style="page-break-inside: avoid; border: 2px solid black;">
+                            <tr class="border-black o_subtotal">
+                                <td class="text-center">
+                                    <t t-if="o.sous_total_label">
+                                        <strong>
+                                            <t t-esc="o.sous_total_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>Sous-total HT</strong>
+                                    </t>
+                                </td>
+                                <td class="text-center">
+                                    <t t-if="o.taxes_sur_label">
+                                        <strong>
+                                            <t t-esc="o.taxes_sur_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>TVA 20%</strong>
+                                    </t>
+                                </td>
+                                <td class="text-center">
+                                    <t t-if="o.total_ttc_label">
+                                        <strong>
+                                            <t t-esc="o.total_ttc_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>Total TTC</strong>
+                                    </t>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <span t-field="o.amount_untaxed"
+                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="o.amount_tax"
+                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td class="text-center">
+                                    <span t-field="o.amount_total"
+                                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div style="font-size:20px; padding-bottom:30px;">
+                    <tr>
+                        <td>
+                            <strong>Arrêtée la présente commande à la somme TTC de:</strong>
+                        </td>
+                        <td>
+                            <span t-field="o.num_word"/>
+                        </td>
+                    </tr>
+                </div>
+            </xpath>
+
+
+        </template>
+
+        <!-- Account Invoice Report -->
+        <template id="invoice_report_inherit" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@class='page']" position="inside">
+                <style>
+                    div {
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                    }
+                </style>
+            </xpath>
+
+            <xpath expr="//div[@class='page']" position="after">
+                <div style="font-size:20px; padding-bottom:15px;">
+                    <tr class="border-black">
+                        <td>
+                            <strong>Mode de règlement:</strong>
+                        </td>
+                        <td>
+                            <span t-field="o.custom_payment_method_id"/>
+                        </td>
+                    </tr>
+                    <br/>
+                    <tr class="border-black">
+                        <td>
+                            <strong>Arrêtée la présente facture à la somme de:</strong>
+                        </td>
+                        <td>
+                            <span t-field="o.num_word"/>
+                            TTC
+                        </td>
+                    </tr>
+                </div>
+            </xpath>
+            <xpath expr="//t[@t-set='address']" position="replace">
+                <t t-set="address"/>
+            </xpath>
+            <xpath expr="//div[@class='page']" position="before">
+                <div class="row" style="margin-bottom:15px;">
+                    <div class="col-8">
+                    </div>
+                    <div class="col-4" style="border: 2px solid black;padding:10px;">
+                        <span>Client :</span>
+                        <t t-if="o.infos_clt">
+                            <t t-esc="o.infos_clt"/>
+                        </t>
+                        <t t-else="">
+                            <span t-esc="o.partner_id.name"/>
+                            <div>
+                                <address t-field="o.partner_id"
+                                         t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                            </div>
+                        </t>
+                        <t t-if="o.ice">
+                            <span>ICE :</span>
+                            <t t-esc="o.ice"/>
+                        </t>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[@id='total']" position="replace">
+                <div id="total" class="row" style="margin-top:15px;">
+                    <div t-attf-class="#{'col-12' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto">
+                        <table class="table table-sm table-bordered"
+                               style="page-break-inside: avoid; border: 2px solid black;">
+                            <tr class="border-black o_subtotal" style="">
+                                <td class="text-center">
+                                    <t t-if="o.sous_total_label">
+                                        <strong>
+                                            <t t-esc="o.sous_total_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>Sous-total HT</strong>
+                                    </t>
+                                </td>
+                                <td class="text-center">
+                                    <t t-if="o.taxes_sur_label">
+                                        <strong>
+                                            <t t-esc="o.taxes_sur_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>TVA 20%</strong>
+                                    </t>
+                                </td>
+                                <td class="text-center">
+                                    <t t-if="o.total_ttc_label">
+                                        <strong>
+                                            <t t-esc="o.total_ttc_label"/>
+                                        </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <strong>Total TTC</strong>
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <span t-field="o.amount_untaxed"/>
+                                </td>
+                                <td class="text-left o_price_total">
+                                    <span class="text-nowrap" t-esc="o.amount_tax"/>
+                                </td>
+                                <td class="text-right">
+                                    <span class="text-nowrap" t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                            <t t-if="print_with_payments">
+                                <t t-if="o.payment_state != 'invoicing_legacy'">
+                                    <t t-set="payments_vals"
+                                       t-value="o.sudo()._get_reconciled_info_JSON_values()"/>
+                                    <t t-foreach="payments_vals" t-as="payment_vals">
+                                        <tr>
+                                            <td>
+                                                <i class="oe_form_field text-right oe_payment_label">Paid on
+                                                    <t t-esc="payment_vals['date']"
+                                                       t-options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                                </i>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-esc="payment_vals['amount']"
+                                                      t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <t t-if="len(payments_vals) &gt; 0">
+                                        <tr class="border-black">
+                                            <td>
+                                                <strong>Amount Due</strong>
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="o.amount_residual"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Modèle chèque tree view -->
+        <record id="pec_model_client_tree" model="ir.ui.view">
+            <field name="name">pec.model.client.tree</field>
+            <field name="model">paiement.pec.model.client</field>
+            <field name="arch" type="xml">
+                <tree string="Modèle prise en charge">
+                    <field name="name"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="received_account"/>
+                    <field name="at_bank_account"/>
+                    <field name="post"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Modèle prise en charge form view -->
+        <record id="pec_model_view_form" model="ir.ui.view">
+            <field name="name">pec.model.form.view</field>
+            <field name="model">paiement.pec.model.client</field>
+            <field name="arch" type="xml">
+                <form string="Modèle Prise en charge">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="received_account"/>
+                            <field name="at_bank_account"/>
+                            <field name="post"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="paiement_pec_model_action">
+            <field name="name">Modèle comptable PEC</field>
+            <field name="res_model">paiement.pec.model.client</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="paiement_pec_model_id" parent="account_tres_customer.modeles_menu"
+                  action="paiement_pec_model_action"/>
+
+        <!-- pec client form view -->
+        <record model="ir.ui.view" id="pec_form_client_view">
+            <field name="name">pec</field>
+            <field name="model">paiement.pec.client</field>
+            <field name="arch" type="xml">
+                <form string="pec">
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="draft,caisse,caisse_centrale,done,rejected"/>
+                        <button name="action_caisse" string="Caisse" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_caisse_centrale" string="Caisse centrale" type="object" states="caisse"
+                                class="oe_highlight"/>
+                        <button name="action_done" states="caisse_centrale" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        <button name="action_cancel" states="draft" string="Annuler" type="object"/>
+                        <button name="action_rejected" states="caisse_centrale" string="Rejet" type="object"/>
+
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="journal_id"/>
+                                <field name="due_date"/>
+                                <field name="amount"/>
+                                <field name="analytic_account_id"/>
+                                <field name="model_id"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="paiement_record_id"/>
+                                <field name="date"/>
+                                <field name="client"/>
+                                <field name="caisse_id"/>
+                                <field name="assurance_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <field name="note" nolabel="1"/>
+                                <group>
+                                    <field name="origin" attrs="{'invisible':[('origin','=',False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Écritures comptables" name="move_live_ids">
+                                <field name="move_line_ids" nolabel="1">
+                                    <tree>
+                                        <field name="date"/>
+                                        <field name="move_id"/>
+                                        <field name="account_id"/>
+                                        <field name="journal_id"/>
+                                        <field name="partner_id"/>
+                                        <field name="name"/>
+                                        <field name="full_reconcile_id"/>
+                                        <field name="debit"/>
+                                        <field name="credit"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Frais Bancaires" name="tres_fees_ids">
+                                <field name="tres_fees_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="account_id" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="amount" sum="Total" attrs="{'readonly':[('state','=','done')]}"/>
+                                        <field name="move_id"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                                <button type="object" name="action_post_fees" string="Poster" icon="gtk-ok"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- pecs Client Calendar -->
+        <record model="ir.ui.view" id="pec_client_calendar_view">
+            <field name="name">pecs Clients</field>
+            <field name="model">paiement.pec.client</field>
+            <field name="arch" type="xml">
+                <calendar string="pecs clients" date_start="date" date_stop="due_date" color="client">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- pecs Client Graph -->
+        <record model="ir.ui.view" id="pec_client_graph_view">
+            <field name="name">pecs Clients</field>
+            <field name="model">paiement.pec.client</field>
+            <field name="arch" type="xml">
+                <graph string="pecs clients" type="bar">
+                    <field name="client"/>
+                    <field name="amount" operator="+"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- pecs Client Search -->
+        <record id="view_pec_client_filter" model="ir.ui.view">
+            <field name="name">pecs Clients</field>
+            <field name="model">paiement.pec.client</field>
+            <field name="arch" type="xml">
+                <search string="pec Clients">
+                    <field name="name"/>
+                    <field name="client"/>
+                    <field name="amount"/>
+                    <field name="paiement_record_id"/>
+                    <field name="caisse_id"/>
+                    <field name="journal_id"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <field name="assurance_id"/>
+
+                    <filter string="Confirme" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Brouillon" name="draft" domain="[('state','=','draft')]"/>
+                    <group expand="0" string="Group By...">
+                        <field string="Assurance" name="assurance_id"/>
+                        <filter string="Client" name="client" domain="[]" context="{'group_by':'client'}"/>
+                        <filter string="Banque" name="journal" domain="[]" context="{'group_by':'journal_id'}"/>
+                        <filter string="Caisse" name="caisse" domain="[]" context="{'group_by':'caisse_id'}"/>
+                        <filter string="Société" name="company" domain="[]" context="{'group_by':'company_id'}"
+                                groups="base.group_multi_company"/>
+                        <filter string="Date" name="date" domain="[]" context="{'group_by':'date'}"/>
+                        <filter string="Echéance" name="due_date" domain="[]" context="{'group_by':'due_date'}"/>
+                        <filter string="Statut" name="state" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- pecs Client Tree View -->
+
+        <record model="ir.ui.view" id="pec_client_tree_view">
+            <field name="name">pecs Client</field>
+            <field name="model">paiement.pec.client</field>
+            <field name="arch" type="xml">
+                <tree string="pecs">
+                    <field name="name"/>
+                    <field name="paiement_record_id"/>
+                    <field name="journal_id"/>
+                    <field name="client"/>
+                    <field name="amount" sum="Total"/>
+                    <field name="date"/>
+                    <field name="due_date"/>
+                    <field name="payed_date"/>
+                    <field name="bank_client"/>
+                    <field name="assurance_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <!-- PEC Action -->
+        <record model="ir.actions.act_window" id="pec_client_action">
+            <field name="name">PEC Clients</field>
+            <field name="res_model">paiement.pec.client</field>
+            <field name="view_mode">tree,form,graph</field>
+        </record>
+
+
+        <!-- Menus -->
+        <menuitem id="pec_clients_menu" action="pec_client_action" parent="account_tres_customer.paiement_client"
+                  sequence="3"/>
+
+
+    </data>
+</odoo>

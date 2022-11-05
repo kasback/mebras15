@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+
+        <!--  Caisse tree view -->
+        <record id="caisse_view_tree_pec_inherit" model="ir.ui.view">
+            <field name="name">paiement.caisse.pec.inherit.tree</field>
+            <field name="model">paiement.caisse</field>
+            <field name="inherit_id" ref="account_tres_customer.caisse_view_tree"/>
+            <field name="arch" type="xml">
+                <field name="nb_cb" position="after">
+                    <field name="nb_pec" sum="Total_pec"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Caisse form view -->
+        <record id="caisse_view_form_pec_inherit" model="ir.ui.view">
+            <field name="name">caisse.view.form.pec.inherit</field>
+            <field name="model">paiement.caisse</field>
+            <field name="inherit_id" ref="account_tres_customer.caisse_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/group/group[1]" position="inside">
+                    <field name="nb_pec"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Prises En Charges">
+                        <field name="pec_lines" nolabel="1"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- Paiement Record Form View -->
+
+        <record id="paiement_record_view_form_pec" model="ir.ui.view">
+            <field name="name">paiement.record.view.form.pec</field>
+            <field name="model">paiement.record</field>
+            <field name="inherit_id" ref="account_tres_customer.paiement_record_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[2]" position="inside">
+                    <separator string="Prises en charge"/>
+                    <field name="pec_lines" nolabel="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <!--  Wizard Cheque a changer  -->
+
+        <record model="ir.ui.view" id="cheque_to_change_wizard_view_pec">
+            <field name="name">cheque_to_change.wizard.form.pec</field>
+            <field name="model">cheque_to_change</field>
+            <field name="inherit_id" ref="account_tres_customer.cheque_to_change_wizard_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="inside">
+                    <field name="pec_id" attrs="{'invisible': [('type','!=','pec')],'required': [('type','=','pec')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="effet_to_change_wizard_view_pec">
+            <field name="name">effet_to_change.wizard.form.pec</field>
+            <field name="model">effet_to_change</field>
+            <field name="inherit_id" ref="account_tres_customer.effet_to_change_wizard_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/group" position="inside">
+                    <field name="pec_id" attrs="{'invisible': [('type','!=','pec')],'required': [('type','=','pec')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

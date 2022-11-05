@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_dso_tree_view" model="ir.ui.view">
+            <field name="name">res.partner.dso.tree</field>
+            <field name="model">res.partner.dso</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="partner_dso"/>
+                    <field name="num_of_days"/>
+                    <field name="target_amount"/>
+                    <field name="recovery_amount"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="res_partner_dso_search_view" model="ir.ui.view">
+            <field name="name">res.partner.dso.search</field>
+            <field name="model">res.partner.dso</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_view_dso">
+            <field name="name">DSO Clients</field>
+            <field name="res_model">res.partner.dso</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem
+                id="menu_dso"
+                sequence="4"
+                action="action_view_dso"
+                name="Suivi des DSO"
+                parent="contacts.res_partner_menu_contacts"
+        />
+    </data>
+</odoo>

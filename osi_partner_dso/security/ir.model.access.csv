@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_partner_dso,access.partner.dso,osi_partner_dso.model_res_partner_dso,base.group_user,1,1,1,1

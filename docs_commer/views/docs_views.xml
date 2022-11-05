@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="inherit_sale_order_form" model="ir.ui.view">
+            <field name="name">inherit.sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Labels">
+                        <group>
+                            <field name="sous_total_label"/>
+                            <field name="taxes_sur_label"/>
+                            <field name="total_ttc_label"/>
+                            <field name="infos_clt"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_purchase_order_form" model="ir.ui.view">
+            <field name="name">inherit.purchase.order.form</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Labels">
+                        <group>
+                            <field name="sous_total_label"/>
+                            <field name="taxes_sur_label"/>
+                            <field name="total_ttc_label"/>
+                            <field name="infos_clt"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_account_order_form" model="ir.ui.view">
+            <field name="name">inherit.account.order.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Labels">
+                        <group>
+                            <field name="sous_total_label"/>
+                            <field name="taxes_sur_label"/>
+                            <field name="total_ttc_label"/>
+                            <field name="infos_clt"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="inherit_stock_picking_labels_form" model="ir.ui.view">
+            <field name="name">inherit.stock.picking.labels.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="attributes">
+                    <attribute name="readonly">0</attribute>
+                </field>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Labels">
+                        <group>
+                            <field name="num_lot_label"/>
+                            <field name="num_art_label"/>
+                            <field name="designation_label"/>
+                            <field name="ref_label"/>
+                            <field name="marque_label"/>
+                            <field name="origine_label"/>
+                            <field name="qty_label"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

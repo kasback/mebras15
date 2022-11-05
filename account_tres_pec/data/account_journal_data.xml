@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="account.journal" id="account_journal_data_pecar">
+        <field name="name">PEC à reçevoir</field>
+        <field name="type">general</field>
+        <field name="code">PECAR</field>
+    </record>
+</odoo>

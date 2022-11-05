@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="partner_dso_multi_company_rule" model="ir.rule">
+        <field name="name">Partner DSO multi company rule</field>
+        <field name="model_id" ref="osi_partner_dso.model_res_partner_dso"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="wizard_rejet_cheque_view" model="ir.ui.view">
+            <field name="name">bordereau.rejet.cheque.wizard</field>
+            <field name="model">rejet.cheque.wizard</field>
+            <field name="arch" type="xml">
+                 <form string="Rejet de chèque">
+                    <group>
+                        <field name="in_relevet" />
+                        <field name="date_rejet" />
+                    </group>
+                    <footer>
+                        <button string="Valider" name="reject_action" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="wizard_rejet_effet_view" model="ir.ui.view">
+            <field name="name">bordereau.rejet.effet.wizard</field>
+            <field name="model">rejet.effet.wizard</field>
+            <field name="arch" type="xml">
+                 <form string="Rejet d'éffet">
+                    <group>
+                        <field name="in_relevet" />
+                        <field name="date_rejet" />
+                    </group>
+                    <footer>
+                        <button string="Valider" name="reject_action" type="object" default_focus="1" class="oe_highlight"/>
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+</data>
+</odoo>

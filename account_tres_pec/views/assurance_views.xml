@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="assurance_client_tree_view">
+            <field name="name">assurance.client.tree.view</field>
+            <field name="model">pec.assurance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="assurance_client_form_view">
+            <field name="name">assurance.client.form.view</field>
+            <field name="model">pec.assurance</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="pec_assurance_action">
+            <field name="name">Assurances Clients</field>
+            <field name="res_model">pec.assurance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="pec_assurance_action" id="pec_assurance_action_menu"
+                  parent="account_tres_customer.paiement_client_menu_root" name="Assurances"
+                  sequence="2"/>
+
+    </data>
+</odoo>
