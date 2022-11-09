@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+	<record id="budget_compute_sale_cron" model="ir.cron">
+        <field name="name">Budget Ventes: Actualiser</field>
+        <field name="model_id" ref="model_budget_budget"/>
+        <field name="state">code</field>
+        <field name="code">model.compute_sale_lines()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+	<record id="budget_compute_purchase_cron" model="ir.cron">
+        <field name="name">Budget Achat: Actualiser</field>
+        <field name="model_id" ref="model_budget_budget"/>
+        <field name="state">code</field>
+        <field name="code">model.compute_purchase_lines()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+    </record>
+</odoo>
