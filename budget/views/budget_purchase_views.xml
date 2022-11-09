@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="budget_budget_purchase_tree_view" model="ir.ui.view">
+            <field name="name">budget.budget.tree.purchase.view</field>
+            <field name="model">budget.budget</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="qty"/>
+                    <field name="lot_cost"/>
+                    <field name="unit_amount"/>
+                    <field name="amount_total"/>
+                    <field name="qty_prev"/>
+                    <field name="lot_cost_prev"/>
+                    <field name="unit_amount_prev"/>
+                    <field name="amount_total_prev"/>
+                    <field name="diff_num_qty"/>
+                    <field name="diff_num_lot_cost"/>
+                    <field name="diff_num_unit_amount"/>
+                    <field name="diff_num_amount_total"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="budget_budget_purchase_form_view" model="ir.ui.view">
+            <field name="name">budget.budget.form.purchase.view</field>
+            <field name="model">budget.budget</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Article">
+                                <field name="partner_id"/>
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                                <field name="type"/>
+                                <field name="user_type"/>
+                                <field name="estimation_budget_id"/>
+                            </group>
+                            <group string="Réel">
+                                <field name="qty"/>
+                                <field name="lot_cost"/>
+                                <field name="unit_amount"/>
+                                <field name="amount_total"/>
+                            </group>
+                            <group string="Prévu">
+                                <field name="qty_prev"/>
+                                <field name="lot_cost_prev"/>
+                                <field name="unit_amount_prev"/>
+                                <field name="amount_total_prev"/>
+                            </group>
+                            <group string="Différence">
+                                <field name="diff_num_qty"/>
+                                <field name="diff_num_lot_cost"/>
+                                <field name="diff_num_unit_amount"/>
+                                <field name="diff_num_amount_total"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="budget_budget_purchase_dir_tree_view" model="ir.ui.view">
+            <field name="name">budget.budget.dir.tree.purchase.view</field>
+            <field name="model">budget.budget</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <field name="qty"/>
+                    <field name="lot_cost"/>
+                    <field name="unit_amount"/>
+                    <field name="amount_total"/>
+                    <field name="qty_prev_dir"/>
+                    <field name="lot_cost_prev_dir"/>
+                    <field name="unit_amount_prev_dir"/>
+                    <field name="amount_total_prev_dir"/>
+                    <field name="marge_prev_dir"/>
+                    <field name="diff_num_qty_dir"/>
+                    <field name="diff_num_lot_cost_dir"/>
+                    <field name="diff_num_unit_amount_dir"/>
+                    <field name="diff_num_amount_total_dir"/>
+                    <field name="diff_num_marge_dir"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="budget_budget_purchase_dir_form_view" model="ir.ui.view">
+            <field name="name">budget.budget.dir.form.purchase.view</field>
+            <field name="model">budget.budget</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string="Article">
+                                <field name="partner_id"/>
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                                <field name="type"/>
+                                <field name="user_type"/>
+                                <field name="estimation_budget_dir_id"/>
+                            </group>
+                            <group string="Réel">
+                                <field name="qty"/>
+                                <field name="lot_cost"/>
+                                <field name="unit_amount"/>
+                                <field name="amount_total"/>
+                            </group>
+                            <group string="Prévu">
+                                <field name="qty_prev_dir"/>
+                                <field name="lot_cost_prev_dir"/>
+                                <field name="unit_amount_prev_dir"/>
+                                <field name="amount_total_prev_dir"/>
+                            </group>
+                            <group string="Différence">
+                                <field name="diff_num_qty_dir"/>
+                                <field name="diff_num_lot_cost_dir"/>
+                                <field name="diff_num_unit_amount_dir"/>
+                                <field name="diff_num_amount_total_dir"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="budget_budget_purchase_search_view">
+            <field name="name">budget.budget.search.view</field>
+            <field name="model">budget.budget</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                    <field name="product_id"/>
+                    <field name="lot_id"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Article" name="by_product_id" domain="[]"
+                                context="{'group_by': 'product_id'}"/>
+                        <filter string="Partenaire" name="by_partner_id" domain="[]"
+                                context="{'group_by': 'partner_id'}"/>
+                        <filter string="Lot" name="by_lot_id" domain="[]"
+                                context="{'group_by': 'lot_id'}"/>
+                        <filter string="Date" name="by_date" domain="[]"
+                                context="{'group_by': 'date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_view_budget_budget_purchase_dir" model="ir.actions.act_window">
+            <field name="name">Budget Achats Direction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">budget.budget</field>
+            <field name="domain">[('budget_type', '=', 'purchase')]</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('budget.budget_budget_purchase_dir_tree_view')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('budget.budget_budget_purchase_dir_form_view')})]"/>
+        </record>
+
+        <record id="action_view_budget_budget_purchase_com" model="ir.actions.act_window">
+            <field name="name">Budget Achats Commercial</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">budget.budget</field>
+            <field name="domain">[('budget_type', '=', 'purchase')]</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_purchase_tree_view')}),
+                          (0, 0, {'view_mode': 'form', 'view_id': ref('budget_budget_purchase_form_view')})]"/>
+        </record>
+
+        <menuitem id="menu_action_view_budget_budget_purchase_root"
+                  parent="budget.menu_action_view_budget_budget_root" groups="stock.group_production_lot"
+                  sequence="4" name="Achats"/>
+
+        <menuitem action="action_view_budget_budget_purchase_com" id="menu_action_view_budget_budget_purchase_com"
+                  parent="menu_action_view_budget_budget_purchase_root" groups="stock.group_production_lot"
+                  sequence="106"/>
+
+        <menuitem action="action_view_budget_budget_purchase_dir" id="menu_action_view_budget_budget_purchase_dir"
+                  parent="menu_action_view_budget_budget_purchase_root" groups="stock.group_production_lot"
+                  sequence="107"/>
+
+    </data>
+</odoo>
