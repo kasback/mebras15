@@ -11,6 +11,35 @@ class ProductProduct(models.Model):
 
     marque_id = fields.Many2one('product.marque', 'Marque')
     country_id = fields.Many2one('res.country', string='Origine')
+    delivered_qty = fields.Float('Quantités Livrés Glob.', compute='compute_lot_prices')
+    received_qty = fields.Float('Quantités Reçus Glob.', compute='compute_lot_prices')
+    value = fields.Float('Revenu Glob.', compute='compute_lot_prices')
+    purchase_value = fields.Float('Prix d\'achat Glob.', compute='compute_lot_prices')
+    lot_price_list = fields.Float(string='Prix unitaire Moy.', compute='compute_lot_prices')
+    lot_cost = fields.Float(string='Coût Moy.', compute='compute_lot_prices')
+    num_of_days = fields.Float(string='Nbr de jours', compute='compute_lot_prices')
+
+    def compute_lot_prices(self):
+        for rec in self:
+            lot_ids = self.env['stock.production.lot'].search([('product_id', '=', rec.id)])
+            rec.received_qty = 0
+            rec.purchase_value = 0
+            rec.delivered_qty = 0
+            rec.value = 0
+            rec.lot_price_list = 0
+            rec.lot_cost = 0
+            rec.lot_cost = 0
+            rec.num_of_days = 0
+
+            if lot_ids:
+                rec.received_qty = sum(lot_ids.mapped('received_qty'))
+                rec.purchase_value = sum(lot_ids.mapped('purchase_value'))
+                rec.delivered_qty = sum(lot_ids.mapped('delivered_qty'))
+                rec.value = sum(lot_ids.mapped('value'))
+                rec.lot_price_list = rec.value / rec.delivered_qty if rec.delivered_qty else 0.0
+                rec.lot_cost = rec.purchase_value / rec.received_qty if rec.received_qty else 0.0
+                lot_w_be = len(lot_ids.filtered(lambda lot: lot.break_event_date is not False))
+                rec.num_of_days = sum(lot_ids.mapped('num_of_days')) / lot_w_be if lot_w_be else 0
 
 
 class ProductTemplate(models.Model):
@@ -44,7 +73,6 @@ class ProductTemplate(models.Model):
                 rec.delivered_qty = sum(lot_ids.mapped('delivered_qty'))
                 rec.value = sum(lot_ids.mapped('value'))
                 rec.lot_price_list = rec.value / rec.delivered_qty if rec.delivered_qty else 0.0
-                rec.lot_cost = rec.purchase_value / rec.received_qty if rec.received_qty else 0.0
                 rec.lot_cost = rec.purchase_value / rec.received_qty if rec.received_qty else 0.0
                 lot_w_be = len(lot_ids.filtered(lambda lot: lot.break_event_date is not False))
                 rec.num_of_days = sum(lot_ids.mapped('num_of_days')) / lot_w_be if lot_w_be else 0

@@ -7,7 +7,6 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="product_id"/>
-                    <field name="lot_id"/>
                     <field name="qty"/>
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
@@ -36,10 +35,11 @@
                         <group string="Article">
                             <field name="partner_id"/>
                             <field name="product_id"/>
-                            <field name="lot_id"/>
+                            <field name="date"/>
                             <field name="type"/>
                             <field name="user_type"/>
                             <field name="estimation_budget_id"/>
+                            <field name="account_move_line_id"/>
                         </group>
                         <group string="Réel">
                             <field name="qty"/>
@@ -73,22 +73,21 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="product_id"/>
-                    <field name="lot_id"/>
                     <field name="qty"/>
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
                     <field name="amount_total" string="CA"/>
                     <field name="marge"/>
-                    <field name="qty_prev_dir"/>
-                    <field name="lot_cost_prev_dir"/>
-                    <field name="unit_amount_prev_dir"/>
-                    <field name="amount_total_prev_dir" string="CA P."/>
-                    <field name="marge_prev_dir"/>
-                    <field name="diff_num_qty_dir"/>
-                    <field name="diff_num_lot_cost_dir"/>
-                    <field name="diff_num_unit_amount_dir"/>
-                    <field name="diff_num_amount_total_dir"/>
-                    <field name="diff_num_marge_dir"/>
+                    <field name="qty_prev"/>
+                    <field name="lot_cost_prev"/>
+                    <field name="unit_amount_prev"/>
+                    <field name="amount_total_prev" string="CA P."/>
+                    <field name="marge_prev"/>
+                    <field name="diff_num_qty"/>
+                    <field name="diff_num_lot_cost"/>
+                    <field name="diff_num_unit_amount"/>
+                    <field name="diff_num_amount_total"/>
+                    <field name="diff_num_marge"/>
                 </tree>
             </field>
         </record>
@@ -102,10 +101,9 @@
                         <group string="Article">
                             <field name="partner_id"/>
                             <field name="product_id"/>
-                            <field name="lot_id"/>
                             <field name="type"/>
                             <field name="user_type"/>
-                            <field name="estimation_budget_dir_id"/>
+                            <field name="account_move_line_id"/>
                         </group>
                         <group string="Réel">
                             <field name="qty"/>
@@ -114,19 +112,19 @@
                             <field name="amount_total" string="CA"/>
                             <field name="marge"/>
                         </group>
-                        <group string="Prévu Direction">
-                            <field name="qty_prev_dir"/>
-                            <field name="lot_cost_prev_dir"/>
-                            <field name="unit_amount_prev_dir"/>
-                            <field name="amount_total_prev_dir"/>
-                            <field name="marge_prev_dir"/>
+                        <group string="Prévisions">
+                            <field name="qty_prev"/>
+                            <field name="lot_cost_prev"/>
+                            <field name="unit_amount_prev"/>
+                            <field name="amount_total_prev"/>
+                            <field name="marge_prev"/>
                         </group>
                         <group string="Différence">
-                            <field name="diff_num_qty_dir"/>
-                            <field name="diff_num_lot_cost_dir"/>
-                            <field name="diff_num_unit_amount_dir"/>
-                            <field name="diff_num_amount_total_dir"/>
-                            <field name="diff_num_marge_dir"/>
+                            <field name="diff_num_qty"/>
+                            <field name="diff_num_lot_cost"/>
+                            <field name="diff_num_unit_amount"/>
+                            <field name="diff_num_amount_total"/>
+                            <field name="diff_num_marge"/>
                         </group>
                     </sheet>
                 </form>
@@ -140,19 +138,15 @@
                 <search>
                     <field name="partner_id"/>
                     <field name="product_id"/>
-                    <field name="lot_id"/>
                     <separator/>
                     <group expand="0" string="Group By">
                         <filter string="Article" name="by_product_id" domain="[]"
                                 context="{'group_by': 'product_id'}"/>
                         <filter string="Partenaire" name="by_partner_id" domain="[]"
                                 context="{'group_by': 'partner_id'}"/>
-                        <filter string="Lot" name="by_lot_id" domain="[]"
-                                context="{'group_by': 'lot_id'}"/>
                         <filter string="Date" name="by_date" domain="[]"
                                 context="{'group_by': 'date'}"/>
                     </group>
-
                 </search>
             </field>
         </record>
@@ -161,25 +155,24 @@
             <field name="name">Budget Ventes Direction</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">budget.budget</field>
-            <field name="domain">[('budget_type', '=', 'sale')]</field>
+            <field name="domain">[('budget_type', '=', 'sale'), ('user_type', '=', 'dir')]</field>
             <field name="view_ids"
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_dir_tree_view')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('budget_budget_dir_form_view')})]"/>
+            <field name="context">{'group_by':['partner_id', 'product_id']}</field>
         </record>
 
         <record id="action_view_budget_budget_com" model="ir.actions.act_window">
             <field name="name">Budget Ventes Commercial</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">budget.budget</field>
-            <field name="domain">[('budget_type', '=', 'sale')]</field>
+            <field name="domain">[('budget_type', '=', 'sale'), ('user_type', '=', 'com')]</field>
             <field name="view_ids"
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_tree_view')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('budget_budget_form_view')})]"/>
             <field name="context">{'group_by':['partner_id', 'product_id']}</field>
-
-
         </record>
 
         <menuitem id="menu_action_view_budget_budget_root"
