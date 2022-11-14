@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_view_budget_tag" model="ir.actions.act_window">
+            <field name="name">Étiquettes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">budget.tag</field>
+        </record>
+
+        <menuitem id="menu_action_view_budget_tag"
+                  parent="budget.menu_action_view_budget_budget_root" groups="stock.group_production_lot"
+                  sequence="5" name="Étiquettes"
+        action="action_view_budget_tag"/>
+    </data>
+</odoo>

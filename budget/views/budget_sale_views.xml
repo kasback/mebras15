@@ -11,17 +11,18 @@
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
                     <field name="amount_total" string="CA"/>
-                    <field name="marge"/>
-                    <field name="qty_prev"/>
-                    <field name="lot_cost_prev"/>
-                    <field name="unit_amount_prev"/>
-                    <field name="amount_total_prev" string="CA P."/>
-                    <field name="marge_prev"/>
-                    <field name="diff_num_qty"/>
-                    <field name="diff_num_lot_cost"/>
-                    <field name="diff_num_unit_amount"/>
-                    <field name="diff_num_amount_total"/>
-                    <field name="diff_num_marge"/>
+                    <field name="marge" optional="hide"/>
+                    <field name="qty_prev" optional="show"/>
+                    <field name="lot_cost_prev" optional="show"/>
+                    <field name="unit_amount_prev" optional="show"/>
+                    <field name="amount_total_prev" string="CA P." optional="hide"/>
+                    <field name="marge_prev" optional="hide"/>
+                    <field name="diff_num_qty" optional="show"/>
+                    <field name="diff_num_lot_cost" optional="hide"/>
+                    <field name="diff_num_unit_amount" optional="hide"/>
+                    <field name="diff_num_amount_total" optional="hide"/>
+                    <field name="diff_num_marge" optional="show"/>
+                    <field name="tag_ids" widget="many2many_tags" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -40,6 +41,7 @@
                             <field name="user_type"/>
                             <field name="estimation_budget_id"/>
                             <field name="account_move_line_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                         <group string="Réel">
                             <field name="qty"/>
@@ -77,17 +79,18 @@
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
                     <field name="amount_total" string="CA"/>
-                    <field name="marge"/>
-                    <field name="qty_prev"/>
-                    <field name="lot_cost_prev"/>
-                    <field name="unit_amount_prev"/>
-                    <field name="amount_total_prev" string="CA P."/>
-                    <field name="marge_prev"/>
-                    <field name="diff_num_qty"/>
-                    <field name="diff_num_lot_cost"/>
-                    <field name="diff_num_unit_amount"/>
-                    <field name="diff_num_amount_total"/>
-                    <field name="diff_num_marge"/>
+                    <field name="marge" optional="hide"/>
+                    <field name="qty_prev" optional="show"/>
+                    <field name="lot_cost_prev" optional="show"/>
+                    <field name="unit_amount_prev" optional="show"/>
+                    <field name="amount_total_prev" string="CA P." optional="hide"/>
+                    <field name="marge_prev" optional="hide"/>
+                    <field name="diff_num_qty" optional="show"/>
+                    <field name="diff_num_lot_cost" optional="hide"/>
+                    <field name="diff_num_unit_amount" optional="hide"/>
+                    <field name="diff_num_amount_total" optional="hide"/>
+                    <field name="diff_num_marge" optional="show"/>
+                    <field name="tag_ids" widget="many2many_tags" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -104,6 +107,7 @@
                             <field name="type"/>
                             <field name="user_type"/>
                             <field name="account_move_line_id"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
                         </group>
                         <group string="Réel">
                             <field name="qty"/>
@@ -138,6 +142,11 @@
                 <search>
                     <field name="partner_id"/>
                     <field name="product_id"/>
+                    <field name="tag_ids"/>
+                    <filter string="Année dernière" name="last_year" domain="[('date','&gt;=',(context_today()-relativedelta(years=1)).strftime('%%Y-01-01')),
+                    ('date','&lt;=', time.strftime('%%Y-01-01'))]"/>
+                    <filter string="Année courante" name="current_year" domain="[('date','&gt;=',(context_today()).strftime('%%Y-01-01')),
+                    ('date','&lt;=', time.strftime('%%Y-12-31'))]"/>
                     <separator/>
                     <group expand="0" string="Group By">
                         <filter string="Article" name="by_product_id" domain="[]"
@@ -160,7 +169,7 @@
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_dir_tree_view')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('budget_budget_dir_form_view')})]"/>
-            <field name="context">{'group_by':['partner_id', 'product_id']}</field>
+            <field name="context">{'group_by': 'product_id', 'search_default_current_year':1}</field>
         </record>
 
         <record id="action_view_budget_budget_com" model="ir.actions.act_window">
@@ -172,7 +181,7 @@
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_tree_view')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('budget_budget_form_view')})]"/>
-            <field name="context">{'group_by':['partner_id', 'product_id']}</field>
+            <field name="context">{'group_by': 'product_id', 'search_default_current_year':1}</field>
         </record>
 
         <menuitem id="menu_action_view_budget_budget_root"
