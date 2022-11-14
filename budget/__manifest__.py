@@ -15,6 +15,7 @@
         'security/ir.model.access.csv',
         'views/budget_sale_views.xml',
         'views/budget_purchase_views.xml',
+        'views/budget_tag_views.xml',
     ],
     'demo_xml': [],
     'installable': True,

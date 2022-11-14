@@ -4,6 +4,12 @@ from statistics import mean
 from odoo import models, fields, api
 
 
+class BudgetTag(models.Model):
+    _name = 'budget.tag'
+
+    name = fields.Char('Nom')
+
+
 class BudgetSale(models.Model):
     _name = 'budget.budget'
     _rec_name = 'product_id'
@@ -24,8 +30,8 @@ class BudgetSale(models.Model):
     estimation_budget_id = fields.Many2one('budget.budget', 'Prévisions Estimatives')
     account_move_line_id = fields.Many2one('account.move.line', 'Mouvement source facture')
     stock_move_line_id = fields.Many2one('stock.move.line', 'Mouvement source stock')
-
-    # Prévisionnel Commercial
+    tag_ids = fields.Many2many('budget.tag', string="Étiquettes")
+    # Prévisionnel
     qty_prev = fields.Float(string='Quantités P.')
     lot_cost_prev = fields.Float(string='Coût P.')
     unit_amount_prev = fields.Float(string='PU P.')
