@@ -31,6 +31,7 @@ class BudgetSale(models.Model):
     account_move_line_id = fields.Many2one('account.move.line', 'Mouvement source facture')
     stock_move_line_id = fields.Many2one('stock.move.line', 'Mouvement source stock')
     tag_ids = fields.Many2many('budget.tag', string="Étiquettes")
+    company_id = fields.Many2one('res.company')
     # Prévisionnel
     qty_prev = fields.Float(string='Quantités P.')
     lot_cost_prev = fields.Float(string='Coût P.')
@@ -111,7 +112,8 @@ class BudgetSale(models.Model):
                         'date': invoice_id.invoice_date,
                         'type': 'real',
                         'budget_type': 'sale',
-                        'user_type': 'com'}
+                        'user_type': 'com',
+                        'company_id': il.company_id.id}
                 Budget.create(vals)
                 vals['user_type'] = 'dir'
                 Budget.create(vals)
@@ -138,7 +140,8 @@ class BudgetSale(models.Model):
                         'date': ml.move_id.picking_id.date_done,
                         'type': 'real',
                         'budget_type': 'purchase',
-                        'user_type': 'com'}
+                        'user_type': 'com',
+                        'company_id': ml.company_id.id}
                 Budget.create(vals)
                 vals['user_type'] = 'dir'
                 Budget.create(vals)

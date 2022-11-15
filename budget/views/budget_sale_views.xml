@@ -91,6 +91,7 @@
                     <field name="diff_num_amount_total" optional="hide"/>
                     <field name="diff_num_marge" optional="show"/>
                     <field name="tag_ids" widget="many2many_tags" optional="hide"/>
+                    <field name="company_id" optional="hide"/>
                 </tree>
             </field>
         </record>
@@ -143,11 +144,8 @@
                     <field name="partner_id"/>
                     <field name="product_id"/>
                     <field name="tag_ids"/>
-                    <filter string="Année dernière" name="last_year" domain="[('date','&gt;=',(context_today()-relativedelta(years=1)).strftime('%%Y-01-01')),
-                    ('date','&lt;=', time.strftime('%%Y-01-01'))]"/>
-                    <filter string="Année courante" name="current_year" domain="[('date','&gt;=',(context_today()).strftime('%%Y-01-01')),
-                    ('date','&lt;=', time.strftime('%%Y-12-31'))]"/>
                     <separator/>
+                    <filter name="filter_date" date="date" default_period="this_month"/>
                     <group expand="0" string="Group By">
                         <filter string="Article" name="by_product_id" domain="[]"
                                 context="{'group_by': 'product_id'}"/>
