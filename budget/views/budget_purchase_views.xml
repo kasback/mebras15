@@ -7,6 +7,8 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="product_id"/>
+                    <field name="lot_ids" widget="many2many_tags"/>
+                    <field name="move_line_ids" widget="many2many_tags"/>
                     <field name="qty"/>
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
@@ -35,11 +37,12 @@
                                 <group string="Article">
                                     <field name="partner_id"/>
                                     <field name="product_id"/>
+                                    <field name="lot_ids" widget="many2many_tags"/>
                                     <field name="type"/>
                                     <field name="date"/>
                                     <field name="user_type"/>
                                     <field name="estimation_budget_id"/>
-                                    <field name="stock_move_line_id"/>
+                                    <field name="move_line_ids" widget="many2many_tags"/>
                                     <field name="tag_ids" widget="many2many_tags"/>
                                 </group>
                                 <group string="Réel">
@@ -73,6 +76,8 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="product_id"/>
+                    <field name="lot_ids" widget="many2many_tags"/>
+                    <field name="move_line_ids" widget="many2many_tags"/>
                     <field name="qty"/>
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
@@ -104,7 +109,7 @@
                                 <field name="type"/>
                                 <field name="user_type"/>
                                 <field name="estimation_budget_id"/>
-                                <field name="stock_move_line_id"/>
+                                <field name="move_line_ids" widget="many2many_tags"/>
                                 <field name="tag_ids" widget="many2many_tags"/>
                             </group>
                             <group string="Réel">

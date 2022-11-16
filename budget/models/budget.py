@@ -16,6 +16,7 @@ class BudgetSale(models.Model):
 
     partner_id = fields.Many2one('res.partner', 'Partenaire')
     product_id = fields.Many2one('product.product', 'Article')
+    lot_ids = fields.Many2many('stock.production.lot', string='Lots')
     qty = fields.Float('Quantités')
     lot_cost = fields.Float(string='Coût')
     unit_amount = fields.Float(string='Prix Unitaire')
@@ -29,7 +30,7 @@ class BudgetSale(models.Model):
                                    string='Type de budget')
     estimation_budget_id = fields.Many2one('budget.budget', 'Prévisions Estimatives')
     account_move_line_id = fields.Many2one('account.move.line', 'Mouvement source facture')
-    stock_move_line_id = fields.Many2one('stock.move.line', 'Mouvement source stock')
+    move_line_ids = fields.Many2many('stock.move.line', string='Mouvement de stock')
     tag_ids = fields.Many2many('budget.tag', string="Étiquettes")
     company_id = fields.Many2one('res.company')
     # Prévisionnel
@@ -97,6 +98,10 @@ class BudgetSale(models.Model):
             invoice_line_ids = self.env['account.move.line'].search([('product_id', '=', product.id),
                                                                      ('move_id.move_type', '=', 'out_invoice')])
             for il in invoice_line_ids:
+                move_line_ids = il.mapped('sale_line_ids').mapped('move_ids'). \
+                    mapped('move_line_ids').filtered(lambda ml: ml.picking_code == 'outgoing')
+                lot_ids = move_line_ids.mapped('lot_id')
+                lot_cost = mean(lot_ids.mapped('lot_cost')) if lot_ids.mapped('lot_cost') else 0
                 qty_invoiced = il.quantity
                 price_unit = il.price_unit
                 amount_total = price_unit * qty_invoiced
@@ -105,11 +110,14 @@ class BudgetSale(models.Model):
                 vals = {'partner_id': invoice_id.partner_id.id,
                         'product_id': product.id,
                         'qty': qty_invoiced,
-                        'lot_cost': product.lot_cost,
+                        'lot_cost': lot_cost,
+                        'lot_ids': lot_ids.ids,
                         'unit_amount': price_unit,
                         'amount_total': amount_total,
                         'marge': marge,
                         'date': invoice_id.invoice_date,
+                        'account_move_line_id': il.id,
+                        'move_line_ids': move_line_ids.ids,
                         'type': 'real',
                         'budget_type': 'sale',
                         'user_type': 'com',
@@ -127,17 +135,20 @@ class BudgetSale(models.Model):
                                                                 ('move_id.purchase_line_id', '!=', False),
                                                                 ('picking_code', '=', 'incoming')])
             for ml in move_line_ids:
+                lot_cost = ml.lot_id.lot_cost
                 qty = ml.qty_done
                 price_unit = ml.move_id.purchase_line_id.real_purchase_price
                 amount_total = price_unit * qty
                 purchase_id = ml.move_id.purchase_line_id.order_id
                 vals = {'partner_id': purchase_id.partner_id.id,
                         'product_id': product.id,
+                        'lot_ids': ml.lot_id.ids,
                         'qty': qty,
-                        'lot_cost': product.lot_cost,
+                        'lot_cost': lot_cost,
                         'unit_amount': price_unit,
                         'amount_total': amount_total,
                         'date': ml.move_id.picking_id.date_done,
+                        'move_line_ids': ml.ids,
                         'type': 'real',
                         'budget_type': 'purchase',
                         'user_type': 'com',

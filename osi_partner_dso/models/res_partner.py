@@ -61,13 +61,8 @@ class ResPartner(models.Model):
                 for lot in lot_ids:
                     move_line_ids = line.mapped('sale_line_ids').mapped('move_ids').\
                         mapped('move_line_ids').filtered(lambda l: l.lot_id == lot)
-                    print('move_line_ids', move_line_ids)
                     for ml in move_line_ids:
                         qty_done = ml.qty_done
-                        print('ml.qty_done', ml.qty_done)
-                        print('line.price_unit', line.price_unit)
-                        print('ml.picking_code', ml.picking_code)
-
                         operation = (qty_done * round(line.price_unit, 2)) - (round(ml.lot_id.lot_cost, 2) * qty_done)
                         if ml.picking_code == "incoming":
                             marge -= operation
