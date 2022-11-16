@@ -96,7 +96,8 @@ class BudgetSale(models.Model):
         product_ids = self.env['product.product'].search([])
         for product in product_ids:
             invoice_line_ids = self.env['account.move.line'].search([('product_id', '=', product.id),
-                                                                     ('move_id.move_type', '=', 'out_invoice')])
+                                                                     ('move_id.move_type', '=', 'out_invoice'),
+                                                                     ('quantity', '>', 0)])
             for il in invoice_line_ids:
                 move_line_ids = il.mapped('sale_line_ids').mapped('move_ids'). \
                     mapped('move_line_ids').filtered(lambda ml: ml.picking_code == 'outgoing')
