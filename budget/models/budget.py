@@ -100,7 +100,8 @@ class BudgetSale(models.Model):
                                                                      ('quantity', '>', 0)])
             for il in invoice_line_ids:
                 move_line_ids = il.mapped('sale_line_ids').mapped('move_ids'). \
-                    mapped('move_line_ids').filtered(lambda ml: ml.picking_code == 'outgoing')
+                    mapped('move_line_ids')
+                # .filtered(lambda ml: ml.picking_code == 'outgoing')
                 lot_ids = move_line_ids.mapped('lot_id')
                 lot_cost = mean(lot_ids.mapped('lot_cost')) if lot_ids.mapped('lot_cost') else 0
                 qty_invoiced = il.quantity

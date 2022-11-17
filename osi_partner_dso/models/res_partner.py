@@ -53,23 +53,21 @@ class ResPartner(models.Model):
 
     def get_marge(self, invoice_lines):
         marge = 0
+        operation = 0
         for line in invoice_lines:
             lot_ids = line.mapped('prod_lot_ids')
             if not lot_ids:
                 continue
-            if len(lot_ids) > 1:
-                for lot in lot_ids:
-                    move_line_ids = line.mapped('sale_line_ids').mapped('move_ids').\
-                        mapped('move_line_ids').filtered(lambda l: l.lot_id == lot)
-                    for ml in move_line_ids:
-                        qty_done = ml.qty_done
-                        operation = (qty_done * round(line.price_unit, 2)) - (round(ml.lot_id.lot_cost, 2) * qty_done)
-                        if ml.picking_code == "incoming":
-                            marge -= operation
-                        elif ml.picking_code == "outgoing":
-                            marge += operation
-            lot_cost = round(lot_ids[0].lot_cost, 2)
-            marge += (line.quantity * line.price_unit) - (lot_cost * line.quantity)
+            for lot in lot_ids:
+                move_line_ids = line.mapped('sale_line_ids').mapped('move_ids').\
+                    mapped('move_line_ids').filtered(lambda l: l.lot_id == lot)
+                for ml in move_line_ids:
+                    operation = (ml.qty_done * round(line.price_unit, 2)) -\
+                                (round(ml.lot_id.lot_cost, 2) * ml.qty_done)
+                    if ml.picking_code == "incoming":
+                        marge -= operation
+                    elif ml.picking_code == "outgoing":
+                        marge += operation
         return marge
 
     @api.depends('nbr_jrs')
