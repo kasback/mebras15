@@ -98,6 +98,7 @@ class StockProductionLot(models.Model):
     lot_cost = fields.Float(string='Coût', compute='_compute_delivered_qty')
     lot_cost_forced = fields.Float(string='Forcer Coût')
     marge = fields.Float(string='Marge', compute='compute_lot_price_list')
+    total_marge = fields.Float(string='Marge Totale', compute='compute_lot_price_list')
     marge_in_percent = fields.Float(string='% Marge', compute='compute_lot_price_list')
     break_event_date = fields.Date('Date break Event', compute='compute_break_event_date')
     num_of_days = fields.Float(string='Nbr de jours', compute='compute_break_event_date')
@@ -146,6 +147,7 @@ class StockProductionLot(models.Model):
                            'remaining_qty_chiffrage',
                            'total_invoiced_chiffrage',
                            'total_in_stock_chiffrage',
+                           'total_marge'
                            ]
         for computed_field in computed_fields:
             if computed_field in fields:
@@ -153,6 +155,7 @@ class StockProductionLot(models.Model):
                     if '__domain' in line:
                         lines = self.search(line['__domain'])
                         total_marge = 0.0
+                        total_total_marge = 0.0
                         total_sale = 0.0
                         total_purchase = 0.0
                         total_delivered_qty = 0.0
@@ -178,6 +181,7 @@ class StockProductionLot(models.Model):
                             total_remaining_qty_chiffrage += record.remaining_qty_chiffrage
                             total_total_invoiced_chiffrage += record.total_invoiced_chiffrage
                             total_total_in_stock_chiffrage += record.total_in_stock_chiffrage
+                            total_total_marge += record.total_marge
                             total_marge += record.value - record.purchase_value
                         total_marge_percent = ((total_sale / total_purchase) - 1) * 100 if total_purchase else 0
                         line['delivered_qty'] = total_delivered_qty
@@ -193,6 +197,7 @@ class StockProductionLot(models.Model):
                         line['remaining_qty_chiffrage'] = total_remaining_qty_chiffrage
                         line['total_invoiced_chiffrage'] = total_total_invoiced_chiffrage
                         line['total_in_stock_chiffrage'] = total_total_in_stock_chiffrage
+                        line['total_marge'] = total_total_marge
         return res
 
     def compute_break_event_date(self):
@@ -264,7 +269,8 @@ class StockProductionLot(models.Model):
         for rec in self:
             rec.lot_price_list = rec.value / rec.delivered_qty if rec.delivered_qty else 0.0
             rec.target_qty = rec.purchase_value / rec.lot_price_list if rec.lot_price_list else 0.0
-            rec.marge = rec.lot_price_list - rec.lot_cost
+            rec.marge = round(rec.lot_price_list, 2) - round(rec.lot_cost, 2)
+            rec.total_marge = round(rec.marge, 2) * rec.delivered_qty
             rec.marge_in_percent = ((rec.value / rec.purchase_value) - 1) * 100 if rec.purchase_value else 0.0
 
 

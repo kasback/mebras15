@@ -93,6 +93,24 @@ class AccountMoveLine(models.Model):
 
     num_lot = fields.Char('Numéro du lot')
     num_article = fields.Char('Num d\'Article')
+    marge = fields.Float('Marge', compute='compute_marge')
+
+    def compute_marge(self):
+        for rec in self:
+            rec.marge = 0
+            if rec.quantity > 0 and rec.move_id.move_type == 'out_invoice' and rec.move_id.state == 'posted':
+                rec.marge = self.env['res.partner'].get_marge(rec)
+
+    @api.model
+    def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
+        res = super(AccountMoveLine, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby,
+                                                 lazy=lazy)
+        if 'marge' in fields:
+            for line in res:
+                if '__domain' in line:
+                    lines = self.search(line['__domain'])
+                    line['marge'] = sum(lines.mapped('marge'))
+        return res
 
 
 class PurchaseOrder(models.Model):

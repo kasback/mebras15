@@ -14,6 +14,7 @@
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
                     <field name="amount_total" string="CA"/>
+                    <field name="purchase_value"/>
                     <field name="marge" optional="hide"/>
                     <field name="qty_prev" optional="show"/>
                     <field name="lot_cost_prev" optional="show"/>
@@ -86,6 +87,7 @@
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
                     <field name="amount_total" string="CA"/>
+                    <field name="purchase_value" />
                     <field name="marge" optional="hide"/>
                     <field name="qty_prev" optional="show"/>
                     <field name="lot_cost_prev" optional="show"/>
@@ -175,7 +177,7 @@
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_dir_tree_view')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('budget_budget_dir_form_view')})]"/>
-            <field name="context">{'group_by': 'product_id', 'search_default_current_year':1}</field>
+            <field name="context">{'group_by': 'product_id'}</field>
         </record>
 
         <record id="action_view_budget_budget_com" model="ir.actions.act_window">
@@ -187,7 +189,7 @@
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_tree_view')}),
                           (0, 0, {'view_mode': 'form', 'view_id': ref('budget_budget_form_view')})]"/>
-            <field name="context">{'group_by': 'product_id', 'search_default_current_year':1}</field>
+            <field name="context">{'group_by': 'product_id'}</field>
         </record>
 
         <menuitem id="menu_action_view_budget_budget_root"
