@@ -21,6 +21,7 @@ class BudgetSale(models.Model):
     lot_cost = fields.Float(string='Coût')
     unit_amount = fields.Float(string='Prix Unitaire')
     amount_total = fields.Float(string='Total')
+    purchase_value = fields.Float('Prix d\'achat', compute='_compute_purchase_value')
     marge = fields.Float(string='Marge')
     date = fields.Date(string='Date')
     type = fields.Selection([('prev', 'Prévisionnel'), ('real', 'Réel')], default='prev', string='Prévisionnel/Réel')
@@ -45,6 +46,10 @@ class BudgetSale(models.Model):
     diff_num_amount_total = fields.Float(string='Écart Montant')
     diff_num_marge = fields.Float(string='Écart Marge')
 
+    def _compute_purchase_value(self):
+        for rec in self:
+            rec.purchase_value = rec.lot_cost * rec.qty
+
     def compute_prev_qty(self):
         for rec in self:
             rec.amount_total_prev = rec.qty_prev * rec.unit_amount_prev
@@ -61,7 +66,8 @@ class BudgetSale(models.Model):
                          'diff_num_amount_total',
                          'diff_num_marge',
                          'amount_total_prev',
-                         'marge_prev'
+                         'marge_prev',
+                         'purchase_value',
                          ]
         for tg in target_fields:
             if tg in fields:
@@ -70,9 +76,10 @@ class BudgetSale(models.Model):
                         lines = self.search(line['__domain'])
                         real_marge = sum(lines.mapped('marge'))
                         real_qty = sum(lines.mapped('qty'))
-                        real_lot_cost = mean(lines.mapped('lot_cost'))
-                        real_unit_amount = mean(lines.mapped('unit_amount'))
                         real_amount_total = sum(lines.mapped('amount_total'))
+                        real_purchase_value = sum(lines.mapped('purchase_value'))
+                        real_lot_cost = real_purchase_value / real_qty if real_qty else 0
+                        real_unit_amount = real_amount_total / real_qty if real_qty else 0
                         estimated_marge = sum(lines.mapped('marge_prev'))
                         estimated_qty = sum(lines.mapped('qty_prev'))
                         estimated_lot_cost = sum(lines.mapped('lot_cost_prev'))
@@ -86,8 +93,9 @@ class BudgetSale(models.Model):
                         line['diff_num_unit_amount'] = real_unit_amount - estimated_unit_amount
                         line['diff_num_amount_total'] = real_amount_total - estimated_amount_total
                         line['diff_num_marge'] = real_marge - estimated_marge
-                        line['unit_amount'] = mean(lines.mapped('unit_amount'))
-                        line['lot_cost'] = mean(lines.mapped('lot_cost'))
+                        line['unit_amount'] = real_unit_amount
+                        line['lot_cost'] = real_lot_cost
+                        line['purchase_value'] = real_purchase_value
         return res
 
     def compute_sale_lines(self):

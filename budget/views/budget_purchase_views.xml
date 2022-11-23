@@ -13,6 +13,7 @@
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
                     <field name="amount_total" optional="hide"/>
+                    <field name="purchase_value"/>
                     <field name="qty_prev" optional="show"/>
                     <field name="lot_cost_prev" optional="show"/>
                     <field name="unit_amount_prev" optional="show"/>
@@ -82,6 +83,7 @@
                     <field name="lot_cost"/>
                     <field name="unit_amount"/>
                     <field name="amount_total" optional="hide"/>
+                    <field name="purchase_value"/>
                     <field name="qty_prev" optional="show"/>
                     <field name="lot_cost_prev" optional="show"/>
                     <field name="unit_amount_prev" optional="show"/>
@@ -162,7 +164,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">budget.budget</field>
             <field name="domain">[('budget_type', '=', 'purchase'), ('user_type', '=', 'dir')]</field>
-            <field name="context">{'group_by': 'product_id', 'search_default_current_year':1}</field>
+            <field name="context">{'group_by': 'product_id'}</field>
             <field name="view_ids"
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget.budget_budget_purchase_dir_tree_view')}),
@@ -174,7 +176,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">budget.budget</field>
             <field name="domain">[('budget_type', '=', 'purchase'), ('user_type', '=', 'com')]</field>
-            <field name="context">{'group_by': 'product_id', 'search_default_current_year':1}</field>
+            <field name="context">{'group_by': 'product_id'}</field>
             <field name="view_ids"
                    eval="[(5, 0, 0),
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('budget_budget_purchase_tree_view')}),

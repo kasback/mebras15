@@ -40,5 +40,52 @@
                 </xpath>
             </field>
         </record>
+
+        <record id="inherit_account_move_line_marge_tree" model="ir.ui.view">
+            <field name="name">account.move.line.tree.marge</field>
+            <field name="model">account.move.line</field>
+            <field eval="100" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Journal Items" create="false" edit="false" sample="1">
+                    <field name="date" optional="show"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="journal_id" options='{"no_open":True}'/>
+                    <field name="move_id" optional="show"/>
+                    <field name="account_id" options="{'no_open': True}" groups="account.group_account_readonly"/>
+                    <field name="partner_id" optional="show"/>
+                    <field name="statement_id" invisible="1"/>
+                    <field name="ref" optional="show"/>
+                    <field name="name" optional="show"/>
+                    <field name="tax_ids" widget="many2many_tags" width="0.5" optional="show"/>
+                    <field name="debit" sum="Total Debit"/>
+                    <field name="credit" sum="Total Credit"/>
+                    <field name="amount_currency" groups="base.group_multi_currency" optional="hide"/>
+                    <field name="currency_id" readonly="1" groups="base.group_multi_currency" optional="hide"
+                           string="Original Currency"/>
+                    <field name="tax_tag_ids" widget="many2many_tags" width="0.5" optional="hide"/>
+                    <field name="matching_number" optional="show"/>
+                    <field name="reconcile_model_id" invisible="1"/>
+                    <field name="reconciled" invisible="1"/>
+                    <field name="date_maturity" optional="hide"/>
+                    <field name="company_currency_id" invisible="1"/>
+                    <field name="parent_state" invisible="1"/>
+                    <field name="marge"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_account_move_line" model="ir.actions.act_window">
+            <field name="name">Lignes de facture</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move.line</field>
+            <field name="domain">[('move_id.move_type', '=', 'out_invoice')]</field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('inherit_account_move_line_marge_tree')})]"/>
+
+        </record>
+        <menuitem action="action_view_account_move_line" id="menu_action_view_account_move_line"
+                  parent="account.menu_finance_receivables"
+                  sequence="101"/>
     </data>
 </odoo>

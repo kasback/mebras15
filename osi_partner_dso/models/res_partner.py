@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import datetime
-
 from dateutil.relativedelta import relativedelta
 
 from odoo import models, fields, api
@@ -53,7 +51,6 @@ class ResPartner(models.Model):
 
     def get_marge(self, invoice_lines):
         marge = 0
-        operation = 0
         for line in invoice_lines:
             lot_ids = line.mapped('prod_lot_ids')
             if not lot_ids:
@@ -91,7 +88,7 @@ class ResPartner(models.Model):
         partner_ids = self.env['res.partner'].search([])
         for rec in partner_ids:
             domain = [('move_id.move_type', '=', 'out_invoice'),
-                      ('move_id.state', '=', 'posted'), ('move_id.partner_id', '=', rec.id)]
+                      ('move_id.state', '=', 'posted'), ('move_id.partner_id', '=', rec.id), ('quantity', '>', '0')]
             invoice_lines = AccountMoveLine.search(domain)
             rec.marge = self.get_marge(invoice_lines)
             rec.authorized_exceeding = 0.0
