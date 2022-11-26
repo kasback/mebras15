@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from statistics import mean
 
 from odoo import models, fields, api
 from datetime import datetime
@@ -16,6 +17,7 @@ class AccountMove(models.Model):
     intro_text = fields.Html('Texte d\'entête')
     marge = fields.Float('Marge', compute='compute_marge')
     picking_id = fields.Many2one('stock.picking', 'Livraison')
+    line_lot_ids = fields.One2many('account.move.line.lot', 'move_lot_id', string='Détails des lots')
     custom_payment_method_id = fields.Selection([
         ('cheque', 'Chèque'),
         ('cash', 'Éspèces'),
@@ -28,7 +30,7 @@ class AccountMove(models.Model):
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         res = super(AccountMove, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby,
-                                                 lazy=lazy)
+                                                  lazy=lazy)
         if 'marge' in fields:
             for line in res:
                 if '__domain' in line:
@@ -87,6 +89,42 @@ class AccountMove(models.Model):
         for rec in self:
             rec.marge = self.env['res.partner'].get_marge(rec.invoice_line_ids)
 
+    def update_lot_lines(self):
+        marge = 0
+        AccountMoveLineObj = self.env['account.move.line']
+        MoveLineLot = self.env['account.move.line.lot']
+        MoveLineLot.search([]).unlink()
+        domain = [('move_id.move_type', '=', 'out_invoice'),
+                  ('move_id.state', '=', 'posted'), ('quantity', '>', '0')]
+        invoice_lines = AccountMoveLineObj.search(domain)
+        for line in invoice_lines:
+            lot_ids = line.mapped('prod_lot_ids')
+            if not lot_ids:
+                continue
+            for lot in lot_ids:
+                lot_qty_done = 0
+                move_line_ids = line.mapped('sale_line_ids.move_ids.move_line_ids'). \
+                    filtered(lambda l: l.lot_id == lot)
+                for ml in move_line_ids:
+                    operation = (ml.qty_done * round(line.price_unit, 2)) - \
+                                (round(ml.lot_id.lot_cost, 2) * ml.qty_done)
+                    if ml.picking_code == "incoming":
+                        lot_qty_done = -ml.qty_done
+                        marge = -operation
+                    elif ml.picking_code == "outgoing":
+                        lot_qty_done = ml.qty_done
+                        marge = operation
+                    MoveLineLot.create({
+                        'move_lot_id': line.move_id.id,
+                        'lot_id': lot.id,
+                        'product_id': lot.product_id.id,
+                        'lot_cost': lot.lot_cost,
+                        'price_unit': line.price_unit,
+                        'qty': lot_qty_done,
+                        'value': line.price_unit * lot_qty_done,
+                        'marge': marge
+                    })
+
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
@@ -103,13 +141,41 @@ class AccountMoveLine(models.Model):
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
-        res = super(AccountMoveLine, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby,
-                                                 lazy=lazy)
+        res = super(AccountMoveLine, self).read_group(domain, fields, groupby, offset=offset, limit=limit,
+                                                      orderby=orderby,
+                                                      lazy=lazy)
         if 'marge' in fields:
             for line in res:
                 if '__domain' in line:
                     lines = self.search(line['__domain'])
                     line['marge'] = sum(lines.mapped('marge'))
+        return res
+
+
+class AccountMoveLineLot(models.Model):
+    _name = "account.move.line.lot"
+
+    move_lot_id = fields.Many2one('account.move', 'Facture')
+    product_id = fields.Many2one('product.product', 'Article')
+    lot_id = fields.Many2one('stock.production.lot', 'Lot')
+    lot_cost = fields.Float('Coût du lot')
+    price_unit = fields.Float('Prix Unitaire')
+    qty = fields.Float('Quantité')
+    value = fields.Float('Revenu')
+    marge = fields.Float('Marge')
+
+    @api.model
+    def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
+        res = super(AccountMoveLineLot, self).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby,
+                                                 lazy=lazy)
+        computed_fields = ['lot_cost', 'price_unit']
+        for computed_field in computed_fields:
+            if computed_field in fields:
+                for line in res:
+                    if '__domain' in line:
+                        lines = self.search(line['__domain'])
+                        line['lot_cost'] = mean(lines.mapped('lot_cost'))
+                        line['price_unit'] = mean(lines.mapped('price_unit'))
         return res
 
 

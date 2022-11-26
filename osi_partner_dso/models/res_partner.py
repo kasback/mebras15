@@ -2,7 +2,7 @@
 from dateutil.relativedelta import relativedelta
 
 from odoo import models, fields, api
-
+from collections import defaultdict
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -51,20 +51,27 @@ class ResPartner(models.Model):
 
     def get_marge(self, invoice_lines):
         marge = 0
+        MoveLineLot = self.env['account.move.line.lot']
         for line in invoice_lines:
             lot_ids = line.mapped('prod_lot_ids')
             if not lot_ids:
                 continue
             for lot in lot_ids:
-                move_line_ids = line.mapped('sale_line_ids').mapped('move_ids').\
-                    mapped('move_line_ids').filtered(lambda l: l.lot_id == lot)
+                invoice_line_lot = MoveLineLot.search([('lot_id', '=', lot.id)])
+                lot_value = sum(invoice_line_lot.mapped('value'))
+                lot_qty_done = sum(invoice_line_lot.mapped('qty'))
+                move_line_ids = line.mapped('sale_line_ids.move_ids.move_line_ids').\
+                    filtered(lambda l: l.lot_id == lot)
                 for ml in move_line_ids:
-                    operation = (ml.qty_done * round(line.price_unit, 2)) -\
-                                (round(ml.lot_id.lot_cost, 2) * ml.qty_done)
+                    qty_done = 0
                     if ml.picking_code == "incoming":
-                        marge -= operation
+                        qty_done = -ml.qty_done
                     elif ml.picking_code == "outgoing":
-                        marge += operation
+                        qty_done = ml.qty_done
+                    new_price_unit = lot_value / lot_qty_done if lot_qty_done else 0
+                    operation = (qty_done * round(new_price_unit, 2)) - \
+                                (round(lot.lot_cost, 2) * qty_done)
+                    marge += operation
         return marge
 
     @api.depends('nbr_jrs')

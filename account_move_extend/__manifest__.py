@@ -14,6 +14,7 @@
         'security/ir.model.access.csv',
         'report/report_invoice.xml',
         'data/data.xml',
+        'data/cron.xml',
         'views/account_move_views.xml',
         'views/stock_move_views.xml',
         'views/purchase_order_views.xml',
