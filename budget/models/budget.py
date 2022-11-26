@@ -76,17 +76,20 @@ class BudgetSale(models.Model):
                         lines = self.search(line['__domain'])
                         real_marge = sum(lines.mapped('marge'))
                         real_qty = sum(lines.mapped('qty'))
+                        marge = real_marge / real_qty if real_qty else 0
                         real_amount_total = sum(lines.mapped('amount_total'))
                         real_purchase_value = sum(lines.mapped('purchase_value'))
                         real_lot_cost = real_purchase_value / real_qty if real_qty else 0
                         real_unit_amount = real_amount_total / real_qty if real_qty else 0
                         estimated_marge = sum(lines.mapped('marge_prev'))
                         estimated_qty = sum(lines.mapped('qty_prev'))
+                        est_marge = estimated_marge / estimated_qty if estimated_qty else 0
                         estimated_lot_cost = sum(lines.mapped('lot_cost_prev'))
                         estimated_unit_amount = sum(lines.mapped('unit_amount_prev'))
                         estimated_amount_total = sum(lines.mapped('amount_total_prev'))
+                        line['marge'] = marge * real_qty
                         line['amount_total_prev'] = estimated_amount_total
-                        line['marge_prev'] = estimated_marge
+                        line['marge_prev'] = est_marge * estimated_qty
                         line['diff_num_marge'] = real_marge - estimated_marge
                         line['diff_num_qty'] = real_qty - estimated_qty
                         line['diff_num_lot_cost'] = real_lot_cost - estimated_lot_cost
@@ -116,7 +119,7 @@ class BudgetSale(models.Model):
                 price_unit = il.price_unit
                 amount_total = price_unit * qty_invoiced
                 invoice_id = il.move_id
-                marge = (price_unit - product.lot_cost) * qty_invoiced
+                marge = (round(price_unit, 2) - round(product.lot_cost, 2)) * qty_invoiced
                 vals = {'partner_id': invoice_id.partner_id.id,
                         'product_id': product.id,
                         'qty': qty_invoiced,

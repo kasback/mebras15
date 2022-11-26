@@ -16,6 +16,19 @@
                     <page string="Texte En tete">
                         <field name="intro_text"/>
                     </page>
+                    <page string="Détails des lots">
+                        <field name="line_lot_ids">
+                            <tree>
+                                <field name="product_id"/>
+                                <field name="lot_id"/>
+                                <field name="lot_cost"/>
+                                <field name="price_unit"/>
+                                <field name="qty" sum="Total"/>
+                                <field name="value" sum="Total"/>
+                                <field name="marge" sum="Total"/>
+                            </tree>
+                        </field>
+                    </page>
                 </xpath>
                 <xpath expr="//notebook/page[1]/field[1]/tree/field[@name='product_id']" position="before">
                     <field name="num_lot"
@@ -23,7 +36,6 @@
                     <field name="num_article"
                     />
                 </xpath>
-
                 <xpath expr="//field[@name='line_ids']/tree/field[@name='account_id']" position="before">
                     <field name="num_lot"/>
                     <field name="num_article"/>
@@ -74,6 +86,24 @@
             </field>
         </record>
 
+        <record id="account_move_lot_details_tree" model="ir.ui.view">
+            <field name="name">account.move.line.lot.details.tree</field>
+            <field name="model">account.move.line.lot</field>
+            <field eval="100" name="priority"/>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" sample="1">
+                    <field name="move_lot_id"/>
+                    <field name="lot_id"/>
+                    <field name="product_id"/>
+                    <field name="lot_cost"/>
+                    <field name="price_unit"/>
+                    <field name="qty"/>
+                    <field name="value"/>
+                    <field name="marge"/>
+                </tree>
+            </field>
+        </record>
+
         <record id="action_view_account_move_line" model="ir.actions.act_window">
             <field name="name">Lignes de facture</field>
             <field name="type">ir.actions.act_window</field>
@@ -84,7 +114,16 @@
                           (0, 0, {'view_mode': 'tree', 'view_id': ref('inherit_account_move_line_marge_tree')})]"/>
 
         </record>
+
+        <record id="action_view_account_move_lot_details" model="ir.actions.act_window">
+            <field name="name">Détails des lots facturés</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move.line.lot</field>
+        </record>
         <menuitem action="action_view_account_move_line" id="menu_action_view_account_move_line"
+                  parent="account.menu_finance_receivables"
+                  sequence="101"/>
+        <menuitem action="action_view_account_move_lot_details" id="menu_action_view_account_move_line_lot_details"
                   parent="account.menu_finance_receivables"
                   sequence="101"/>
     </data>
