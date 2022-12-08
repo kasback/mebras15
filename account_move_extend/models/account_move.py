@@ -90,40 +90,60 @@ class AccountMove(models.Model):
             rec.marge = self.env['res.partner'].get_marge(rec.invoice_line_ids)
 
     def update_lot_lines(self):
-        marge = 0
-        AccountMoveLineObj = self.env['account.move.line']
         MoveLineLot = self.env['account.move.line.lot']
+        AccountMoveLineObj = self.env['account.move.line']
         MoveLineLot.search([]).unlink()
         domain = [('move_id.move_type', '=', 'out_invoice'),
-                  ('move_id.state', '=', 'posted'), ('quantity', '>', '0')]
+                  ('move_id.state', '=', 'posted')]
         invoice_lines = AccountMoveLineObj.search(domain)
+        already_used_return_lines = []
+        already_used_sale_line_ids_wo_invoice = []
         for line in invoice_lines:
+            sale_line_ids = line.mapped('sale_line_ids')
             lot_ids = line.mapped('prod_lot_ids')
+            sale_line_ids_wo_invoice = sale_line_ids.mapped('order_id.order_line'). \
+                filtered(lambda sl: not sl.invoice_lines and sl.id not in already_used_sale_line_ids_wo_invoice
+                                    and sl.product_id == line.product_id)
+            already_used_sale_line_ids_wo_invoice += sale_line_ids_wo_invoice.ids
             if not lot_ids:
                 continue
             for lot in lot_ids:
-                lot_qty_done = 0
-                move_line_ids = line.mapped('sale_line_ids.move_ids.move_line_ids'). \
-                    filtered(lambda l: l.lot_id == lot)
+                all_sale_lines = sale_line_ids + sale_line_ids_wo_invoice
+                move_line_ids = all_sale_lines.mapped('move_ids.move_line_ids'). \
+                    filtered(lambda l: l.lot_id == lot and l.picking_code == 'outgoing' and l.qty_done > 0)
                 for ml in move_line_ids:
-                    operation = (ml.qty_done * round(line.price_unit, 2)) - \
-                                (round(ml.lot_id.lot_cost, 2) * ml.qty_done)
-                    if ml.picking_code == "incoming":
-                        lot_qty_done = -ml.qty_done
-                        marge = -operation
-                    elif ml.picking_code == "outgoing":
-                        lot_qty_done = ml.qty_done
-                        marge = operation
-                    MoveLineLot.create({
-                        'move_lot_id': line.move_id.id,
-                        'lot_id': lot.id,
-                        'product_id': lot.product_id.id,
-                        'lot_cost': lot.lot_cost,
-                        'price_unit': line.price_unit,
-                        'qty': lot_qty_done,
-                        'value': line.price_unit * lot_qty_done,
-                        'marge': marge
-                    })
+                    self.process_move_lines(ml, lot, line, "outgoing")
+                    for rml in ml.picking_id.returned_ids.move_line_ids.\
+                            filtered(lambda l: l.lot_id == lot or l.product_id == lot.product_id):
+                        if rml.id not in already_used_return_lines:
+                            self.process_move_lines(rml, rml.lot_id, line, "incoming")
+                            already_used_return_lines.append(rml.id)
+
+    def process_move_lines(self, ml, lot, line, type):
+        MoveLineLot = self.env['account.move.line.lot']
+        marge = 0
+        lot_qty_done = 0
+        operation = (ml.qty_done * round(line.price_unit, 2)) - \
+                    (round(ml.lot_id.lot_cost, 2) * ml.qty_done)
+        if type == "incoming":
+            lot_qty_done = -ml.qty_done
+            marge = -operation
+        elif type == "outgoing":
+            lot_qty_done = ml.qty_done
+            marge = operation
+        lot_value = line.price_unit * lot_qty_done
+        MoveLineLot.create({
+            'stock_move_line_id': ml.id,
+            'picking_id': ml.picking_id.id,
+            'move_lot_id': line.move_id.id,
+            'lot_id': lot.id,
+            'product_id': lot.product_id.id,
+            'lot_cost': lot.lot_cost,
+            'price_unit': line.price_unit,
+            'qty': lot_qty_done,
+            'value': lot_value,
+            'marge': marge
+        })
 
 
 class AccountMoveLine(models.Model):
@@ -163,6 +183,8 @@ class AccountMoveLineLot(models.Model):
     qty = fields.Float('Quantité')
     value = fields.Float('Revenu')
     marge = fields.Float('Marge')
+    stock_move_line_id = fields.Many2one('stock.move.line', 'Mouvement de stock')
+    picking_id = fields.Many2one('stock.picking', 'Transfert')
 
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
@@ -175,7 +197,8 @@ class AccountMoveLineLot(models.Model):
                     if '__domain' in line:
                         lines = self.search(line['__domain'])
                         line['lot_cost'] = mean(lines.mapped('lot_cost'))
-                        line['price_unit'] = mean(lines.mapped('price_unit'))
+                        line['price_unit'] = sum(lines.mapped('value')) / sum(lines.mapped('qty'))\
+                            if lines.mapped('qty') else 0
         return res
 
 

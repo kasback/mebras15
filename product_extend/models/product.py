@@ -98,7 +98,7 @@ class StockProductionLot(models.Model):
     lot_cost = fields.Float(string='Coût', compute='_compute_delivered_qty')
     lot_cost_forced = fields.Float(string='Forcer Coût')
     marge = fields.Float(string='Marge', compute='compute_lot_price_list')
-    total_marge = fields.Float(string='Marge Totale', compute='compute_lot_price_list')
+    total_marge = fields.Float(string='Marge Totale', compute='_compute_delivered_qty')
     marge_in_percent = fields.Float(string='% Marge', compute='compute_lot_price_list')
     break_event_date = fields.Date('Date break Event', compute='compute_break_event_date')
     num_of_days = fields.Float(string='Nbr de jours', compute='compute_break_event_date')
@@ -140,7 +140,7 @@ class StockProductionLot(models.Model):
                                                          orderby=orderby,
                                                          lazy=lazy)
         computed_fields = ['delivered_qty', 'received_qty', 'purchase_value', 'value', 'marge', 'marge_in_percent',
-                           'remaining_qty', 'invoiced_marge',
+                           'remaining_qty', 'invoiced_marge', 'price_unit', 'lot_cost',
                            'invoiced_marge_in_percent',
                            'invoiced_value',
                            'difference',
@@ -181,8 +181,10 @@ class StockProductionLot(models.Model):
                             total_remaining_qty_chiffrage += record.remaining_qty_chiffrage
                             total_total_invoiced_chiffrage += record.total_invoiced_chiffrage
                             total_total_in_stock_chiffrage += record.total_in_stock_chiffrage
-                            total_total_marge += record.total_marge
                             total_marge += record.value - record.purchase_value
+                            total_total_marge += record.total_marge
+                        total_price_unit = total_sale / total_delivered_qty
+                        total_lot_cost = total_purchase / total_received_qty
                         total_marge_percent = ((total_sale / total_purchase) - 1) * 100 if total_purchase else 0
                         line['delivered_qty'] = total_delivered_qty
                         line['received_qty'] = total_received_qty
@@ -197,6 +199,8 @@ class StockProductionLot(models.Model):
                         line['remaining_qty_chiffrage'] = total_remaining_qty_chiffrage
                         line['total_invoiced_chiffrage'] = total_total_invoiced_chiffrage
                         line['total_in_stock_chiffrage'] = total_total_in_stock_chiffrage
+                        line['lot_price_list'] = total_price_unit
+                        line['lot_cost'] = total_lot_cost
                         line['total_marge'] = total_total_marge
         return res
 
@@ -235,11 +239,13 @@ class StockProductionLot(models.Model):
             rec.purchase_value = 0.0
             rec.value = 0.0
             rec.lot_cost = 0.0
+            rec.total_marge = 0.0
             lot_cost = 0.0
             customers_location_id = self.env.ref('stock.stock_location_customers')
             suppliers_location_id = self.env.ref('stock.stock_location_suppliers')
             move_lines = self.env['stock.move.line'].search([('picking_id.state', '=', 'done'),
-                                                             ('lot_id', '=', rec.id)])
+                                                             ('lot_id', '=', rec.id),
+                                                             ])
             outgoing_move_ids = move_lines.filtered(lambda l: l.picking_code == 'outgoing'
                                                               and l.location_dest_id == customers_location_id)
             incoming_move_ids = move_lines.filtered(lambda l: l.picking_code == 'incoming'
@@ -248,15 +254,21 @@ class StockProductionLot(models.Model):
                                                                        and l.location_id == customers_location_id)
             returned_supplier_move_ids = move_lines.filtered(lambda l: l.picking_code == 'outgoing'
                                                                        and l.location_dest_id == suppliers_location_id)
-            for p in outgoing_move_ids:
-                rec.value += p.qty_done * p.move_id.sale_line_id.price_unit
-            for p in returned_customer_move_ids:
-                rec.value -= p.qty_done * p.move_id.sale_line_id.price_unit
-            for p in incoming_move_ids:
-                lot_cost = (p.move_id.purchase_line_id.real_purchase_price +
+            for ml in incoming_move_ids:
+                lot_cost = (ml.move_id.purchase_line_id.real_purchase_price +
                             (
-                                        p.move_id.purchase_line_id.order_id.total_landed_cost / p.move_id.purchase_line_id.qty_received)) * 1.2 if p.move_id.purchase_line_id.qty_received else 0
+                                        ml.move_id.purchase_line_id.order_id.total_landed_cost / ml.move_id.purchase_line_id.qty_received)) * 1.2 \
+                    if ml.move_id.purchase_line_id.qty_received else 0
             rec.lot_cost = rec.lot_cost_forced or lot_cost
+            for ml in outgoing_move_ids:
+                rec.value += ml.qty_done * ml.move_id.sale_line_id.price_unit
+                rec.total_marge += (ml.qty_done * round(ml.move_id.sale_line_id.price_unit, 2)) - \
+                                   (round(ml.lot_id.lot_cost, 2) * ml.qty_done)
+            for ml in returned_customer_move_ids:
+                rec.value -= ml.qty_done * ml.move_id.sale_line_id.price_unit
+                rec.total_marge -= (ml.qty_done * round(ml.move_id.sale_line_id.price_unit, 2)) - \
+                                   (round(rec.lot_cost, 2) * ml.qty_done)
+
             rec.delivered_qty = sum(outgoing_move_ids.mapped('qty_done')) - sum(
                 returned_customer_move_ids.mapped('qty_done'))
             received_qty = sum(incoming_move_ids.mapped('qty_done')) - sum(
@@ -270,7 +282,6 @@ class StockProductionLot(models.Model):
             rec.lot_price_list = rec.value / rec.delivered_qty if rec.delivered_qty else 0.0
             rec.target_qty = rec.purchase_value / rec.lot_price_list if rec.lot_price_list else 0.0
             rec.marge = round(rec.lot_price_list, 2) - round(rec.lot_cost, 2)
-            rec.total_marge = round(rec.marge, 2) * rec.delivered_qty
             rec.marge_in_percent = ((rec.value / rec.purchase_value) - 1) * 100 if rec.purchase_value else 0.0
 
 
