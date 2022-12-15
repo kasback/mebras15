@@ -183,8 +183,8 @@ class StockProductionLot(models.Model):
                             total_total_in_stock_chiffrage += record.total_in_stock_chiffrage
                             total_marge += record.value - record.purchase_value
                             total_total_marge += record.total_marge
-                        total_price_unit = total_sale / total_delivered_qty
-                        total_lot_cost = total_purchase / total_received_qty
+                        total_price_unit = total_sale / total_delivered_qty if total_delivered_qty else 0
+                        total_lot_cost = total_purchase / total_received_qty if total_received_qty else 0
                         total_marge_percent = ((total_sale / total_purchase) - 1) * 100 if total_purchase else 0
                         line['delivered_qty'] = total_delivered_qty
                         line['received_qty'] = total_received_qty
