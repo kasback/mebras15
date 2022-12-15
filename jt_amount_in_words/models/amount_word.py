@@ -51,7 +51,6 @@ class PurchaseOrder(models.Model):
 
 
 class InvoiceOrder(models.Model):
-
     _inherit = 'account.move'
 
     # @api.multi
