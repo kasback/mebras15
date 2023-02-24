@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
 from collections import defaultdict
 
+
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 

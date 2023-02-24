@@ -19,6 +19,7 @@
                     <field name="qty_prev" optional="show"/>
                     <field name="lot_cost_prev" optional="show"/>
                     <field name="unit_amount_prev" optional="show"/>
+                    <field name="cost_total_prev" optional="hide"/>
                     <field name="amount_total_prev" string="CA P." optional="hide"/>
                     <field name="marge_prev" optional="hide"/>
                     <field name="diff_num_qty" optional="show"/>
@@ -60,6 +61,7 @@
                             <field name="lot_cost_prev"/>
                             <field name="unit_amount_prev"/>
                             <field name="amount_total_prev"/>
+                            <field name="cost_total_prev"/>
                             <field name="marge_prev"/>
                         </group>
                         <group string="Différence">
@@ -93,6 +95,7 @@
                     <field name="lot_cost_prev" optional="show"/>
                     <field name="unit_amount_prev" optional="show"/>
                     <field name="amount_total_prev" string="CA P." optional="hide"/>
+                    <field name="cost_total_prev" string="P.A" optional="hide"/>
                     <field name="marge_prev" optional="hide"/>
                     <field name="diff_num_qty" optional="show"/>
                     <field name="diff_num_lot_cost" optional="hide"/>
@@ -132,6 +135,7 @@
                             <field name="lot_cost_prev"/>
                             <field name="unit_amount_prev"/>
                             <field name="amount_total_prev"/>
+                            <field name="cost_total_prev"/>
                             <field name="marge_prev"/>
                         </group>
                         <group string="Différence">
