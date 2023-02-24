@@ -19,7 +19,7 @@ class AccountMoveLine(models.Model):
         store=True
     )
 
-    @api.depends("move_line_ids")
+    @api.depends("move_line_ids", "sale_line_ids")
     def _compute_prod_lots(self):
         for line in self:
             line.prod_lot_ids = line.mapped("move_line_ids.move_line_ids.lot_id") or\

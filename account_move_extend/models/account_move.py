@@ -99,22 +99,28 @@ class AccountMove(models.Model):
         already_used_return_lines = []
         already_used_sale_line_ids_wo_invoice = []
         for line in invoice_lines:
-            sale_line_ids = line.mapped('sale_line_ids')
+            sale_line_ids = line.mapped('sale_line_ids'). \
+                filtered(lambda sl: sl.id not in already_used_sale_line_ids_wo_invoice)
             lot_ids = line.mapped('prod_lot_ids')
-            sale_line_ids_wo_invoice = sale_line_ids.mapped('order_id.order_line'). \
-                filtered(lambda sl: not sl.invoice_lines and sl.id not in already_used_sale_line_ids_wo_invoice
-                                    and sl.product_id == line.product_id)
-            already_used_sale_line_ids_wo_invoice += sale_line_ids_wo_invoice.ids
+            # sale_line_ids_wo_invoice = sale_line_ids.mapped('order_id.order_line'). \
+            #     filtered(lambda sl: not sl.invoice_lines and sl.id not in already_used_sale_line_ids_wo_invoice
+            #                         and sl.product_id == line.product_id)
+            # already_used_sale_line_ids_wo_invoice += sale_line_ids_wo_invoice.ids
             if not lot_ids:
                 continue
             for lot in lot_ids:
-                all_sale_lines = sale_line_ids + sale_line_ids_wo_invoice
-                move_line_ids = all_sale_lines.mapped('move_ids.move_line_ids'). \
-                    filtered(lambda l: l.lot_id == lot and l.picking_code == 'outgoing' and l.qty_done > 0)
+                # all_sale_lines = sale_line_ids + sale_line_ids_wo_invoice
+                all_sale_lines = sale_line_ids
+                move_line_ids = []
+                for sl in all_sale_lines:
+                    move_line_ids += sl.mapped('move_ids.move_line_ids').\
+                        filtered(lambda l: l.lot_id == lot and l.picking_code == 'outgoing' and l.qty_done > 0
+                                           and l.state == 'done')
+                    already_used_sale_line_ids_wo_invoice.append(sl.id)
                 for ml in move_line_ids:
                     self.process_move_lines(ml, lot, line, "outgoing")
                     for rml in ml.picking_id.returned_ids.move_line_ids.\
-                            filtered(lambda l: l.lot_id == lot or l.product_id == lot.product_id):
+                            filtered(lambda l:  l.state == 'done' and (l.lot_id == lot or l.product_id == lot.product_id)):
                         if rml.id not in already_used_return_lines:
                             self.process_move_lines(rml, rml.lot_id, line, "incoming")
                             already_used_return_lines.append(rml.id)
