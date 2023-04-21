@@ -77,76 +77,107 @@ class BudgetSale(models.Model):
                 for line in res:
                     if '__domain' in line:
                         lines = self.search(line['__domain'])
-                        real_marge = sum(lines.mapped('marge'))
                         real_qty = sum(lines.mapped('qty'))
                         cost_total_prev = sum(lines.mapped('cost_total_prev'))
-                        marge = real_marge / real_qty if real_qty else 0
                         real_amount_total = sum(lines.mapped('amount_total'))
                         real_purchase_value = sum(lines.mapped('purchase_value'))
+                        marge = real_amount_total - real_purchase_value
                         real_lot_cost = real_purchase_value / real_qty if real_qty else 0
                         real_unit_amount = real_amount_total / real_qty if real_qty else 0
                         estimated_marge = sum(lines.mapped('marge_prev'))
                         estimated_qty = sum(lines.mapped('qty_prev'))
                         est_marge = estimated_marge / estimated_qty if estimated_qty else 0
-                        estimated_lot_cost = sum(lines.mapped('lot_cost_prev'))
-                        estimated_unit_amount = sum(lines.mapped('unit_amount_prev'))
                         estimated_amount_total = sum(lines.mapped('amount_total_prev'))
                         unit_amount_prev = estimated_amount_total / estimated_qty if estimated_qty else 0
                         lot_cost_prev = cost_total_prev / estimated_qty if estimated_qty else 0
                         marge_prev = est_marge * estimated_qty
-                        line['marge'] = marge * real_qty
+                        line['marge'] = marge
                         line['amount_total_prev'] = estimated_amount_total
                         line['marge_prev'] = marge_prev
-                        line['diff_num_marge'] = (marge_prev + estimated_amount_total) - cost_total_prev
-                        line['diff_num_qty'] = real_qty - estimated_qty
-                        line['diff_num_lot_cost'] = real_lot_cost - estimated_lot_cost
-                        line['diff_num_unit_amount'] = real_unit_amount - estimated_unit_amount
                         line['diff_num_amount_total'] = real_amount_total - estimated_amount_total
                         line['unit_amount'] = real_unit_amount
                         line['lot_cost'] = real_lot_cost
                         line['purchase_value'] = real_purchase_value
                         line['unit_amount_prev'] = unit_amount_prev
                         line['lot_cost_prev'] = lot_cost_prev
+                        line['diff_num_unit_amount'] = real_unit_amount - unit_amount_prev
+                        line['diff_num_lot_cost'] = real_lot_cost - lot_cost_prev
+                        line['diff_num_marge'] = marge - marge_prev
+                        line['diff_num_qty'] = real_qty - estimated_qty
                         line['cost_total_prev'] = cost_total_prev
         return res
+
+    def get_prev_lines(self, product, user_type):
+        prev_line_dir_ids = self.env['budget.budget'].search([('product_id', '=', product.id),
+                                                              ('type', '=', 'prev'), ('budget_type', '=', 'sale'),
+                                                              ('user_type', '=', user_type)])
+        qty_prev = sum(prev_line_dir_ids.mapped('qty_prev'))
+        amount_total_prev = sum(prev_line_dir_ids.mapped('amount_total_prev'))
+        cost_total_prev = sum(prev_line_dir_ids.mapped('cost_total_prev'))
+        marge_prev = sum(prev_line_dir_ids.mapped('marge_prev'))
+        real_unit_prev_amount = amount_total_prev / qty_prev if qty_prev else 0
+        real_cost_prev_amount = cost_total_prev / qty_prev if qty_prev else 0
+        return qty_prev, amount_total_prev, cost_total_prev, real_unit_prev_amount, real_cost_prev_amount, marge_prev
 
     def compute_sale_lines(self):
         Budget = self.env['budget.budget'].search([('type', '=', 'real'), ('budget_type', '=', 'sale')])
         Budget.unlink()
-        product_ids = self.env['product.product'].search([])
+        product_ids = self.env['product.product'].search([('tracking', 'in', ('lot', 'serial'))])
         for product in product_ids:
             invoice_line_ids = self.env['account.move.line'].search([('product_id', '=', product.id),
                                                                      ('move_id.move_type', '=', 'out_invoice'),
                                                                      ('quantity', '>', 0)])
+            qty_prev_dir, real_prev_dir_amount_total, real_prev_dir_cost_total, real_unit_prev_dir_amount, real_cost_prev_dir_amount, marge_prev_dir = self.get_prev_lines(product, 'dir')
+            qty_prev_com, real_prev_com_amount_total, real_prev_com_cost_total,  real_unit_prev_com_amount, real_cost_prev_com_amount, marge_prev_com = self.get_prev_lines(product, 'com')
             for il in invoice_line_ids:
                 move_line_ids = il.mapped('sale_line_ids').mapped('move_ids'). \
                     mapped('move_line_ids')
-                # .filtered(lambda ml: ml.picking_code == 'outgoing')
-                lot_ids = move_line_ids.mapped('lot_id')
-                lot_cost = mean(lot_ids.mapped('lot_cost')) if lot_ids.mapped('lot_cost') else 0
-                qty_invoiced = il.quantity
-                price_unit = il.price_unit
-                amount_total = price_unit * qty_invoiced
-                invoice_id = il.move_id
-                marge = (round(price_unit, 2) - round(product.lot_cost, 2)) * qty_invoiced
-                vals = {'partner_id': invoice_id.partner_id.id,
-                        'product_id': product.id,
-                        'qty': qty_invoiced,
-                        'lot_cost': lot_cost,
-                        'lot_ids': lot_ids.ids,
-                        'unit_amount': price_unit,
-                        'amount_total': amount_total,
-                        'marge': marge,
-                        'date': invoice_id.invoice_date,
-                        'account_move_line_id': il.id,
-                        'move_line_ids': move_line_ids.ids,
-                        'type': 'real',
-                        'budget_type': 'sale',
-                        'user_type': 'com',
-                        'company_id': il.company_id.id}
-                Budget.create(vals)
-                vals['user_type'] = 'dir'
-                Budget.create(vals)
+                for ml in move_line_ids:
+                    # lot_cost = mean(lot_ids.mapped('lot_cost')) if lot_ids.mapped('lot_cost') else 0
+                    lot_cost = ml.lot_id.lot_cost
+                    qty_invoiced = il.quantity
+                    price_unit = il.price_unit
+                    amount_total = (round(price_unit, 2)) * qty_invoiced
+                    # cost_total = (round(lot_cost, 2)) * qty_invoiced
+                    invoice_id = il.move_id
+                    marge = (round(price_unit, 2) - round(lot_cost, 2)) * qty_invoiced
+                    # Ecarts Prev
+                    qty_prev_dir -= qty_invoiced
+                    qty_prev_com -= qty_invoiced
+                    real_prev_dir_amount_total -= amount_total
+                    real_prev_com_amount_total -= amount_total
+                    # real_prev_dir_cost_total -= cost_total
+                    # real_prev_com_cost_total -= cost_total
+                    marge_prev_dir -= marge
+                    marge_prev_com -= marge
+                    vals = {'partner_id': invoice_id.partner_id.id,
+                            'product_id': product.id,
+                            'qty': qty_invoiced,
+                            'lot_cost': lot_cost,
+                            'lot_ids': ml.lot_id.ids,
+                            'unit_amount': price_unit,
+                            'amount_total': amount_total,
+                            'marge': marge,
+                            'date': invoice_id.invoice_date,
+                            'account_move_line_id': il.id,
+                            'move_line_ids': move_line_ids.ids,
+                            'type': 'real',
+                            'budget_type': 'sale',
+                            'user_type': 'com',
+                            'diff_num_qty': qty_prev_com,
+                            'diff_num_lot_cost': lot_cost - real_cost_prev_com_amount,
+                            'diff_num_unit_amount': price_unit - real_unit_prev_com_amount,
+                            'diff_num_amount_total': real_prev_com_amount_total,
+                            'diff_num_marge': marge_prev_com,
+                            'company_id': il.company_id.id}
+                    Budget.create(vals)
+                    vals['user_type'] = 'dir'
+                    vals['diff_num_qty'] = qty_prev_dir
+                    vals['diff_num_amount_total'] = real_prev_dir_amount_total
+                    vals['diff_num_lot_cost'] = lot_cost - real_cost_prev_dir_amount
+                    vals['diff_num_unit_amount'] = price_unit - real_unit_prev_dir_amount
+                    vals['diff_num_marge'] = marge_prev_dir
+                    Budget.create(vals)
 
     def compute_purchase_lines(self):
         Budget = self.env['budget.budget'].search([('type', '=', 'real'), ('budget_type', '=', 'purchase')])
