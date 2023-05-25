@@ -212,6 +212,7 @@ code,id,name,user_type_id/id,reconcile,chart_template_id/id
 34180000,pcg_34180000,Autres fournisseurs débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
 34210000,pcg_34210000,Clients,account.data_account_type_receivable,TRUE,l10n_ma
 34211000,pcg_34211000,Clients - Catégorie A,account.data_account_type_receivable,TRUE,l10n_ma
+34212000,pcg_34212000,Clients - Catégorie B,account.data_account_type_receivable,TRUE,l10n_ma
 34230000,pcg_34230000,Clients - retenues de garantie,account.data_account_type_current_assets,FALSE,l10n_ma
 34240000,pcg_34240000,Clients douteux ou litigieux,account.data_account_type_current_assets,FALSE,l10n_ma
 34250000,pcg_34250000,Clients - effets à recevoir,account.data_account_type_current_assets,TRUE,l10n_ma
@@ -254,6 +255,7 @@ code,id,name,user_type_id/id,reconcile,chart_template_id/id
 34552153,pcg_34552153, -Autres prestations de services,account.data_account_type_current_assets,FALSE,l10n_ma
 34552155,pcg_34552155,Travaux à façon,account.data_account_type_current_assets,FALSE,l10n_ma
 34552156,pcg_34552156,Sous - traitance (travaux immobiliers ),account.data_account_type_current_assets,FALSE,l10n_ma
+34552158,pcg_34552158,TVA non apparente (article 125 ter),account.data_account_type_current_assets,FALSE,l10n_ma
 34560000,pcg_34560000,Etat - crédit de TVA (suivant déclaration),account.data_account_type_current_assets,FALSE,l10n_ma
 34580000,pcg_34580000,Etat - autres comptes débiteurs,account.data_account_type_current_assets,FALSE,l10n_ma
 34610000,pcg_34610000,Associés - comptes d'apport en société,account.data_account_type_current_assets,FALSE,l10n_ma
@@ -292,6 +294,7 @@ code,id,name,user_type_id/id,reconcile,chart_template_id/id
 39500000,pcg_39500000,Provisions pour dépréciation des titres et valeurs de placement,account.data_account_type_current_assets,FALSE,l10n_ma
 44110000,pcg_44110000,Fournisseurs,account.data_account_type_payable,TRUE,l10n_ma
 44111000,pcg_44111000,Fournisseurs - Catégorie A,account.data_account_type_payable,TRUE,l10n_ma
+44112000,pcg_44112000,Fournisseurs - Catégorie B,account.data_account_type_payable,TRUE,l10n_ma
 44130000,pcg_44130000,Fournisseurs - retenues de garantie,account.data_account_type_current_liabilities,FALSE,l10n_ma
 44150000,pcg_44150000,Fournisseurs - effets à payer,account.data_account_type_current_liabilities,FALSE,l10n_ma
 44170000,pcg_44170000,Fournisseurs - factures non parvenues,account.data_account_type_current_liabilities,TRUE,l10n_ma
@@ -360,7 +363,8 @@ code,id,name,user_type_id/id,reconcile,chart_template_id/id
 44550118,pcg_44550118, - Autres,account.data_account_type_current_liabilities,FALSE,l10n_ma
 44550119,pcg_44550119, -Autres,account.data_account_type_current_liabilities,FALSE,l10n_ma
 44560000,pcg_44560000,"Etat, TVA due (suivant déclarations)",account.data_account_type_current_liabilities,FALSE,l10n_ma
-44570000,pcg_44570000,"Etat, impôts et taxes à payer",account.data_account_type_current_liabilities,FALSE,l10n_ma
+44570000,pcg_44570000,"Etat, impôts et taxes à payer",account.data_account_type_payable,TRUE,l10n_ma
+44570001,pcg_44570001,"retenue sur dividende",account.data_account_type_payable,TRUE,l10n_ma
 44580000,pcg_44580000,Etat - autres comptes créditeurs,account.data_account_type_current_liabilities,FALSE,l10n_ma
 44610000,pcg_44610000,Associés - capital à rembourser,account.data_account_type_current_liabilities,FALSE,l10n_ma
 44620000,pcg_44620000,Associés - versements reçus sur augmentation de capital,account.data_account_type_current_liabilities,FALSE,l10n_ma
@@ -386,13 +390,13 @@ code,id,name,user_type_id/id,reconcile,chart_template_id/id
 45080000,pcg_45080000,Autres provisions pour risques et charges,account.data_account_type_current_liabilities,FALSE,l10n_ma
 47010000,pcg_47010000,Augmentation des créances circulantes,account.data_account_type_current_liabilities,TRUE,l10n_ma
 47020000,pcg_47020000,Diminution des dettes circulantes,account.data_account_type_current_liabilities,FALSE,l10n_ma
-51110000,pcg_51110000,Chèques à encaisser ou à l'encaissement,account.tres_actif,FALSE,l10n_ma
+51110000,pcg_51110000,Chèques à encaisser ou à l'encaissement,account.data_account_type_current_assets,TRUE,l10n_ma
 51111000,pcg_51111000,Chèques en portefeuille,account.tres_actif,FALSE,l10n_ma
 51112000,pcg_51112000,Chèques à l'encaissement,account.tres_actif,FALSE,l10n_ma
 51130000,pcg_51130000,Effets à encaisser ou à l'encaissement,account.tres_actif,FALSE,l10n_ma
 51131000,pcg_51131000,Effets échus à encaisser,account.tres_actif,FALSE,l10n_ma
 51132000,pcg_51132000,Effets à l'encaissement,account.tres_actif,FALSE,l10n_ma
-51150000,pcg_51150000,Virement de fonds,account.tres_actif,FALSE,l10n_ma
+51150000,pcg_51150000,Virement de fonds,account.tres_actif,TRUE,l10n_ma
 51180000,pcg_51180000,Autres valeurs à encaisser,account.tres_actif,FALSE,l10n_ma
 51181000,pcg_51181000,Prise en charge à encaisser,account.tres_actif,FALSE,l10n_ma
 51182000,pcg_51182000,Prise en charge à l'encaissement,account.tres_actif,FALSE,l10n_ma
@@ -671,6 +675,11 @@ code,id,name,user_type_id/id,reconcile,chart_template_id/id
 71278000,pcg_71278000,Autres ventes et produits accessoires,account.data_account_type_revenue,FALSE,l10n_ma
 71280000,pcg_71280000,Ventes de biens et services produits des exercices antérieurs,account.data_account_type_revenue,FALSE,l10n_ma
 71290000,pcg_71290000,"Rabais, remises et ristournes accordés par l’entreprise",account.data_account_type_revenue,FALSE,l10n_ma
+71291000,pcg_71291000,"R.R.R accordés sur ventes au Maroc des biens produits",account.data_account_type_revenue,FALSE,l10n_ma
+71292000,pcg_71292000,"R.R.R accordés sur ventes à l'étranger des biens produits",account.data_account_type_revenue,FALSE,l10n_ma
+71294000,pcg_71294000,"R.R.R accordés sur ventes au Maroc des services  produits",account.data_account_type_revenue,FALSE,l10n_ma
+71295000,pcg_71295000,"R.R.R accordés sur ventes à l'étranger des services produits",account.data_account_type_revenue,FALSE,l10n_ma
+71298000,pcg_71298000,"R.R.R accordés sur ventes de biens et services produits des exercices antérieurs",account.data_account_type_revenue,FALSE,l10n_ma
 71310000,pcg_71310000,Variation des stocks de produits en cours,account.data_account_type_revenue,FALSE,l10n_ma
 71311000,pcg_71311000,Variation des stocks de biens produits en cours,account.data_account_type_revenue,FALSE,l10n_ma
 71312000,pcg_71312000,Variation des stocks de produits intermédiaires en cours,account.data_account_type_revenue,FALSE,l10n_ma
@@ -752,7 +761,15 @@ code,id,name,user_type_id/id,reconcile,chart_template_id/id
 75863000,pcg_75863000,Lots,account.data_account_type_other_income,FALSE,l10n_ma
 75880000,pcg_75880000,Autres produits non courants des exercices antérieurs,account.data_account_type_other_income,FALSE,l10n_ma
 75910000,pcg_75910000,Reprises non courantes sur amortissements exceptionnels des immobilisations,account.data_account_type_other_income,FALSE,l10n_ma
+75911000,pcg_75911000,R.A.E de l'immobilisation en non valeurs ,account.data_account_type_other_income,FALSE,l10n_ma
+75912000,pcg_75912000,R.A.E des immobilisations incorporelles ,account.data_account_type_other_income,FALSE,l10n_ma
+75913000,pcg_75913000,R.A.E des immobilisations corporelles ,account.data_account_type_other_income,FALSE,l10n_ma
 75940000,pcg_75940000,Reprises non courantes sur provisions réglementées,account.data_account_type_other_income,FALSE,l10n_ma
+75941000,pcg_75941000,Reprises sur amortissements dérogatoires,account.data_account_type_other_income,FALSE,l10n_ma
+75942000,pcg_75942000,Reprises sur plus-values en instance d’imposition,account.data_account_type_other_income,FALSE,l10n_ma
+75944000,pcg_75944000,Reprises sur provisions pour investissements,account.data_account_type_other_income,FALSE,l10n_ma
+75945000,pcg_75945000,Reprises sur provisions pour reconstitution de gisements,account.data_account_type_other_income,FALSE,l10n_ma
+75946000,pcg_75946000,Reprises sur provisions pour acquisition et construction de logements,account.data_account_type_other_income,FALSE,l10n_ma
 75950000,pcg_75950000,Reprises non courantes sur provisions pour risques et charges,account.data_account_type_other_income,FALSE,l10n_ma
 75955000,pcg_75955000,Reprises sur provisions pour risques et charges durables,account.data_account_type_other_income,FALSE,l10n_ma
 75957000,pcg_75957000,Reprises sur provisions pour risques et charges momentanés,account.data_account_type_other_income,FALSE,l10n_ma
