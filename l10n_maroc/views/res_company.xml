@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="res_company_form_tva_accounts" model="ir.ui.view">
+            <field name="name">res.company.form.tva.accounts</field>
+            <field name="model">res.company</field>
+            <field name="priority">20</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+            <data>
+                 <notebook position="inside">
+                     <page string="Configuration TVA">
+                         <group>
+                             <field name="tax_journal_id" options="{'no_create':1}"/>
+                             <field name="tax_account_id" options="{'no_create':1}"/>
+                             <field name="payed_tax_account_id" options="{'no_create':1}"/>
+                         </group>
+                     </page>
+                 </notebook>
+            </data>
+            </field>
+        </record>
+    </data>
+</odoo>

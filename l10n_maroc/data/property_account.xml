@@ -5,5 +5,7 @@
         <field name="property_account_payable_id" ref="pcg_44111000"/>
         <field name="property_account_expense_id" ref="pcg_61110000"/>
         <field name="property_account_income_id" ref="pcg_71110000"/>
+        <field name="property_account_income_categ_id" ref="pcg_71110000"/>
+        <field name="property_account_expense_categ_id" ref="pcg_61110000"/>
     </record>
 </odoo>
