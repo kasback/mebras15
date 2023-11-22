@@ -229,6 +229,8 @@ class StockProductionLot(models.Model):
                 elif current >= target and can_update_be:
                     rec.break_event_date = ml.date
                     can_update_be = False
+                else:
+                    rec.break_event_date = False
             if rec.break_event_date:
                 rec.num_of_days = (rec.break_event_date - rec.create_date.date()).days
 
