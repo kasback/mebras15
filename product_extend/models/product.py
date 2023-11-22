@@ -219,20 +219,22 @@ class StockProductionLot(models.Model):
                                                   ('location_dest_id', '=', customers_location_id.id)
                                                   ], order='date ASC')
             if sum(move_line_ids.mapped('qty_done_signed')) < target:
+                rec.break_event_date = False
                 break
-            can_update_be = True
-            for ml in move_line_ids:
-                current += ml.qty_done_signed
-                if current < target:
-                    can_update_be = True
-                    rec.break_event_date = False
-                elif current >= target and can_update_be:
-                    rec.break_event_date = ml.date
-                    can_update_be = False
-                else:
-                    rec.break_event_date = False
-            if rec.break_event_date:
-                rec.num_of_days = (rec.break_event_date - rec.create_date.date()).days
+            else:
+                can_update_be = True
+                for ml in move_line_ids:
+                    current += ml.qty_done_signed
+                    if current < target:
+                        can_update_be = True
+                        rec.break_event_date = False
+                    elif current >= target and can_update_be:
+                        rec.break_event_date = ml.date
+                        can_update_be = False
+                    else:
+                        rec.break_event_date = False
+                if rec.break_event_date:
+                    rec.num_of_days = (rec.break_event_date - rec.create_date.date()).days
 
     def _compute_delivered_qty(self):
         for rec in self:
