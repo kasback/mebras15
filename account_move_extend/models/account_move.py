@@ -45,7 +45,7 @@ class AccountMove(models.Model):
     def create(self, vals):
         if self.env.company.uses_account_move_sequence:
             payment_date = fields.Date.today()
-            self.env['ir.config_parameter'].sudo().set_param('sequence.mixin.constraint_start_date', '2024-01-01')
+            # self.env['ir.config_parameter'].sudo().set_param('sequence.mixin.constraint_start_date', '2025-01-01')
             if 'invoice_date' in vals and vals['invoice_date']:
                 payment_date = vals['invoice_date']
             payment_date_year = datetime.strptime(str(payment_date), '%Y-%m-%d').year
