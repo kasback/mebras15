@@ -72,9 +72,10 @@ class ResPartner(models.Model):
 
     @api.depends('nbr_jrs')
     def compute_marge(self):
+        print('company', self.env.company.name)
         AccountMoveLine = self.env['account.move.line']
         domain = [('quantity', '>', '0'), ('move_id.move_type', '=', 'out_invoice'), ('move_id.state', '=', 'posted'),
-                  ('company_id', '=', self.company_id.id)]
+                  ('company_id', '=', self.env.company.id)]
         for rec in self:
             domain += [('move_id.partner_id', '=', rec.id)]
             invoice_lines = AccountMoveLine.search(domain)
@@ -89,11 +90,12 @@ class ResPartner(models.Model):
 
     def compute_all_marges(self):
         AccountMoveLine = self.env['account.move.line']
-        partner_ids = self.env['res.partner'].search([('company_id', '=', self.company_id.id)])
+        partner_ids = self.env['res.partner'].search([])
+        print('self.env.company.id', self.env.company.id)
         for rec in partner_ids:
             domain = [('move_id.move_type', '=', 'out_invoice'),
                       ('move_id.state', '=', 'posted'), ('move_id.partner_id', '=', rec.id), ('quantity', '>', '0'),
-                      ('company_id', '=', self.company_id.id)]
+                      ('company_id', '=', self.env.company.id)]
             invoice_lines = AccountMoveLine.search(domain)
             rec.marge = self.get_marge(invoice_lines)
             rec.authorized_exceeding = 0.0

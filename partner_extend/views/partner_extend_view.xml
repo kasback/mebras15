@@ -11,8 +11,6 @@
                 <field name="vat" position="before">
                         <field name="fax" widget="phone"/>
                         <field name="cin"/>
-                        <field name="assurance1"/>
-                        <field name="assurance2"/>
                 </field>
                 <notebook position="inside">
                     <page string="Autres infos" attrs="{'invisible': [('is_company','=', False)],'required': [('is_company','=', True)]}">
