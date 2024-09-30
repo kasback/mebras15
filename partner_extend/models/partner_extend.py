@@ -16,8 +16,6 @@ class ResPartner(models.Model):
     activites = fields.Char(string=u"Profession ou activités exercées")
     nationalite = fields.Char(string=u"Nationalité")
     fax = fields.Char(string=u"Fax")
-    assurance1 = fields.Many2one('pec.assurance', string=u"Assurance 1")
-    assurance2 = fields.Many2one('pec.assurance', string=u"Assurance 2")
     cin = fields.Char(string=u'CIN')
 
     @api.constrains('ice')

@@ -3,7 +3,7 @@
 {
     "name": u"DSO Clients",
     "version": "14.0",
-    "depends": ['base', 'account', 'account_reports'],
+    "depends": ['base', 'account', 'account_reports', 'sale', 'account_followup'],
     "author": "Osisoftware",
     "summary": "",
     'website': 'http://www.osisoftware.com',
